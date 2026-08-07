@@ -35,5 +35,7 @@ Edit scripts on disk. Do not use Studio or MCP script editing for Rojo-owned cod
 
 - Local Git repository only; no remote and no Roblox cloud workflow.
 - Rojo 7.6.1, Lune 0.10.4, and Wally 0.3.2 are pinned through Rokit.
-- The first place is a verified neutral grass baseplate with a spawn until Leo and Jon choose the game concept.
+- The first playable is **Doge Apple Shop**: take one apple, serve the front Doge, earn a coin, and cycle the queue.
+- `places/JonAndLeoDevelopment.rbxlx` contains the local shop world and one native procedural Doge experiment.
+- `scripts/build-doge-shop-world.luau` is the guarded, repeatable world-layer builder.
 - Reusable lessons from the previous Claude workflow are in `docs/legacy/CLAUDE_WORKFLOW_RECOVERY.md`.
