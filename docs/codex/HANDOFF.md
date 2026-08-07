@@ -2,7 +2,7 @@
 
 ## Current verified state
 
-- Project root: `C:\Users\fricc\Documents\Roblox\jon-and-leo-development`.
+- Canonical project root: `C:\Users\fricc\Documents\Codex\2026-08-07\pipilabu`.
 - Local Git repository with no remote.
 - Private cloud experience: `Pipilabu` (`PlaceId = 133099029551440`, `GameId = 10646495069`).
 - Jon's Roblox accounts `jwallyguy` and `Awchism` are verified collaborators with Edit access.
@@ -12,13 +12,15 @@
 - Rojo's `servePlaceIds` allowlist accepts only `0` and `133099029551440`, preventing accidental sync into the older unrelated place.
 - Shared voice is configured through XSplit; see `docs/codex/VOICE_WORKFLOW.md`.
 - The old Tung/Claude setup remains untouched; recovered notes are in `docs/legacy/CLAUDE_WORKFLOW_RECOVERY.md`.
+- Codex Desktop now registers this canonical root as the local `pipilabu` project (`projectId 4f25ae78-74e2-4aab-b34b-5d56e1a866de`).
+- The trusted project's machine-local `.codex/config.toml` repeats `approval_policy = "never"` and `sandbox_mode = "danger-full-access"`, matching Leo's global Codex profile so routine local commands and MCP checks do not request manual approval. The file is intentionally gitignored and affects only this desktop.
 
 ## First playable: Doge Apple Shop
 
 - Concept and future layers: `docs/GAME_CONCEPT.md`.
-- Player takes one visible apple from the crate, physically tosses it to only the front Doge, earns one coin and one served point on catch, and watches a three-customer queue cycle.
+- Player takes one visible apple from the crate, physically tosses it to only the ready small Doge, earns one coin and one served point on catch, and watches a three-customer queue cycle.
 - Server-authoritative gameplay: `src/server/GameService.luau`.
-- GOOD FRUIT HUD: `src/client/Bootstrap.client.luau`.
+- PIPILABU HUD: `src/client/Bootstrap.client.luau`.
 - World contract: `Workspace.DogeAppleShop`; guarded rebuild source: `scripts/build-doge-shop-world.luau`.
 - Native Studio generation experiment: `Workspace.DogeAppleShop.MascotExperiments.DogeShopkeeper`, a 51-descendant `ProceduralModel` with editable color attributes. Gameplay does not depend on it.
 
@@ -36,6 +38,10 @@
 - The live cloud counter top is now 1.55 studs high for Leo's small avatar. The builder matches it.
 - The oversized `DogeShopkeeper` procedural experiment is preserved under `ServerStorage.JonAndLeoVisualExperiments`; it no longer blocks the shop or camera.
 - Local place saved after the world and procedural model were added.
+- The 12.12-second market-Doge inspiration video is preserved at `assets/reference/peepilabu-market-reference.mp4`. Five isolated, normalized voice clips plus timestamps and playback policy live under `assets/audio/peepilabu/`; they have not been uploaded to Roblox.
+- Gate A v0.6 grounds the shop on a centered 256-stud grass Baseplate, turns the queue parallel to the counter so customers advance left-to-right, moves the HUD below Roblox Core UI, allows optional first-person zoom while preserving Classic third-person, removes `GOOD FRUIT`/`Front Doge` copy, and makes the served Doge visibly carry a welded apple through celebration and exit.
+- All player-facing text is centralized in `src/shared/Copy.luau`. The private Google Doc `Pipilabu — Game Copy (Jon + Leo)` mirrors stable keys and grants `jawn.walworth@gmail.com` writer access; see `docs/COPY_WORKFLOW.md`.
+- Roblox Creator Store research found no credible exact Peepilabu character. The final recommended path is an original shiba-inspired Blender rig; candidate placeholders and the audited isolation/import/test workflow are in `docs/ROBLOX_ASSET_PIPELINE.md`. No asset was inserted or uploaded.
 
 ## Studio safety lesson
 
@@ -49,12 +55,37 @@ The redundant local/recovery Studio sessions were closed on August 7. The correc
 
 ## Session startup
 
-1. Open the private `Pipilabu` experience (`PlaceId 133099029551440`) or the local fallback place.
-2. Run `scripts/dev.ps1` and connect Rojo to `localhost:34872`.
-3. Confirm Studio Assistant > Manage MCP Servers has the Studio server and Codex enabled.
-4. Before mutations, verify the active MCP instance and both local IDs.
-5. For shared speech, run `scripts/start-voice-bridge.ps1` and leave XSplit running.
+1. Run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\boot-jon-leo-roblox.ps1` from the canonical root.
+2. The command validates baseline ancestry, local-only Git state, the exact allowlist, and exactly one Rojo listener on `localhost:34872`.
+3. If Studio MCP lists no correct instance, the boot skill reruns the command once with `-OpenStudio`; it opens exact PlaceId `133099029551440` and never launches the blocked duplicate.
+4. The boot skill uses computer control to enable Studio Assistant > Manage MCP Servers and Codex itself when the correct editor is not connected. This is not a manual Leo step.
+5. Before mutations, list Studio instances, select the correct cloud instance, assert both exact IDs, and confirm Edit mode plus live Config v0.6.
+6. For shared speech only when explicitly wanted, run `scripts/start-voice-bridge.ps1`; voice stays off by default.
+7. The boot skill closes proven generic/blocked duplicate Studio windows, preserves any window that raises an unsaved-data prompt, and leaves the verified correct editor foregrounded in Edit mode.
+
+## Canonical workspace boot — August 7, 2026
+
+- Mechanically copied the complete tracked repository and `.git` history from the former workspace without mutating it. New HEAD is the clean baseline `0615886` before this setup work; no Git remote exists.
+- The former workspace's ignored `places/JonAndLeoDevelopment.rbxlx` could not be read by the Codex sandbox, so the new workspace relies on the correct cloud place and retains the previously built `.local` verification places. No source file was deleted or changed.
+- Added the gated idea ledger at `docs/IDEA_LEDGER.md`; future mechanics remain deferred behind Gate A.
+- Created the skill through the official skill-creator scaffold. Because `.codex` and `.agents` are protected in this desktop task, the complete validated repo-owned package is at `docs/codex/skills/boot-jon-leo-roblox/`, with the executable entry point at `scripts/boot-jon-leo-roblox.ps1`.
+- Official `quick_validate.py` passed against the durable package, the helper passed PowerShell parsing, and the packaged/helper script copies matched by SHA-256. Automatic `$skill` discovery requires a future allowed install into a protected skill root; the executable boot command works now.
+- Rojo 7.6.1 build passed. Exactly one verified Rojo process (`PID 25136` during this setup) serves `localhost:34872` from this workspace. `/api/rojo` reported project `JonAndLeoDevelopment`, server `7.6.1`, and expected PlaceIds exactly `[0, 133099029551440]`.
+- The final boot command reused that listener and launched cloud PlaceId `133099029551440` without starting Play. Studio MCP still listed zero connected instances because the desktop Studio process is in the interactive Windows user session while this task's MCP bridge cannot see it.
+- Resolved later on August 7: Studio MCP connected to the single visible `Pipilabu`, live server assertions matched PlaceId `133099029551440` and GameId `10646495069`, Config reported `0.5.0`, and the stale Play session was stopped cleanly. Studio is now in Edit mode. Reverify these ephemeral facts at every boot.
+- Voice bridge remains off. No experience publish, Git remote, push, gameplay change, or Play session occurred.
 
 ## Next gate
 
-Leo and Jon should now rerun Gate A from `docs/codex/PLAYTEST_GATES.md` by hand against v0.5. Ask: “Were you still looking forward to seeing and causing the handoff itself, or were you pressing Serve only to make it finish?” Do not implement the 90-second Dandori mode, potions, robberies, farmer's market, or town until they voluntarily serve an eleventh plain red apple after serving ten.
+Leo and Jon should now rerun Gate A from `docs/codex/PLAYTEST_GATES.md` by hand against v0.6. Ask: “Were you still looking forward to seeing and causing the handoff itself, or were you pressing Serve only to make it finish?” Do not implement the 90-second Dandori mode, potions, robberies, farmer's market, or town until they voluntarily serve an eleventh plain red apple after serving ten.
+
+For the next bounded sound pass, upload or replace only the three `baby_serve_reaction` clips after Leo explicitly authorizes asset upload, then connect them to successful apple contact with the manifest's shuffle-bag rule. Keep the `player_callout` clips reserved for the separate pre-handoff talk experiment.
+
+## Gate A v0.6 verification — August 7, 2026
+
+- `rojo build default.project.json --output .local/pipilabu-v0.6-verify.rbxlx` passed.
+- Live Studio identity was reasserted as PlaceId `133099029551440`, GameId `10646495069`; the blocked duplicate was not mutated.
+- Live Baseplate top is exactly `Y = 0`; queue spots share `Z = 1` and advance from `X = -7.5` toward the serving spot at `X = 7.5`; customer spawn/exit are `X = -15/+15`.
+- Clean Play boot logged server/client v0.6.0 with one player, zero coins, zero served, and three customers.
+- A controlled pickup produced one `HeldApple`. One controlled serve produced exactly one coin and one served point, removed `HeldApple`, created an unanchored `ReceivedApple` with `CustomerAppleWeld`, preserved it during the 0.9-second celebration, and destroyed it naturally with the departing customer while returning the queue to three.
+- Client readback confirmed `Classic`, zoom `0.5–20`, and `CoreUISafeInsets`. Studio screen capture confirmed the grounded horizontal presentation and `PIPILABU` HUD.

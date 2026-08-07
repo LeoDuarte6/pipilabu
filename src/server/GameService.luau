@@ -6,6 +6,9 @@ local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 
+local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
+local Copy = require(projectRoot:WaitForChild("Copy"))
+
 type ShopConfig = {
 	StartingQueueSize: number,
 	MaximumQueueSize: number,
@@ -17,18 +20,50 @@ type ShopConfig = {
 	ServePromptDistance: number,
 }
 
+type ShiftConfig = {
+	DurationSeconds: number,
+	TargetServed: number,
+	MaximumMissed: number,
+	CustomerPatienceSeconds: number,
+	TickRateSeconds: number,
+}
+
 type ProjectConfig = {
 	ProjectName: string,
 	DevelopmentVersion: string,
 	Shop: ShopConfig,
+	Shift: ShiftConfig,
 }
 
 local GameService = {}
+
+-- Server-only extension seam for future reputation, economy, and disruption systems.
+-- Consumers can observe named lifecycle events without owning the core shift state.
+local lifecycleEvent = Instance.new("BindableEvent")
+lifecycleEvent.Name = "ShopLifecycle"
+lifecycleEvent.Parent = script
+GameService.Lifecycle = lifecycleEvent.Event
+GameService.LifecycleNames = table.freeze({
+	ShiftStarted = "ShiftStarted",
+	CustomerServed = "CustomerServed",
+	CustomerMissed = "CustomerMissed",
+	ShiftEnded = "ShiftEnded",
+})
 
 local started = false
 local customerSerial = 0
 local queue: { Model } = {}
 local serving = false
+local shiftState = "Waiting"
+local shiftOwner: Player? = nil
+local shiftEndsAt = 0
+local shiftTimeRemaining = 0
+local shiftServed = 0
+local shiftMissed = 0
+local runSerial = 0
+local frontCustomer: Model? = nil
+local frontPatienceEndsAt = 0
+local frontPatienceRemaining = 0
 
 local shop: Folder
 local customersFolder: Folder
@@ -37,7 +72,10 @@ local customerSpawn: BasePart
 local customerExit: BasePart
 local appleCrate: BasePart
 local shopConfig: ShopConfig
+local shiftConfig: ShiftConfig
 local feedbackEvent: RemoteEvent
+local controlEvent: RemoteEvent
+local applePrompt: ProximityPrompt
 
 local DOGE_COLORS = {
 	Color3.fromRGB(222, 177, 112),
@@ -58,6 +96,37 @@ local function getOrCreateValue(parent: Instance, className: string, name: strin
 	return value :: ValueBase
 end
 
+local function applyShiftAttributes(player: Player)
+	player:SetAttribute("ShiftState", shiftState)
+	player:SetAttribute("ShiftTimeRemaining", shiftTimeRemaining)
+	player:SetAttribute("ShiftTarget", shiftConfig.TargetServed)
+	player:SetAttribute("ShiftServed", shiftServed)
+	player:SetAttribute("ShiftMissed", shiftMissed)
+	player:SetAttribute("ShiftMaximumMissed", shiftConfig.MaximumMissed)
+	player:SetAttribute("FrontPatienceRemaining", frontPatienceRemaining)
+end
+
+local function publishShiftAttributes()
+	for _, player in Players:GetPlayers() do
+		applyShiftAttributes(player)
+	end
+end
+
+local function emitLifecycle(eventName: string, player: Player?)
+	lifecycleEvent:Fire(eventName, table.freeze({
+		ownerUserId = if shiftOwner then shiftOwner.UserId else 0,
+		playerUserId = if player then player.UserId else 0,
+		state = shiftState,
+		served = shiftServed,
+		missed = shiftMissed,
+		timeRemaining = shiftTimeRemaining,
+	}))
+end
+
+local function waitingMessage(): string
+	return string.format(Copy.Messages.Waiting, shiftConfig.TargetServed, shiftConfig.MaximumMissed)
+end
+
 local function configurePlayer(player: Player)
 	local leaderstats = player:FindFirstChild("leaderstats")
 	if not leaderstats then
@@ -72,8 +141,9 @@ local function configurePlayer(player: Player)
 	served.Value = 0
 
 	player:SetAttribute("HasApple", false)
-	player:SetAttribute("ShopMessage", "Take one apple from the crate")
+	player:SetAttribute("ShopMessage", if shiftState == "Waiting" then waitingMessage() else Copy.Messages.ShiftInProgress)
 	player:SetAttribute("QueueSize", #queue)
+	applyShiftAttributes(player)
 end
 
 local function removeHeldApple(player: Player)
@@ -166,13 +236,18 @@ local function showHeldApple(player: Player)
 end
 
 local function takeApple(player: Player)
+	if shiftState ~= "Active" or shiftOwner ~= player then
+		player:SetAttribute("ShopMessage", if shiftState == "Active" then Copy.Messages.ShiftInProgress else waitingMessage())
+		return
+	end
+
 	if player:GetAttribute("HasApple") == true then
-		player:SetAttribute("ShopMessage", "Your paws are full - serve the front Doge")
+		player:SetAttribute("ShopMessage", Copy.Messages.PawsFull)
 		return
 	end
 
 	player:SetAttribute("HasApple", true)
-	player:SetAttribute("ShopMessage", "Apple ready - serve the front Doge")
+	player:SetAttribute("ShopMessage", Copy.Messages.AppleReady)
 	showHeldApple(player)
 	feedbackEvent:FireClient(player, "Pickup")
 end
@@ -233,8 +308,8 @@ local function createCustomer(): Model
 
 	local prompt = Instance.new("ProximityPrompt")
 	prompt.Name = "ServePrompt"
-	prompt.ActionText = "Give Apple"
-	prompt.ObjectText = "Waiting Doge"
+	prompt.ActionText = Copy.Prompts.GiveAppleAction
+	prompt.ObjectText = Copy.Prompts.WaitingDoge
 	prompt.HoldDuration = 0.1
 	prompt.MaxActivationDistance = shopConfig.ServePromptDistance
 	prompt.RequiresLineOfSight = false
@@ -249,7 +324,7 @@ local function createCustomer(): Model
 	orderBillboard.AlwaysOnTop = false
 	orderBillboard.Enabled = false
 	orderBillboard.MaxDistance = 32
-	orderBillboard.Size = UDim2.fromOffset(126, 44)
+	orderBillboard.Size = UDim2.fromOffset(150, 66)
 	orderBillboard.StudsOffset = Vector3.new(0, 1.45, 0)
 	orderBillboard.Parent = head
 
@@ -275,8 +350,8 @@ local function createCustomer(): Model
 	appleDot.AnchorPoint = Vector2.new(0, 0.5)
 	appleDot.BackgroundColor3 = Color3.fromRGB(216, 48, 45)
 	appleDot.BorderSizePixel = 0
-	appleDot.Position = UDim2.new(0, 12, 0.5, 0)
-	appleDot.Size = UDim2.fromOffset(32, 32)
+	appleDot.Position = UDim2.fromOffset(10, 21)
+	appleDot.Size = UDim2.fromOffset(28, 28)
 	appleDot.Parent = card
 
 	local dotCorner = Instance.new("UICorner")
@@ -287,12 +362,48 @@ local function createCustomer(): Model
 	orderText.Name = "OrderText"
 	orderText.BackgroundTransparency = 1
 	orderText.Font = Enum.Font.GothamBold
-	orderText.Position = UDim2.fromOffset(52, 0)
-	orderText.Size = UDim2.new(1, -60, 1, 0)
-	orderText.Text = "APPLE"
+	orderText.Position = UDim2.fromOffset(46, 4)
+	orderText.Size = UDim2.new(1, -54, 0, 34)
+	orderText.Text = Copy.Prompts.OrderApple
 	orderText.TextColor3 = Color3.fromRGB(75, 44, 29)
 	orderText.TextScaled = true
 	orderText.Parent = card
+
+	local patienceTrack = Instance.new("Frame")
+	patienceTrack.Name = "PatienceTrack"
+	patienceTrack.BackgroundColor3 = Color3.fromRGB(101, 88, 74)
+	patienceTrack.BorderSizePixel = 0
+	patienceTrack.ClipsDescendants = true
+	patienceTrack.Position = UDim2.fromOffset(10, 45)
+	patienceTrack.Size = UDim2.new(1, -20, 0, 13)
+	patienceTrack.Parent = card
+
+	local patienceCorner = Instance.new("UICorner")
+	patienceCorner.CornerRadius = UDim.new(1, 0)
+	patienceCorner.Parent = patienceTrack
+
+	local patienceFill = Instance.new("Frame")
+	patienceFill.Name = "PatienceFill"
+	patienceFill.BackgroundColor3 = Color3.fromRGB(91, 190, 105)
+	patienceFill.BorderSizePixel = 0
+	patienceFill.Size = UDim2.fromScale(1, 1)
+	patienceFill.Parent = patienceTrack
+
+	local patienceFillCorner = Instance.new("UICorner")
+	patienceFillCorner.CornerRadius = UDim.new(1, 0)
+	patienceFillCorner.Parent = patienceFill
+
+	local patienceText = Instance.new("TextLabel")
+	patienceText.Name = "PatienceText"
+	patienceText.BackgroundTransparency = 1
+	patienceText.Font = Enum.Font.GothamBold
+	patienceText.Size = UDim2.fromScale(1, 1)
+	patienceText.Text = string.format(Copy.Prompts.Patience, shiftConfig.CustomerPatienceSeconds)
+	patienceText.TextColor3 = Color3.fromRGB(255, 255, 255)
+	patienceText.TextSize = 9
+	patienceText.TextStrokeTransparency = 0.55
+	patienceText.ZIndex = 2
+	patienceText.Parent = patienceTrack
 
 	model.Parent = customersFolder
 	return model
@@ -326,6 +437,40 @@ local function tweenCustomer(customer: Model, target: CFrame, onComplete: (() ->
 	tween:Play()
 end
 
+local function updatePatiencePresentation(customer: Model, remaining: number)
+	local ratio = math.clamp(remaining / shiftConfig.CustomerPatienceSeconds, 0, 1)
+	local fill = customer:FindFirstChild("PatienceFill", true)
+	if fill and fill:IsA("Frame") then
+		fill.Size = UDim2.fromScale(ratio, 1)
+		fill.BackgroundColor3 = if ratio > 0.5
+			then Color3.fromRGB(91, 190, 105)
+			elseif ratio > 0.25 then Color3.fromRGB(232, 173, 65)
+			else Color3.fromRGB(220, 72, 65)
+	end
+
+	local patienceText = customer:FindFirstChild("PatienceText", true)
+	if patienceText and patienceText:IsA("TextLabel") then
+		patienceText.Text = string.format(Copy.Prompts.Patience, math.max(0, math.ceil(remaining)))
+	end
+end
+
+local function armFrontCustomer()
+	local candidate = if shiftState == "Active" and not serving then queue[1] else nil
+	if candidate == frontCustomer then
+		return
+	end
+
+	frontCustomer = candidate
+	if candidate then
+		frontPatienceEndsAt = os.clock() + shiftConfig.CustomerPatienceSeconds
+		frontPatienceRemaining = shiftConfig.CustomerPatienceSeconds
+		updatePatiencePresentation(candidate, shiftConfig.CustomerPatienceSeconds)
+	else
+		frontPatienceEndsAt = 0
+		frontPatienceRemaining = 0
+	end
+end
+
 local function refreshQueue()
 	local spots = sortedQueueSpots()
 	for index, customer in queue do
@@ -336,16 +481,20 @@ local function refreshQueue()
 
 		local prompt = customer:FindFirstChild("ServePrompt", true)
 		if prompt and prompt:IsA("ProximityPrompt") then
-			prompt.Enabled = index == 1 and not serving
-			prompt.ObjectText = if index == 1 then "Front Doge" else string.format("Waiting Doge #%d", index)
+			prompt.Enabled = index == 1 and shiftState == "Active" and shiftOwner ~= nil and not serving
+			prompt.ObjectText = if index == 1 then Copy.Prompts.SmallDoge else string.format(Copy.Prompts.WaitingDogeNumbered, index)
 		end
 
 		local billboard = customer:FindFirstChild("OrderBillboard", true)
 		if billboard and billboard:IsA("BillboardGui") then
 			billboard.Enabled = index == 1
+			local patienceTrack = billboard:FindFirstChild("PatienceTrack", true)
+			if patienceTrack and patienceTrack:IsA("Frame") then
+				patienceTrack.Visible = index == 1 and shiftState == "Active" and not serving
+			end
 			local orderText = billboard:FindFirstChild("OrderText", true)
 			if orderText and orderText:IsA("TextLabel") then
-				orderText.Text = "APPLE"
+				orderText.Text = Copy.Prompts.OrderApple
 				orderText.TextColor3 = Color3.fromRGB(75, 44, 29)
 			end
 		end
@@ -354,6 +503,7 @@ local function refreshQueue()
 	for _, player in Players:GetPlayers() do
 		player:SetAttribute("QueueSize", #queue)
 	end
+	armFrontCustomer()
 end
 
 local function awardServe(player: Player)
@@ -370,6 +520,9 @@ local function awardServe(player: Player)
 	if served and served:IsA("IntValue") then
 		served.Value += 1
 	end
+	shiftServed += 1
+	publishShiftAttributes()
+	emitLifecycle(GameService.LifecycleNames.CustomerServed, player)
 end
 
 local function celebrateCustomer(customer: Model)
@@ -383,7 +536,7 @@ local function celebrateCustomer(customer: Model)
 		billboard.Enabled = true
 		local orderText = billboard:FindFirstChild("OrderText", true)
 		if orderText and orderText:IsA("TextLabel") then
-			orderText.Text = "THANK YOU!"
+			orderText.Text = Copy.Prompts.ThankYou
 			orderText.TextColor3 = Color3.fromRGB(42, 126, 68)
 		end
 		local appleDot = billboard:FindFirstChild("AppleDot", true)
@@ -446,13 +599,65 @@ local function animateAppleHandoff(player: Player, customer: Model, onCaught: ()
 		})
 		catchSquash:Play()
 		catchSquash.Completed:Wait()
-		heldApple:Destroy()
+
+		local root = customer.PrimaryPart
+		if root then
+			local outline = heldApple:FindFirstChild("HeldAppleOutline")
+			if outline then
+				outline:Destroy()
+			end
+
+			heldApple.Name = "ReceivedApple"
+			heldApple.Size = Vector3.new(1.3, 1.3, 1.3)
+			heldApple.CFrame = root.CFrame * CFrame.new(0, 0.45, -1.28) * CFrame.Angles(0, 0, math.rad(-8))
+			heldApple.Parent = customer
+			heldApple.Anchored = false
+
+			local customerWeld = Instance.new("WeldConstraint")
+			customerWeld.Name = "CustomerAppleWeld"
+			customerWeld.Part0 = root
+			customerWeld.Part1 = heldApple
+			customerWeld.Parent = heldApple
+		else
+			heldApple:Destroy()
+		end
 	end
 
 	onCaught()
 end
 
-local function spawnCustomer()
+local function setMessageForAll(message: string)
+	for _, player in Players:GetPlayers() do
+		player:SetAttribute("ShopMessage", message)
+	end
+end
+
+local function endShift(result: string, message: string)
+	if shiftState ~= "Active" then
+		return
+	end
+
+	shiftState = result
+	frontCustomer = nil
+	frontPatienceEndsAt = 0
+	frontPatienceRemaining = 0
+	applePrompt.Enabled = false
+	for _, player in Players:GetPlayers() do
+		player:SetAttribute("HasApple", false)
+		removeHeldApple(player)
+	end
+	setMessageForAll(message)
+	publishShiftAttributes()
+	refreshQueue()
+	if shiftOwner then
+		feedbackEvent:FireClient(shiftOwner, result)
+	end
+	emitLifecycle(GameService.LifecycleNames.ShiftEnded, shiftOwner)
+end
+
+local spawnCustomer: () -> ()
+
+spawnCustomer = function()
 	if #queue >= shopConfig.MaximumQueueSize then
 		return
 	end
@@ -463,38 +668,82 @@ local function spawnCustomer()
 	local prompt = customer:FindFirstChild("ServePrompt", true) :: ProximityPrompt?
 	if prompt then
 		prompt.Triggered:Connect(function(player)
+			if shiftState ~= "Active" or shiftOwner ~= player then
+				player:SetAttribute("ShopMessage", if shiftState == "Active" then Copy.Messages.ShiftInProgress else waitingMessage())
+				return
+			end
+
 			if serving or queue[1] ~= customer then
-				player:SetAttribute("ShopMessage", "Serve the Doge at the front of the line first")
+				player:SetAttribute("ShopMessage", Copy.Messages.ServeReadyDogeFirst)
 				return
 			end
 
 			if player:GetAttribute("HasApple") ~= true then
-				player:SetAttribute("ShopMessage", "This Doge ordered an apple - visit the crate")
+				player:SetAttribute("ShopMessage", Copy.Messages.NeedsApple)
 				return
 			end
 
 			serving = true
+			frontCustomer = nil
+			frontPatienceEndsAt = 0
+			frontPatienceRemaining = 0
 			player:SetAttribute("HasApple", false)
-			player:SetAttribute("ShopMessage", "Send it with care")
+			player:SetAttribute("ShopMessage", Copy.Messages.Sending)
 			prompt.Enabled = false
+			local patienceTrack = customer:FindFirstChild("PatienceTrack", true)
+			if patienceTrack and patienceTrack:IsA("Frame") then
+				patienceTrack.Visible = false
+			end
 
+			local activeRun = runSerial
 			task.spawn(animateAppleHandoff, player, customer, function()
-				player:SetAttribute("ShopMessage", "Good fruit, gladly given")
+				if activeRun ~= runSerial or shiftOwner ~= player or shiftState ~= "Active" then
+					local staleIndex = table.find(queue, customer)
+					if staleIndex then
+						table.remove(queue, staleIndex)
+					end
+					customer:Destroy()
+					if activeRun == runSerial then
+						serving = false
+						refreshQueue()
+					end
+					return
+				end
+
+				player:SetAttribute("ShopMessage", Copy.Messages.Served)
 				awardServe(player)
 				feedbackEvent:FireClient(player, "Serve")
 				celebrateCustomer(customer)
 
 				task.delay(shopConfig.ServeCelebrationTime, function()
+					if activeRun ~= runSerial then
+						customer:Destroy()
+						return
+					end
 					if queue[1] == customer then
 						table.remove(queue, 1)
 					end
 					serving = false
-					refreshQueue()
 					tweenCustomer(customer, customerExit.CFrame, function()
 						customer:Destroy()
 					end)
 
+					if shiftServed >= shiftConfig.TargetServed then
+						endShift("Won", Copy.Messages.ShiftWon)
+						return
+					end
+
+					if os.clock() >= shiftEndsAt then
+						endShift("Lost", Copy.Messages.ShiftLostTime)
+						return
+					end
+
+					refreshQueue()
+
 					task.delay(shopConfig.CustomerRespawnDelay, function()
+						if activeRun ~= runSerial or shiftState ~= "Active" then
+							return
+						end
 						spawnCustomer()
 						refreshQueue()
 					end)
@@ -504,6 +753,148 @@ local function spawnCustomer()
 	end
 
 	refreshQueue()
+end
+
+local function clearQueue()
+	for _, customer in queue do
+		customer:Destroy()
+	end
+	table.clear(queue)
+	frontCustomer = nil
+	frontPatienceEndsAt = 0
+	frontPatienceRemaining = 0
+end
+
+local function resetPlayerStats(player: Player)
+	local leaderstats = player:FindFirstChild("leaderstats")
+	if leaderstats then
+		local coins = leaderstats:FindFirstChild("Coins")
+		local served = leaderstats:FindFirstChild("Served")
+		if coins and coins:IsA("IntValue") then
+			coins.Value = 0
+		end
+		if served and served:IsA("IntValue") then
+			served.Value = 0
+		end
+	end
+	player:SetAttribute("HasApple", false)
+	removeHeldApple(player)
+end
+
+local function startShift(player: Player)
+	if shiftState == "Active" then
+		player:SetAttribute("ShopMessage", Copy.Messages.ShiftInProgress)
+		return
+	end
+
+	runSerial += 1
+	shiftState = "Active"
+	shiftOwner = player
+	shiftServed = 0
+	shiftMissed = 0
+	shiftEndsAt = os.clock() + shiftConfig.DurationSeconds
+	shiftTimeRemaining = shiftConfig.DurationSeconds
+	serving = false
+	clearQueue()
+	resetPlayerStats(player)
+
+	for _, currentPlayer in Players:GetPlayers() do
+		currentPlayer:SetAttribute("ShopMessage", if currentPlayer == player then Copy.Messages.ShiftStarted else Copy.Messages.ShiftInProgress)
+	end
+	publishShiftAttributes()
+	applePrompt.Enabled = true
+
+	for _ = 1, shopConfig.StartingQueueSize do
+		spawnCustomer()
+	end
+	refreshQueue()
+	feedbackEvent:FireClient(player, "Started")
+	emitLifecycle(GameService.LifecycleNames.ShiftStarted, player)
+end
+
+local function missFrontCustomer()
+	if shiftState ~= "Active" or serving then
+		return
+	end
+
+	local customer = queue[1]
+	if not customer then
+		return
+	end
+
+	table.remove(queue, 1)
+	frontCustomer = nil
+	frontPatienceEndsAt = 0
+	frontPatienceRemaining = 0
+	shiftMissed += 1
+
+	local orderText = customer:FindFirstChild("OrderText", true)
+	if orderText and orderText:IsA("TextLabel") then
+		orderText.Text = Copy.Prompts.Impatient
+		orderText.TextColor3 = Color3.fromRGB(192, 54, 49)
+	end
+
+	setMessageForAll(Copy.Messages.MissedCustomer)
+	publishShiftAttributes()
+	if shiftOwner then
+		feedbackEvent:FireClient(shiftOwner, "Miss")
+	end
+	emitLifecycle(GameService.LifecycleNames.CustomerMissed, shiftOwner)
+	tweenCustomer(customer, customerExit.CFrame, function()
+		customer:Destroy()
+	end)
+
+	if shiftMissed >= shiftConfig.MaximumMissed then
+		endShift("Lost", Copy.Messages.ShiftLostMisses)
+		return
+	end
+
+	local activeRun = runSerial
+	refreshQueue()
+	task.delay(shopConfig.CustomerRespawnDelay, function()
+		if activeRun ~= runSerial or shiftState ~= "Active" then
+			return
+		end
+		spawnCustomer()
+		refreshQueue()
+	end)
+end
+
+local function runShiftClock()
+	task.spawn(function()
+		while started do
+			task.wait(shiftConfig.TickRateSeconds)
+			if shiftState ~= "Active" then
+				continue
+			end
+
+			local now = os.clock()
+			local timeRemaining = math.max(0, math.ceil(shiftEndsAt - now))
+			shiftTimeRemaining = timeRemaining
+			for _, player in Players:GetPlayers() do
+				player:SetAttribute("ShiftTimeRemaining", timeRemaining)
+			end
+
+			if now >= shiftEndsAt then
+				if not serving then
+					endShift("Lost", Copy.Messages.ShiftLostTime)
+				end
+				continue
+			end
+
+			if frontCustomer and frontPatienceEndsAt > 0 and not serving then
+				local remaining = math.max(0, frontPatienceEndsAt - now)
+				frontPatienceRemaining = math.ceil(remaining)
+				updatePatiencePresentation(frontCustomer, remaining)
+				for _, player in Players:GetPlayers() do
+					player:SetAttribute("FrontPatienceRemaining", frontPatienceRemaining)
+				end
+				if remaining <= 0 then
+					missFrontCustomer()
+				end
+			end
+		end
+	end)
 end
 
 local function bindWorld()
@@ -521,14 +912,15 @@ local function bindWorld()
 		prompt.Parent = appleCrate
 	end
 
-	local applePrompt = prompt :: ProximityPrompt
-	applePrompt.ActionText = "Take One Apple"
-	applePrompt.ObjectText = "Apple Crate"
+	applePrompt = prompt :: ProximityPrompt
+	applePrompt.ActionText = Copy.Prompts.TakeAppleAction
+	applePrompt.ObjectText = Copy.Prompts.AppleCrate
 	applePrompt.HoldDuration = 0.1
 	applePrompt.MaxActivationDistance = shopConfig.PickupPromptDistance
 	applePrompt.RequiresLineOfSight = false
 	applePrompt.KeyboardKeyCode = Enum.KeyCode.E
 	applePrompt.GamepadKeyCode = Enum.KeyCode.ButtonX
+	applePrompt.Enabled = false
 	applePrompt.Triggered:Connect(takeApple)
 end
 
@@ -536,9 +928,14 @@ function GameService.Start(config: ProjectConfig)
 	if started then
 		return
 	end
-	started = true
 	shopConfig = config.Shop
-	local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
+	shiftConfig = config.Shift
+	assert(shiftConfig.DurationSeconds > 0, "Shift.DurationSeconds must be positive")
+	assert(shiftConfig.TargetServed > 0, "Shift.TargetServed must be positive")
+	assert(shiftConfig.MaximumMissed > 0, "Shift.MaximumMissed must be positive")
+	assert(shiftConfig.CustomerPatienceSeconds > 0, "Shift.CustomerPatienceSeconds must be positive")
+	assert(shiftConfig.TickRateSeconds > 0, "Shift.TickRateSeconds must be positive")
+	started = true
 	local existingFeedback = projectRoot:FindFirstChild("ShopFeedback")
 	if existingFeedback and existingFeedback:IsA("RemoteEvent") then
 		feedbackEvent = existingFeedback
@@ -547,8 +944,21 @@ function GameService.Start(config: ProjectConfig)
 		feedbackEvent.Name = "ShopFeedback"
 		feedbackEvent.Parent = projectRoot
 	end
+	local existingControl = projectRoot:FindFirstChild("ShopControl")
+	if existingControl and existingControl:IsA("RemoteEvent") then
+		controlEvent = existingControl
+	else
+		controlEvent = Instance.new("RemoteEvent")
+		controlEvent.Name = "ShopControl"
+		controlEvent.Parent = projectRoot
+	end
 
 	bindWorld()
+	controlEvent.OnServerEvent:Connect(function(player, action)
+		if action == "StartShift" then
+			startShift(player)
+		end
+	end)
 
 	Players.PlayerAdded:Connect(function(player)
 		configurePlayer(player)
@@ -558,6 +968,22 @@ function GameService.Start(config: ProjectConfig)
 			end
 		end)
 	end)
+	Players.PlayerRemoving:Connect(function(player)
+		if player == shiftOwner then
+			runSerial += 1
+			shiftState = "Waiting"
+			shiftOwner = nil
+			shiftEndsAt = 0
+			shiftTimeRemaining = 0
+			shiftServed = 0
+			shiftMissed = 0
+			serving = false
+			applePrompt.Enabled = false
+			setMessageForAll(waitingMessage())
+			publishShiftAttributes()
+			refreshQueue()
+		end
+	end)
 
 	for _, player in Players:GetPlayers() do
 		configurePlayer(player)
@@ -566,8 +992,9 @@ function GameService.Start(config: ProjectConfig)
 	for _ = 1, shopConfig.StartingQueueSize do
 		spawnCustomer()
 	end
+	runShiftClock()
 
-	print(string.format("[JonAndLeo] Doge Apple Shop ready with %d customers", #queue))
+	print(string.format("[JonAndLeo] Doge Apple Shop ready with %d customers; shift waits for explicit start", #queue))
 end
 
 return GameService

@@ -1,0 +1,36 @@
+{
+  "generator_version": "1.0.0",
+  "blender_version": "4.5.12 LTS",
+  "variant": "customer",
+  "scale_multiplier": 1.0,
+  "mesh_objects": 29,
+  "vertices": 1162,
+  "triangles": 2208,
+  "bones": 18,
+  "actions": [
+    "Pipilabu_Hold",
+    "Pipilabu_Idle",
+    "Pipilabu_Receive",
+    "Pipilabu_TurnLeave"
+  ],
+  "attachments": [
+    "ATTACH_Back",
+    "ATTACH_Fruit_L",
+    "ATTACH_Fruit_R",
+    "ATTACH_Mouth",
+    "ATTACH_OrderBillboard",
+    "ATTACH_ShopkeeperProp"
+  ],
+  "collision_marker": "COLLISION_ROOT",
+  "bounds_meters_approx": [
+    1.75,
+    2.05,
+    3.15
+  ],
+  "blend_file": "pipilabu_shiba_customer_v1.blend",
+  "fbx_file": "pipilabu_shiba_customer_v1.fbx",
+  "blend_bytes": 925089,
+  "fbx_bytes": 1050252,
+  "preview_file": "pipilabu_shiba_customer_v1.preview.png",
+  "preview_bytes": 431181
+}

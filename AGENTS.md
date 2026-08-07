@@ -18,12 +18,31 @@ Read `README.md`, then `docs/codex/HANDOFF.md`, before substantive work.
 
 Never edit Rojo-owned scripts through Studio or MCP `multi_edit`. Those edits do not become Git state and can be clobbered by Rojo.
 
+## Operating modes
+
+- **Live voice mode:** Leo and Jon are present. Favor one bounded playable change, keep commentary short, and announce `READY TO PLAYTEST` only when the exact build and test script are recorded in `docs/codex/PLAYTEST_QUEUE.md`.
+- **AFK mode:** Leo and Jon have explicitly left Codex working. Continue useful work that does not require subjective human judgment: implementation behind reversible config, deterministic tests, performance/reliability passes, local art/audio tooling, research, docs, safe automation design, and isolated worktree experiments. Never pretend a human gate passed; queue it and move to the next independent lane.
+- Do not sit idle because one gate needs humans. Update the playtest queue, then advance a non-overlapping AFK lane.
+
+## Playtest signaling
+
+`docs/codex/PLAYTEST_QUEUE.md` is the only current playtest status surface. Keep it short and current:
+
+- state: `BUILDING`, `READY`, `IN TEST`, or `RECORDED`
+- exact development version and place identity
+- estimated minutes
+- setup steps and controls
+- observable pass/fail questions
+- what Codex may continue doing while humans test
+
+The boot skill must read this file and report it. Historical gates remain in `docs/codex/PLAYTEST_GATES.md`; they do not override the current queue.
+
 ## Safety
 
 - Preserve local place files under `places/`; they are gitignored binary/XML world state.
 - Do not destroy or bulk-reparent world instances without inspecting the exact targets first.
 - Do not run a second Rojo server on port `34872`.
-- Do not publish the place or create a GitHub remote without explicit approval.
+- Do not publish the place or create a GitHub remote without explicit approval. Leo explicitly authorized private Pipilabu asset uploads on 2026-08-07, but every upload must still be scoped, rights-safe, recorded, and kept private unless separately authorized for release.
 - Prefer small reversible world changes and verify them through MCP and Studio Output.
 
 ## Luau conventions

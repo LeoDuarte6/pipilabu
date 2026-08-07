@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "path": "assets/reference/peepilabu-market-reference.mp4",
+    "durationSeconds": 12.117959,
+    "role": "private prototype inspiration; replace or clear rights before public release"
+  },
+  "processing": {
+    "channels": 1,
+    "sampleRateHz": 48000,
+    "highPassHz": 90,
+    "lowPassHz": 14500,
+    "noiseReductionDb": -28,
+    "targetLufs": -16,
+    "truePeakDb": -1.5,
+    "wavCodec": "pcm_s16le",
+    "oggCodec": "libvorbis q5"
+  },
+  "clips": [
+    {
+      "id": "what-the-dog-doing-01",
+      "category": "player_callout",
+      "transcript": "What the dog doing?",
+      "sourceStartSeconds": 0.25,
+      "durationSeconds": 1.2,
+      "wav": "wav/what-the-dog-doing-01.wav",
+      "ogg": "ogg/what-the-dog-doing-01.ogg"
+    },
+    {
+      "id": "what-the-dog-doing-02",
+      "category": "player_callout",
+      "transcript": "What the dog doing?",
+      "sourceStartSeconds": 1.38,
+      "durationSeconds": 1.42,
+      "wav": "wav/what-the-dog-doing-02.wav",
+      "ogg": "ogg/what-the-dog-doing-02.ogg"
+    },
+    {
+      "id": "baby-peepilabu-01",
+      "category": "baby_serve_reaction",
+      "transcript": "Peepilabu",
+      "sourceStartSeconds": 3.35,
+      "durationSeconds": 1.85,
+      "wav": "wav/baby-peepilabu-01.wav",
+      "ogg": "ogg/baby-peepilabu-01.ogg"
+    },
+    {
+      "id": "baby-peepilabu-02",
+      "category": "baby_serve_reaction",
+      "transcript": "Peepilabu, Peepilabu",
+      "sourceStartSeconds": 5.0,
+      "durationSeconds": 3.18,
+      "wav": "wav/baby-peepilabu-02.wav",
+      "ogg": "ogg/baby-peepilabu-02.ogg"
+    },
+    {
+      "id": "baby-peepilabu-03",
+      "category": "baby_serve_reaction",
+      "transcript": "Peepilabu",
+      "sourceStartSeconds": 8.0,
+      "durationSeconds": 1.65,
+      "wav": "wav/baby-peepilabu-03.wav",
+      "ogg": "ogg/baby-peepilabu-03.ogg"
+    }
+  ],
+  "playbackPolicy": {
+    "babyServeReaction": "shuffle bag across baby_serve_reaction; never repeat the immediately previous clip",
+    "playerCallout": "explicit interaction only; never auto-play on every serve",
+    "robloxPitchVariation": {
+      "minPlaybackSpeed": 0.97,
+      "maxPlaybackSpeed": 1.05
+    }
+  }
+}

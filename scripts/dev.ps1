@@ -18,15 +18,20 @@ if ($listener) {
     exit 0
 }
 
-$rojo = Get-Command rojo -ErrorAction Stop
+$localRojo = Join-Path $localState 'tools\rojo.exe'
+if (Test-Path -LiteralPath $localRojo) {
+    $rojoPath = $localRojo
+} else {
+    $rojoPath = (Get-Command rojo -ErrorAction Stop).Source
+}
 
 if ($Foreground) {
     Set-Location $projectRoot
-    & $rojo.Source serve default.project.json --port $Port
+    & $rojoPath serve default.project.json --port $Port
     exit $LASTEXITCODE
 }
 
-$process = Start-Process -FilePath $rojo.Source `
+$process = Start-Process -FilePath $rojoPath `
     -ArgumentList @('serve', 'default.project.json', '--port', $Port) `
     -WorkingDirectory $projectRoot `
     -WindowStyle Hidden `
@@ -37,4 +42,3 @@ $process = Start-Process -FilePath $rojo.Source `
 $process.Id | Set-Content -LiteralPath $pidFile
 Write-Host "[dev] Rojo started on localhost:$Port (PID $($process.Id))."
 Write-Host "[dev] Logs: $stdoutLog"
-

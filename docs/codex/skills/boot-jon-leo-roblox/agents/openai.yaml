@@ -1,0 +1,4 @@
+interface:
+  display_name: "Boot Jon + Leo Roblox"
+  short_description: "Boot Pipilabu safely for Leo and Jon"
+  default_prompt: "Use $boot-jon-leo-roblox to prepare the current Pipilabu build and report docs/codex/PLAYTEST_QUEUE.md."

@@ -6,10 +6,9 @@ This repository is the durable code layer. Roblox Studio is the live world edito
 
 ## Start a development session
 
-1. Open the private `Pipilabu` experience (`PlaceId 133099029551440`) in Roblox Studio. Use `places/JonAndLeoDevelopment.rbxlx` only as the local fallback.
-2. Run `powershell -ExecutionPolicy Bypass -File scripts/dev.ps1`.
-3. In Studio, open the Rojo plugin and connect to `localhost:34872`.
-4. Keep **Enable Studio as MCP server** on in Assistant > Manage MCP Servers.
+1. Ask Codex to run the repo-owned `boot-jon-leo-roblox` skill. It opens the private `Pipilabu` experience (`PlaceId 133099029551440`), reconciles disposable duplicate Studio windows, enables Studio Assistant MCP, verifies the exact live IDs, and foregrounds the correct editor.
+2. The skill runs the bounded boot helper, which starts or reuses the one Rojo server on `localhost:34872`.
+3. Use `places/JonAndLeoDevelopment.rbxlx` only as the local fallback; normal sessions use the verified private cloud place.
 
 ## Start a shared voice session
 
@@ -38,7 +37,9 @@ Edit scripts on disk. Do not use Studio or MCP script editing for Rojo-owned cod
 - Jon is recorded as `jawnwalworth-tech` in `CONTRIBUTORS.md` and `.github/CODEOWNERS`; see `docs/codex/JON_ONBOARDING.md`. A GitHub remote and invitation do not exist yet.
 - Rojo is connected to the correct Studio window at `localhost:34872`; always verify PlaceId before using Studio MCP because an older unrelated `Pipilabu` may also be open.
 - Rojo 7.6.1, Lune 0.10.4, and Wally 0.3.2 are pinned through Rokit.
-- The first playable is **Doge Apple Shop**: take one visible apple, toss it to the front Doge, earn a coin, and cycle the queue.
+- The first playable is **Doge Apple Shop**: take one visible apple, toss it to the ready small Doge, earn a coin, and cycle the queue.
+- Player-facing copy is centralized in `src/shared/Copy.luau` and mirrored to the private shared Google Doc documented in `docs/COPY_WORKFLOW.md`.
+- The audited model-sourcing and original Blender-to-Roblox rig workflow is in `docs/ROBLOX_ASSET_PIPELINE.md`.
 - `places/JonAndLeoDevelopment.rbxlx` contains the local shop world and one native procedural Doge experiment.
 - `scripts/build-doge-shop-world.luau` is the guarded, repeatable world-layer builder.
 - Reusable lessons from the previous Claude workflow are in `docs/legacy/CLAUDE_WORKFLOW_RECOVERY.md`.

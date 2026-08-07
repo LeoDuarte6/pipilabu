@@ -19,7 +19,7 @@ end
 local shop = Instance.new("Folder")
 shop.Name = "DogeAppleShop"
 shop:SetAttribute("Owner", OWNER)
-shop:SetAttribute("Build", "MVP-0.5.0")
+shop:SetAttribute("Build", "MVP-0.6.0")
 shop.Parent = Workspace
 
 local building = Instance.new("Folder")
@@ -97,11 +97,11 @@ end
 local queueSpots = Instance.new("Folder")
 queueSpots.Name = "QueueSpots"
 queueSpots.Parent = shop
-for index, z in ipairs({ 1, 6, 11, 16 }) do
+for index, x in ipairs({ 7.5, 2.5, -2.5, -7.5 }) do
 	local spot = makePart(
 		string.format("Spot_%02d", index),
 		Vector3.new(3.2, 0.08, 2.6),
-		Vector3.new(0, 0.54, z),
+		Vector3.new(x, 0.54, 1),
 		Color3.fromRGB(140, 132, 116),
 		Enum.Material.SmoothPlastic,
 		queueSpots
@@ -110,10 +110,10 @@ for index, z in ipairs({ 1, 6, 11, 16 }) do
 	spot.CanCollide = false
 end
 
-local spawnMarker = makePart("CustomerSpawn", Vector3.new(3, 0.2, 3), Vector3.new(0, 0.55, 24), leafGreen, Enum.Material.Neon, shop)
+local spawnMarker = makePart("CustomerSpawn", Vector3.new(3, 0.2, 3), Vector3.new(-15, 0.55, 1), leafGreen, Enum.Material.Neon, shop)
 spawnMarker.Transparency = 1
 spawnMarker.CanCollide = false
-local exitMarker = makePart("CustomerExit", Vector3.new(3, 0.2, 3), Vector3.new(23, 0.55, 1), leafGreen, Enum.Material.Neon, shop)
+local exitMarker = makePart("CustomerExit", Vector3.new(3, 0.2, 3), Vector3.new(15, 0.55, 1), leafGreen, Enum.Material.Neon, shop)
 exitMarker.Transparency = 1
 exitMarker.CanCollide = false
 
@@ -121,17 +121,32 @@ local customers = Instance.new("Folder")
 customers.Name = "Customers"
 customers.Parent = shop
 
-local path = makePart("CustomerPath", Vector3.new(4.25, 0.06, 27), Vector3.new(0, 0.53, 10), Color3.fromRGB(164, 151, 129), Enum.Material.Cobblestone)
+local path = makePart("CustomerPath", Vector3.new(30, 0.06, 4.25), Vector3.new(0, 0.53, 1), Color3.fromRGB(164, 151, 129), Enum.Material.Cobblestone)
 path.CanCollide = false
 
-local baseplate = Workspace:FindFirstChild("Baseplate")
-if baseplate and baseplate:IsA("BasePart") then
-	baseplate.Color = Color3.fromRGB(102, 142, 76)
-	baseplate.Material = Enum.Material.Grass
-	baseplate.Transparency = 0
-	baseplate.CanCollide = true
-	baseplate:SetAttribute("Owner", OWNER)
+local existingBaseplate = Workspace:FindFirstChild("Baseplate")
+local baseplate: BasePart
+if existingBaseplate and existingBaseplate:IsA("BasePart") then
+	baseplate = existingBaseplate
+else
+	if existingBaseplate then
+		existingBaseplate:Destroy()
+	end
+	local replacement = Instance.new("Part")
+	replacement.Name = "Baseplate"
+	replacement.Parent = Workspace
+	baseplate = replacement
 end
+baseplate.Size = Vector3.new(256, 1, 256)
+baseplate.Position = Vector3.new(0, -0.5, 0)
+baseplate.Anchored = true
+baseplate.Color = Color3.fromRGB(102, 142, 76)
+baseplate.Material = Enum.Material.Grass
+baseplate.Transparency = 0
+baseplate.CanCollide = true
+baseplate.TopSurface = Enum.SurfaceType.Smooth
+baseplate.BottomSurface = Enum.SurfaceType.Smooth
+baseplate:SetAttribute("Owner", OWNER)
 
 local spawn = Workspace:FindFirstChild("SpawnLocation")
 if spawn and spawn:IsA("SpawnLocation") then

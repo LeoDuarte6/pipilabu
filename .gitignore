@@ -10,6 +10,7 @@ places/*.rbxlx
 Packages/
 ServerPackages/
 .local/
+*.blend1
 *.log
 *.pid
 
@@ -23,3 +24,8 @@ ServerPackages/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Codex desktop runtime and task staging.
+.codex/
+work/
+outputs/
