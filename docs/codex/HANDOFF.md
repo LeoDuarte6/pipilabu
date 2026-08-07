@@ -89,3 +89,12 @@ For the next bounded sound pass, upload or replace only the three `baby_serve_re
 - Clean Play boot logged server/client v0.6.0 with one player, zero coins, zero served, and three customers.
 - A controlled pickup produced one `HeldApple`. One controlled serve produced exactly one coin and one served point, removed `HeldApple`, created an unanchored `ReceivedApple` with `CustomerAppleWeld`, preserved it during the 0.9-second celebration, and destroyed it naturally with the departing customer while returning the queue to three.
 - Client readback confirmed `Classic`, zoom `0.5–20`, and `CoreUISafeInsets`. Studio screen capture confirmed the grounded horizontal presentation and `PIPILABU` HUD.
+
+## AFK additive market-village presentation slice — local worktree
+
+- Added `src/shared/Presentation.luau`, `MarketVillage.luau`, and pure `Stewardship.luau` contracts. The presentation palette is shared by the optional prototype HUD/server readback and the local builder.
+- Added `scripts/build-market-village-prototype.luau`. It asserts local `PlaceId = 0` / `GameId = 0`, preserves `Workspace.DogeAppleShop`, and replaces only its own `Workspace.PipilabuMarketVillagePrototype` folder.
+- The prototype adds a narrow market street/plaza grid, four authored primitive stalls with shelves, awnings, fruit displays, warm lanterns, four reserved future shop plots, four neighbor lanes, an inactive Peepilabu owner/quest-anchor placeholder, and named inactive seams for reputation, economy, controlled random events, and neighbor helping.
+- Added `StewardshipService` plus `MarketPresentation.client.luau`. They remain completely silent when the prototype folder is absent. In prototype mode, ordinary `Served` increments expose positive-only `Goodwill`/`CareMarks` and light the board at 3, 6, and 10 serves; no timer, loss condition, DataStore, multiplayer ownership, or active quest/event behavior was added.
+- `lune run scripts/test-stewardship.luau` passed eight boundary cases. The full build/test procedure and integration seams are in `docs/MARKET_VILLAGE_PROTOTYPE.md`.
+- This lane is presentation/readback scaffolding only and is ready for primary-task integration after the canonical timed-shift/loss-condition and Blender-rig work is reconciled. No live Studio place, asset upload, publish, or Git remote was touched.

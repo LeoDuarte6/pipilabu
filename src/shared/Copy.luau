@@ -44,6 +44,15 @@ local Copy = {
 		Sending = "Send it with care",
 		Served = "Nice serve!",
 	}),
+	Village = table.freeze({
+		CareTitle = "CARE BOARD",
+		CareProgress = "%d / %d care marks  •  %s",
+		OpenHands = "Serve kindly. The market notices.",
+		WarmWelcome = "A warm shop makes room for neighbors.",
+		GrowingLane = "The lane is waking up.",
+		GoodCareTravels = "Good care travels.",
+		PeepilabuAnchor = "PEEPILABU\nOWNER / QUEST ANCHOR",
+	}),
 }
 
 return table.freeze(Copy)

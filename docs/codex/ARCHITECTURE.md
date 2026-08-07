@@ -30,4 +30,15 @@ The code layer and world layer are intentionally separate:
 - `scripts/build-doge-shop-world.luau` can recreate that contract only in a local `PlaceId = 0`, `GameId = 0` file.
 - `Workspace.DogeAppleShop.MascotExperiments.DogeShopkeeper` is a native `ProceduralModel` experiment and is deliberately not required by gameplay.
 
+## Optional market-village presentation lane
+
+- `src/shared/Presentation.luau` is the authored palette/UI token layer used by the local village builder and optional prototype feedback card.
+- `src/shared/MarketVillage.luau` owns stable folder/marker names, not world coordinates.
+- `src/shared/Stewardship.luau` is a pure positive-only service consequence contract with 3/6/10 thresholds.
+- `src/server/StewardshipService.luau` binds only when `Workspace.PipilabuMarketVillagePrototype` exists and updates readback markers; it has no timer, loss, persistence, or ownership authority.
+- `src/client/MarketPresentation.client.luau` is silent without the prototype folder, preserving the current Gate A HUD.
+- `scripts/build-market-village-prototype.luau` creates only `Workspace.PipilabuMarketVillagePrototype` in a local `0/0` place. It adds stalls, shelves, awnings, fruit displays, reserved plots, lanes, a Peepilabu placeholder, and inactive future-system seams without touching `DogeAppleShop`.
+
+The prototype contract and bounded test are documented in `docs/MARKET_VILLAGE_PROTOTYPE.md`.
+
 Before any Studio mutation, list connected Studio instances and assert either the exact private cloud IDs (`133099029551440` / `10646495069`) or both local IDs are zero. Never mutate the older unrelated `Pipilabu` (`PlaceId 104936800417970`).

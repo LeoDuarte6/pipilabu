@@ -42,4 +42,5 @@ Edit scripts on disk. Do not use Studio or MCP script editing for Rojo-owned cod
 - The audited model-sourcing and original Blender-to-Roblox rig workflow is in `docs/ROBLOX_ASSET_PIPELINE.md`.
 - `places/JonAndLeoDevelopment.rbxlx` contains the local shop world and one native procedural Doge experiment.
 - `scripts/build-doge-shop-world.luau` is the guarded, repeatable world-layer builder.
+- `scripts/build-market-village-prototype.luau` is a separate local-only additive builder for the compact market-village presentation lane; see `docs/MARKET_VILLAGE_PROTOTYPE.md`.
 - Reusable lessons from the previous Claude workflow are in `docs/legacy/CLAUDE_WORKFLOW_RECOVERY.md`.
