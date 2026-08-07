@@ -26,3 +26,10 @@ Reference images are for silhouette exploration, not automatic production rigs. 
 - [Avatar Auto Setup](https://create.roblox.com/docs/avatar-setup)
 - [Animation Editor](https://create.roblox.com/docs/animation/editor)
 - [Gamepad input](https://create.roblox.com/docs/input/gamepad)
+
+## Prototype audio ledger
+
+These Creator Store sounds are private-prototype placeholders, not final identity audio. Replace them with original/licensed studio sound design before public release.
+
+- Pickup: [`pick_up2`, asset 7381723941, creator thienbao2109](https://create.roblox.com/store/asset/7381723941)
+- Serve: [`Audio_jingle_chime_07_positive`, asset 99980076888596, creator Jefersongree](https://create.roblox.com/store/asset/99980076888596)

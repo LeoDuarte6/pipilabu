@@ -11,6 +11,7 @@ type ShopConfig = {
 	ServeReward: number,
 	CustomerRespawnDelay: number,
 	CustomerMoveTime: number,
+	ServeCelebrationTime: number,
 	PickupPromptDistance: number,
 	ServePromptDistance: number,
 }
@@ -35,6 +36,7 @@ local customerSpawn: BasePart
 local customerExit: BasePart
 local appleCrate: BasePart
 local shopConfig: ShopConfig
+local feedbackEvent: RemoteEvent
 
 local DOGE_COLORS = {
 	Color3.fromRGB(222, 177, 112),
@@ -143,6 +145,7 @@ local function takeApple(player: Player)
 	player:SetAttribute("HasApple", true)
 	player:SetAttribute("ShopMessage", "Apple ready - serve the front Doge")
 	showHeldApple(player)
+	feedbackEvent:FireClient(player, "Pickup")
 end
 
 local function makePart(name: string, size: Vector3, color: Color3, offset: CFrame, root: BasePart, shape: Enum.PartType?): BasePart
@@ -197,6 +200,14 @@ local function createCustomer(): Model
 	makePart("Nose", Vector3.new(0.38, 0.3, 0.3), Color3.fromRGB(32, 25, 22), CFrame.new(0, 1.98, -1.58), root, Enum.PartType.Ball)
 	makePart("LeftFoot", Vector3.new(0.9, 0.65, 1.2), Color3.fromRGB(244, 221, 182), CFrame.new(-0.65, -1.45, -0.2), root)
 	makePart("RightFoot", Vector3.new(0.9, 0.65, 1.2), Color3.fromRGB(244, 221, 182), CFrame.new(0.65, -1.45, -0.2), root)
+	local orderApple = makePart("OrderApple", Vector3.new(0.72, 0.72, 0.72), Color3.fromRGB(232, 55, 48), CFrame.new(0, 4.55, 0), root, Enum.PartType.Ball)
+	orderApple.Material = Enum.Material.Neon
+	orderApple.CastShadow = false
+	orderApple.Transparency = 1
+	local orderStem = makePart("OrderStem", Vector3.new(0.12, 0.3, 0.12), Color3.fromRGB(82, 53, 31), CFrame.new(0, 4.98, 0), root)
+	orderStem.Material = Enum.Material.Wood
+	orderStem.CastShadow = false
+	orderStem.Transparency = 1
 
 	local prompt = Instance.new("ProximityPrompt")
 	prompt.Name = "ServePrompt"
@@ -209,6 +220,57 @@ local function createCustomer(): Model
 	prompt.GamepadKeyCode = Enum.KeyCode.ButtonX
 	prompt.Enabled = false
 	prompt.Parent = head
+
+	local orderBillboard = Instance.new("BillboardGui")
+	orderBillboard.Name = "OrderBillboard"
+	orderBillboard.Adornee = head
+	orderBillboard.AlwaysOnTop = true
+	orderBillboard.Enabled = false
+	orderBillboard.MaxDistance = 48
+	orderBillboard.Size = UDim2.fromOffset(150, 58)
+	orderBillboard.StudsOffset = Vector3.new(0, 1.75, 0)
+	orderBillboard.Parent = head
+
+	local card = Instance.new("Frame")
+	card.Name = "Card"
+	card.BackgroundColor3 = Color3.fromRGB(255, 248, 225)
+	card.BackgroundTransparency = 0.04
+	card.BorderSizePixel = 0
+	card.Size = UDim2.fromScale(1, 1)
+	card.Parent = orderBillboard
+
+	local cardCorner = Instance.new("UICorner")
+	cardCorner.CornerRadius = UDim.new(0, 14)
+	cardCorner.Parent = card
+
+	local cardStroke = Instance.new("UIStroke")
+	cardStroke.Color = Color3.fromRGB(87, 53, 34)
+	cardStroke.Thickness = 2
+	cardStroke.Parent = card
+
+	local appleDot = Instance.new("Frame")
+	appleDot.Name = "AppleDot"
+	appleDot.AnchorPoint = Vector2.new(0, 0.5)
+	appleDot.BackgroundColor3 = Color3.fromRGB(216, 48, 45)
+	appleDot.BorderSizePixel = 0
+	appleDot.Position = UDim2.new(0, 12, 0.5, 0)
+	appleDot.Size = UDim2.fromOffset(32, 32)
+	appleDot.Parent = card
+
+	local dotCorner = Instance.new("UICorner")
+	dotCorner.CornerRadius = UDim.new(1, 0)
+	dotCorner.Parent = appleDot
+
+	local orderText = Instance.new("TextLabel")
+	orderText.Name = "OrderText"
+	orderText.BackgroundTransparency = 1
+	orderText.Font = Enum.Font.GothamBold
+	orderText.Position = UDim2.fromOffset(52, 0)
+	orderText.Size = UDim2.new(1, -60, 1, 0)
+	orderText.Text = "RED APPLE"
+	orderText.TextColor3 = Color3.fromRGB(75, 44, 29)
+	orderText.TextScaled = true
+	orderText.Parent = card
 
 	model.Parent = customersFolder
 	return model
@@ -255,6 +317,26 @@ local function refreshQueue()
 			prompt.Enabled = index == 1 and not serving
 			prompt.ObjectText = if index == 1 then "Front Doge" else string.format("Waiting Doge #%d", index)
 		end
+
+		local billboard = customer:FindFirstChild("OrderBillboard", true)
+		if billboard and billboard:IsA("BillboardGui") then
+			billboard.Enabled = index == 1
+			local orderText = billboard:FindFirstChild("OrderText", true)
+			if orderText and orderText:IsA("TextLabel") then
+				orderText.Text = "RED APPLE"
+				orderText.TextColor3 = Color3.fromRGB(75, 44, 29)
+			end
+		end
+
+		local orderApple = customer:FindFirstChild("OrderApple")
+		if orderApple and orderApple:IsA("BasePart") then
+			orderApple.Transparency = if index == 1 then 0 else 1
+			orderApple.Color = Color3.fromRGB(232, 55, 48)
+		end
+		local orderStem = customer:FindFirstChild("OrderStem")
+		if orderStem and orderStem:IsA("BasePart") then
+			orderStem.Transparency = if index == 1 then 0 else 1
+		end
 	end
 
 	for _, player in Players:GetPlayers() do
@@ -276,6 +358,44 @@ local function awardServe(player: Player)
 	if served and served:IsA("IntValue") then
 		served.Value += 1
 	end
+end
+
+local function celebrateCustomer(customer: Model)
+	local root = customer.PrimaryPart
+	if not root then
+		return
+	end
+
+	local billboard = customer:FindFirstChild("OrderBillboard", true)
+	if billboard and billboard:IsA("BillboardGui") then
+		billboard.Enabled = true
+		local orderText = billboard:FindFirstChild("OrderText", true)
+		if orderText and orderText:IsA("TextLabel") then
+			orderText.Text = "THANK YOU!"
+			orderText.TextColor3 = Color3.fromRGB(42, 126, 68)
+		end
+		local appleDot = billboard:FindFirstChild("AppleDot", true)
+		if appleDot and appleDot:IsA("Frame") then
+			appleDot.BackgroundColor3 = Color3.fromRGB(92, 198, 102)
+		end
+	end
+
+	local orderApple = customer:FindFirstChild("OrderApple")
+	if orderApple and orderApple:IsA("BasePart") then
+		orderApple.Color = Color3.fromRGB(92, 232, 112)
+	end
+
+	local restingCFrame = root.CFrame
+	local hop = TweenService:Create(root, TweenInfo.new(0.17, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+		CFrame = restingCFrame * CFrame.new(0, 0.85, 0) * CFrame.Angles(0, 0, math.rad(-7)),
+	})
+	local land = TweenService:Create(root, TweenInfo.new(0.18, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+		CFrame = restingCFrame,
+	})
+	hop.Completed:Once(function()
+		land:Play()
+	end)
+	hop:Play()
 end
 
 local function spawnCustomer()
@@ -304,17 +424,24 @@ local function spawnCustomer()
 			player:SetAttribute("ShopMessage", "Good fruit, gladly given")
 			removeHeldApple(player)
 			awardServe(player)
+			feedbackEvent:FireClient(player, "Serve")
+			prompt.Enabled = false
+			celebrateCustomer(customer)
 
-			table.remove(queue, 1)
-			refreshQueue()
-			tweenCustomer(customer, customerExit.CFrame, function()
-				customer:Destroy()
-			end)
-
-			task.delay(shopConfig.CustomerRespawnDelay, function()
+			task.delay(shopConfig.ServeCelebrationTime, function()
+				if queue[1] == customer then
+					table.remove(queue, 1)
+				end
 				serving = false
-				spawnCustomer()
 				refreshQueue()
+				tweenCustomer(customer, customerExit.CFrame, function()
+					customer:Destroy()
+				end)
+
+				task.delay(shopConfig.CustomerRespawnDelay, function()
+					spawnCustomer()
+					refreshQueue()
+				end)
 			end)
 		end)
 	end
@@ -354,6 +481,15 @@ function GameService.Start(config: ProjectConfig)
 	end
 	started = true
 	shopConfig = config.Shop
+	local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
+	local existingFeedback = projectRoot:FindFirstChild("ShopFeedback")
+	if existingFeedback and existingFeedback:IsA("RemoteEvent") then
+		feedbackEvent = existingFeedback
+	else
+		feedbackEvent = Instance.new("RemoteEvent")
+		feedbackEvent.Name = "ShopFeedback"
+		feedbackEvent.Parent = projectRoot
+	end
 
 	bindWorld()
 

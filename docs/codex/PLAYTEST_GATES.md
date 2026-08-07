@@ -4,7 +4,15 @@ These gates turn Leo and Jon's voice session into bounded tests. Stop after each
 
 ## Gate A — Serve feel
 
-Keep only plain red apples. Lower the counter, make the request readable, and strengthen pickup/handoff feedback. After ten customers, do both players voluntarily serve an eleventh?
+Keep only plain red apples. The v0.4 pass lowers the counter, moves the HUD away from the action, gives the front customer a floating red-apple request marker, adds pickup/serve sounds, makes the customer hop and say thank you, pulses the HUD, and vibrates a controller. The archived procedural mascot no longer blocks the shop.
+
+Test with no coaching:
+
+1. Can each player identify the correct Doge and serve once?
+2. Is the apple handoff the most satisfying repeated action on screen?
+3. After ten customers, do both players voluntarily serve an eleventh?
+
+Do not build Gate B until this passes by hand.
 
 ## Gate B — Ninety-second Dandori run
 

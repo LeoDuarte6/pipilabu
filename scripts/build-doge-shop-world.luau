@@ -64,8 +64,8 @@ makePart("RightWall", Vector3.new(1, 8, 28), Vector3.new(15.5, 4, -16), warmWood
 local awning = makePart("Awning", Vector3.new(34, 1, 5), Vector3.new(0, 10, -3), awningRed, Enum.Material.Fabric)
 awning.Orientation = Vector3.new(0, 0, -5)
 
-makePart("Counter", Vector3.new(22, 3, 2.5), Vector3.new(1.5, 1.5, -2), darkWood, Enum.Material.WoodPlanks)
-makePart("CounterTop", Vector3.new(24, 0.7, 4), Vector3.new(1.5, 3.2, -2), warmWood, Enum.Material.WoodPlanks)
+makePart("Counter", Vector3.new(22, 2.7, 2.5), Vector3.new(1.5, 1.35, -2), darkWood, Enum.Material.WoodPlanks)
+makePart("CounterTop", Vector3.new(24, 0.7, 4), Vector3.new(1.5, 2.9, -2), warmWood, Enum.Material.WoodPlanks)
 
 local function addBoard(name: string, size: Vector3, position: Vector3, text: string, color: Color3)
 	local board = makePart(name, size, position, darkWood, Enum.Material.WoodPlanks)

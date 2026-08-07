@@ -13,6 +13,7 @@ Read `README.md`, then `docs/codex/HANDOFF.md`, before substantive work.
 
 1. **Filesystem + Git are code truth.** Edit `.luau` under `src/`.
 2. **Rojo is the live code bridge.** One Rojo server owns `localhost:34872` and syncs disk code into Studio.
+   `default.project.json` allowlists only the local fallback (`0`) and the shared cloud place (`133099029551440`).
 3. **Studio MCP is the observation/test bridge.** Use it only after verifying the active instance's PlaceId. The older unrelated `Pipilabu` (`PlaceId 104936800417970`) must never receive Jon-and-Leo mutations.
 
 Never edit Rojo-owned scripts through Studio or MCP `multi_edit`. Those edits do not become Git state and can be clobbered by Rojo.

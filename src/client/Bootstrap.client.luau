@@ -1,6 +1,8 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local Debris = game:GetService("Debris")
 local HapticService = game:GetService("HapticService")
+local SoundService = game:GetService("SoundService")
 local TweenService = game:GetService("TweenService")
 
 local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
@@ -10,6 +12,10 @@ print(string.format("[JonAndLeo] client online - %s v%s", Config.ProjectName, Co
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+player.CameraMinZoomDistance = Config.Camera.MinimumZoom
+player.CameraMaxZoomDistance = Config.Camera.MaximumZoom
+
+local feedbackEvent = projectRoot:WaitForChild("ShopFeedback") :: RemoteEvent
 
 local existing = playerGui:FindFirstChild("DogeAppleHUD")
 if existing then
@@ -25,9 +31,9 @@ screenGui.Parent = playerGui
 
 local panel = Instance.new("Frame")
 panel.Name = "Panel"
-panel.AnchorPoint = Vector2.new(0.5, 0)
-panel.Position = UDim2.fromScale(0.5, 0.035)
-panel.Size = UDim2.fromOffset(440, 116)
+panel.AnchorPoint = Vector2.new(0, 0)
+panel.Position = UDim2.fromOffset(22, 18)
+panel.Size = UDim2.fromOffset(420, 110)
 panel.BackgroundColor3 = Color3.fromRGB(44, 35, 27)
 panel.BackgroundTransparency = 0.08
 panel.BorderSizePixel = 0
@@ -42,6 +48,11 @@ stroke.Color = Color3.fromRGB(245, 195, 82)
 stroke.Thickness = 2
 stroke.Transparency = 0.25
 stroke.Parent = panel
+
+local panelScale = Instance.new("UIScale")
+panelScale.Name = "FeedbackScale"
+panelScale.Scale = 1
+panelScale.Parent = panel
 
 local title = Instance.new("TextLabel")
 title.Name = "Title"
@@ -77,6 +88,33 @@ instruction.TextSize = 16
 instruction.TextWrapped = true
 instruction.TextXAlignment = Enum.TextXAlignment.Left
 instruction.Parent = panel
+
+local celebration = Instance.new("TextLabel")
+celebration.Name = "Celebration"
+celebration.AnchorPoint = Vector2.new(0.5, 0.5)
+celebration.BackgroundTransparency = 1
+celebration.Font = Enum.Font.GothamBlack
+celebration.Position = UDim2.fromScale(0.5, 0.64)
+celebration.Size = UDim2.fromOffset(520, 100)
+celebration.Text = "GOOD FRUIT!"
+celebration.TextColor3 = Color3.fromRGB(255, 224, 105)
+celebration.TextScaled = true
+celebration.TextStrokeColor3 = Color3.fromRGB(55, 31, 20)
+celebration.TextStrokeTransparency = 1
+celebration.TextTransparency = 1
+celebration.Parent = screenGui
+
+local pickupSound = Instance.new("Sound")
+pickupSound.Name = "PickupFeedback"
+pickupSound.SoundId = Config.Audio.PickupSoundId
+pickupSound.Volume = 0.32
+pickupSound.PlaybackSpeed = 1.08
+
+local serveSound = Instance.new("Sound")
+serveSound.Name = "ServeFeedback"
+serveSound.SoundId = Config.Audio.ServeSoundId
+serveSound.Volume = 0.42
+serveSound.PlaybackSpeed = 1.04
 
 local function getStat(name: string): IntValue?
 	local leaderstats = player:FindFirstChild("leaderstats")
@@ -122,6 +160,50 @@ local function confirmWithController()
 		HapticService:SetMotor(gamepad, motor, 0)
 	end)
 end
+
+local function playOneShot(template: Sound)
+	local sound = template:Clone()
+	sound.Parent = SoundService
+	sound:Play()
+	Debris:AddItem(sound, 4)
+end
+
+local function bumpPanel(amount: number)
+	panelScale.Scale = 1
+	local expand = TweenService:Create(panelScale, TweenInfo.new(0.09, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+		Scale = amount,
+	})
+	local settle = TweenService:Create(panelScale, TweenInfo.new(0.18, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+		Scale = 1,
+	})
+	expand.Completed:Once(function()
+		settle:Play()
+	end)
+	expand:Play()
+end
+
+local function celebrateServe()
+	celebration.Position = UDim2.fromScale(0.5, 0.66)
+	celebration.TextTransparency = 0
+	celebration.TextStrokeTransparency = 0.18
+	local rise = TweenService:Create(celebration, TweenInfo.new(0.62, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+		Position = UDim2.fromScale(0.5, 0.56),
+		TextTransparency = 1,
+		TextStrokeTransparency = 1,
+	})
+	rise:Play()
+end
+
+feedbackEvent.OnClientEvent:Connect(function(action: string)
+	if action == "Pickup" then
+		playOneShot(pickupSound)
+		bumpPanel(1.025)
+	elseif action == "Serve" then
+		playOneShot(serveSound)
+		bumpPanel(1.055)
+		celebrateServe()
+	end
+end)
 
 player:GetAttributeChangedSignal("HasApple"):Connect(render)
 player:GetAttributeChangedSignal("ShopMessage"):Connect(render)
