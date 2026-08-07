@@ -4,12 +4,12 @@ These gates turn Leo and Jon's voice session into bounded tests. Stop after each
 
 ## Gate A — Serve feel
 
-Keep only plain red apples. The v0.4 pass lowers the counter, moves the HUD away from the action, gives the front customer a floating red-apple request marker, adds pickup/serve sounds, makes the customer hop and say thank you, pulses the HUD, and vibrates a controller. The archived procedural mascot no longer blocks the shop.
+The v0.4 test failed subjectively: the loop worked, but serving felt like turning a cog or finishing a screwdriver motion. Keep only plain red apples. The v0.5 experiment makes the apple physically leave the player's paw, follow a short forgiving arc, reach the Doge, squash on contact, and only then award the serve. It also squares the shop, lowers the counter to 1.55 studs, fixes the spawn view, removes the Neon queue pads and duplicate order marker, and neutralizes the yellow HUD.
 
 Test with no coaching:
 
 1. Can each player identify the correct Doge and serve once?
-2. Is the apple handoff the most satisfying repeated action on screen?
+2. Were you still looking forward to seeing and causing the handoff itself, or were you pressing Serve only to make it finish?
 3. After ten customers, do both players voluntarily serve an eleventh?
 
 Do not build Gate B until this passes by hand.

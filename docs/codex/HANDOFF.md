@@ -16,7 +16,7 @@
 ## First playable: Doge Apple Shop
 
 - Concept and future layers: `docs/GAME_CONCEPT.md`.
-- Player takes one visible apple from the crate, serves only the front Doge, earns one coin and one served point, and watches a three-customer queue cycle.
+- Player takes one visible apple from the crate, physically tosses it to only the front Doge, earns one coin and one served point on catch, and watches a three-customer queue cycle.
 - Server-authoritative gameplay: `src/server/GameService.luau`.
 - GOOD FRUIT HUD: `src/client/Bootstrap.client.luau`.
 - World contract: `Workspace.DogeAppleShop`; guarded rebuild source: `scripts/build-doge-shop-world.luau`.
@@ -30,8 +30,10 @@
 - One controlled loop verified: pickup produced `HasApple = true` plus `HeldApple`; serving produced `Coins 1`, `Served 1`, `Waiting 3`, `HasApple = false`, and removed `HeldApple`.
 - Pickup and serve prompts are each limited to six studs so they cannot overlap into a hold-to-farm loop.
 - Pickup and serve explicitly use `ButtonX` on gamepad, the HUD respects device-safe insets, and successful service produces a short controller pulse.
-- Gate A v0.4 keeps only red apples, constrains the third-person camera to 6–14 studs, moves the HUD top-left, adds a visible front-customer apple marker, draft pickup/serve audio, a thank-you card, customer hop, HUD celebration, and controller feedback.
-- The live cloud counter top is now 3.25 studs high, below a standard avatar's chest. The builder matches it.
+- Gate A v0.4 failed subjectively: the functional serve loop felt like turning a cog rather than causing a satisfying event.
+- Gate A v0.5 keeps only red apples and replaces instant apple disappearance with a visible 0.35-second magnetic underhand toss, contact squash, then reward/celebration.
+- The v0.5 presentation pass squares all kiosk architecture, removes the crooked canopy and asymmetric wall signage, hides debug-like queue/spawn markers, narrows the path, preserves grass, uses a neutral HUD palette, fixes third-person spawn framing, and reduces the customer request to one compact card.
+- The live cloud counter top is now 1.55 studs high for Leo's small avatar. The builder matches it.
 - The oversized `DogeShopkeeper` procedural experiment is preserved under `ServerStorage.JonAndLeoVisualExperiments`; it no longer blocks the shop or camera.
 - Local place saved after the world and procedural model were added.
 
@@ -43,7 +45,7 @@ An unrelated older tab is also named `Pipilabu`. Every future Studio mutation mu
 2. Set the intended instance active.
 3. Assert either the local IDs are both zero or the cloud IDs exactly match `133099029551440` / `10646495069` inside the mutation itself.
 
-After Studio restarted, MCP exposed both `Pipilabu` instances. The correct active instance is `2ccb68ae-e79a-472f-999f-0881e6d0fec5`, verified in Edit mode as `PlaceId 133099029551440`, `GameId 10646495069`, with `Workspace.DogeAppleShop`. Reverify the IDs every session because instance IDs are ephemeral.
+The redundant local/recovery Studio sessions were closed on August 7. The correct cloud place was reopened and its current MCP instance is `85034bdf-7f2f-499e-bdb3-70b8097f1c04`, verified in Edit mode as `PlaceId 133099029551440`, `GameId 10646495069`, with `Workspace.DogeAppleShop`. Reverify the IDs every session because instance IDs are ephemeral.
 
 ## Session startup
 
@@ -55,4 +57,4 @@ After Studio restarted, MCP exposed both `Pipilabu` instances. The correct activ
 
 ## Next gate
 
-Leo and Jon should now run Gate A from `docs/codex/PLAYTEST_GATES.md` by hand. Do not implement the 90-second Dandori mode, potions, robberies, farmer's market, or town until they voluntarily serve an eleventh plain red apple after serving ten.
+Leo and Jon should now rerun Gate A from `docs/codex/PLAYTEST_GATES.md` by hand against v0.5. Ask: “Were you still looking forward to seeing and causing the handoff itself, or were you pressing Serve only to make it finish?” Do not implement the 90-second Dandori mode, potions, robberies, farmer's market, or town until they voluntarily serve an eleventh plain red apple after serving ten.

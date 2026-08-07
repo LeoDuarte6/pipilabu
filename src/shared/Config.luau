@@ -2,10 +2,11 @@
 
 local Config = {
 	ProjectName = "Jon and Leo Development",
-	DevelopmentVersion = "0.4.0",
+	DevelopmentVersion = "0.5.0",
 	Camera = table.freeze({
-		MinimumZoom = 6,
-		MaximumZoom = 14,
+		MinimumZoom = 7,
+		MaximumZoom = 20,
+		FieldOfView = 70,
 	}),
 	Audio = table.freeze({
 		PickupSoundId = "rbxassetid://7381723941",

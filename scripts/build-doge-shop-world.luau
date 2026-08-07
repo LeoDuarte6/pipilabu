@@ -19,7 +19,7 @@ end
 local shop = Instance.new("Folder")
 shop.Name = "DogeAppleShop"
 shop:SetAttribute("Owner", OWNER)
-shop:SetAttribute("Build", "MVP-0.2.0")
+shop:SetAttribute("Build", "MVP-0.5.0")
 shop.Parent = Workspace
 
 local building = Instance.new("Folder")
@@ -48,57 +48,24 @@ local function makePart(
 	return item
 end
 
-local cream = Color3.fromRGB(255, 236, 194)
-local warmWood = Color3.fromRGB(135, 78, 43)
-local darkWood = Color3.fromRGB(74, 41, 27)
-local appleRed = Color3.fromRGB(216, 48, 45)
-local leafGreen = Color3.fromRGB(58, 126, 67)
-local awningRed = Color3.fromRGB(173, 46, 45)
-local gold = Color3.fromRGB(245, 190, 62)
+local wallCream = Color3.fromRGB(240, 226, 200)
+local floorWood = Color3.fromRGB(154, 108, 72)
+local warmWood = Color3.fromRGB(118, 78, 52)
+local darkWood = Color3.fromRGB(66, 46, 34)
+local appleRed = Color3.fromRGB(184, 54, 46)
+local leafGreen = Color3.fromRGB(62, 112, 62)
 
-makePart("ShopFloor", Vector3.new(32, 1, 28), Vector3.new(0, 0, -16), cream, Enum.Material.WoodPlanks)
-makePart("BackWall", Vector3.new(32, 12, 1), Vector3.new(0, 6, -29.5), warmWood, Enum.Material.WoodPlanks)
-makePart("LeftWall", Vector3.new(1, 8, 28), Vector3.new(-15.5, 4, -16), warmWood, Enum.Material.WoodPlanks)
-makePart("RightWall", Vector3.new(1, 8, 28), Vector3.new(15.5, 4, -16), warmWood, Enum.Material.WoodPlanks)
+makePart("ShopFloor", Vector3.new(28, 0.4, 24), Vector3.new(0, 0.2, -16), floorWood, Enum.Material.WoodPlanks)
+makePart("BackWall", Vector3.new(28, 7.5, 0.5), Vector3.new(0, 4.15, -28), wallCream, Enum.Material.SmoothPlastic)
+makePart("LeftWall", Vector3.new(0.5, 7.5, 24), Vector3.new(-13.75, 4.15, -16), wallCream, Enum.Material.SmoothPlastic)
+makePart("RightWall", Vector3.new(0.5, 7.5, 24), Vector3.new(13.75, 4.15, -16), wallCream, Enum.Material.SmoothPlastic)
 
-local awning = makePart("Awning", Vector3.new(34, 1, 5), Vector3.new(0, 10, -3), awningRed, Enum.Material.Fabric)
-awning.Orientation = Vector3.new(0, 0, -5)
+local awning = makePart("Awning", Vector3.new(28.5, 0.4, 3.5), Vector3.new(0, 7.75, -4.25), appleRed, Enum.Material.SmoothPlastic)
+awning.Orientation = Vector3.zero
+awning.CanCollide = false
 
-makePart("Counter", Vector3.new(22, 2.7, 2.5), Vector3.new(1.5, 1.35, -2), darkWood, Enum.Material.WoodPlanks)
-makePart("CounterTop", Vector3.new(24, 0.7, 4), Vector3.new(1.5, 2.9, -2), warmWood, Enum.Material.WoodPlanks)
-
-local function addBoard(name: string, size: Vector3, position: Vector3, text: string, color: Color3)
-	local board = makePart(name, size, position, darkWood, Enum.Material.WoodPlanks)
-	local gui = Instance.new("SurfaceGui")
-	gui.Name = "SignGui"
-	gui.Face = Enum.NormalId.Back
-	gui.AlwaysOnTop = true
-	gui.SizingMode = Enum.SurfaceGuiSizingMode.PixelsPerStud
-	gui.PixelsPerStud = 45
-	gui.Parent = board
-
-	local label = Instance.new("TextLabel")
-	label.Name = "Title"
-	label.BackgroundTransparency = 1
-	label.Size = UDim2.fromScale(1, 1)
-	label.Font = Enum.Font.GothamBlack
-	label.Text = text
-	label.TextColor3 = color
-	label.TextScaled = true
-	label.TextWrapped = true
-	label.TextStrokeColor3 = Color3.fromRGB(55, 31, 20)
-	label.TextStrokeTransparency = 0.15
-	label.Parent = gui
-end
-
-addBoard("GoodFruitSign", Vector3.new(16, 5, 0.7), Vector3.new(-5.5, 7.5, -28.9), "GOOD FRUIT", gold)
-addBoard(
-	"Instructions",
-	Vector3.new(11, 7, 0.7),
-	Vector3.new(9, 5.5, -28.9),
-	"1. TAKE ONE\n2. SERVE FRONT DOGE\n3. GROW GOOD",
-	Color3.fromRGB(255, 244, 210)
-)
+makePart("Counter", Vector3.new(20, 1.25, 2), Vector3.new(0, 0.625, -2.75), darkWood, Enum.Material.WoodPlanks)
+makePart("CounterTop", Vector3.new(21, 0.3, 2.75), Vector3.new(0, 1.4, -2.75), warmWood, Enum.Material.WoodPlanks)
 
 local crate = makePart("AppleCrate", Vector3.new(6, 2.5, 5), Vector3.new(-10, 1.25, -10), warmWood, Enum.Material.WoodPlanks, shop)
 crate:SetAttribute("Purpose", "ApplePickup")
@@ -133,13 +100,13 @@ queueSpots.Parent = shop
 for index, z in ipairs({ 1, 6, 11, 16 }) do
 	local spot = makePart(
 		string.format("Spot_%02d", index),
-		Vector3.new(5, 0.15, 3.5),
-		Vector3.new(0, 0.58, z),
-		Color3.fromRGB(255, 220, 112),
-		Enum.Material.Neon,
+		Vector3.new(3.2, 0.08, 2.6),
+		Vector3.new(0, 0.54, z),
+		Color3.fromRGB(140, 132, 116),
+		Enum.Material.SmoothPlastic,
 		queueSpots
 	)
-	spot.Transparency = 0.62
+	spot.Transparency = 1
 	spot.CanCollide = false
 end
 
@@ -154,21 +121,25 @@ local customers = Instance.new("Folder")
 customers.Name = "Customers"
 customers.Parent = shop
 
-local path = makePart("CustomerPath", Vector3.new(8, 0.2, 31), Vector3.new(0, 0.04, 10), Color3.fromRGB(198, 167, 119), Enum.Material.Cobblestone)
+local path = makePart("CustomerPath", Vector3.new(4.25, 0.06, 27), Vector3.new(0, 0.53, 10), Color3.fromRGB(164, 151, 129), Enum.Material.Cobblestone)
 path.CanCollide = false
 
 local baseplate = Workspace:FindFirstChild("Baseplate")
 if baseplate and baseplate:IsA("BasePart") then
 	baseplate.Color = Color3.fromRGB(102, 142, 76)
 	baseplate.Material = Enum.Material.Grass
+	baseplate.Transparency = 0
+	baseplate.CanCollide = true
 	baseplate:SetAttribute("Owner", OWNER)
 end
 
 local spawn = Workspace:FindFirstChild("SpawnLocation")
 if spawn and spawn:IsA("SpawnLocation") then
-	spawn.Position = Vector3.new(-9, 0.5, 17)
-	spawn.Orientation = Vector3.new(0, 145, 0)
+	local spawnPosition = Vector3.new(-8, 0.5, 14)
+	spawn.CFrame = CFrame.lookAt(spawnPosition, Vector3.new(0, 0.5, -3))
 	spawn.Neutral = true
+	spawn.Transparency = 1
+	spawn.CanCollide = false
 	spawn:SetAttribute("Owner", OWNER)
 end
 
