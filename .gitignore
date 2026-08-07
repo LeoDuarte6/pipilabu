@@ -1,0 +1,25 @@
+# Roblox place files stay local to this desktop.
+places/*.rbxl
+places/*.rbxlx
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+
+# Generated dependencies and local runtime state.
+Packages/
+ServerPackages/
+.local/
+*.log
+*.pid
+
+# Secrets and machine-local overrides.
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Editor and OS noise.
+.DS_Store
+Thumbs.db
+.vscode/

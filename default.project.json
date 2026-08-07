@@ -1,0 +1,24 @@
+{
+  "name": "JonAndLeoDevelopment",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "JonAndLeoDevelopment": {
+        "$path": "src/shared"
+      }
+    },
+    "ServerScriptService": {
+      "JonAndLeoDevelopment": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "JonAndLeoDevelopment": {
+          "$path": "src/client"
+        }
+      }
+    }
+  }
+}
+

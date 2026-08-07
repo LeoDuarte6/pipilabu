@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "Roblox_Studio": {
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\Users\\fricc\\AppData\\Local\\Roblox\\codex-studio-mcp.ps1"
+      ],
+      "env": {}
+    }
+  }
+}
+
