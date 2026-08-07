@@ -205,6 +205,8 @@ local function createCustomer(): Model
 	prompt.HoldDuration = 0.1
 	prompt.MaxActivationDistance = shopConfig.ServePromptDistance
 	prompt.RequiresLineOfSight = false
+	prompt.KeyboardKeyCode = Enum.KeyCode.E
+	prompt.GamepadKeyCode = Enum.KeyCode.ButtonX
 	prompt.Enabled = false
 	prompt.Parent = head
 
@@ -341,6 +343,8 @@ local function bindWorld()
 	applePrompt.HoldDuration = 0.1
 	applePrompt.MaxActivationDistance = shopConfig.PickupPromptDistance
 	applePrompt.RequiresLineOfSight = false
+	applePrompt.KeyboardKeyCode = Enum.KeyCode.E
+	applePrompt.GamepadKeyCode = Enum.KeyCode.ButtonX
 	applePrompt.Triggered:Connect(takeApple)
 end
 

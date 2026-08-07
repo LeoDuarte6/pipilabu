@@ -5,14 +5,15 @@ Read `README.md`, then `docs/codex/HANDOFF.md`, before substantive work.
 ## Owners and scope
 
 - Leo Duarte (`LeoDuarte6`; Roblox `thegreatwizardrock2`)
-- Jon Walworth (`jawnwalworth-tech`; Roblox `jjwally`)
-- This checkout and place are local to Leo's Windows desktop. Do not add a remote, publish, deploy, enable Team Create, or upload assets without Leo's explicit instruction.
+- Jon Walworth (`jawnwalworth-tech`; Roblox `jwallyguy` and `Awchism`)
+- The private cloud experience is `Pipilabu` (`GameId 10646495069`, `PlaceId 133099029551440`). Both Jon accounts have Edit access.
+- Keep Git source local unless Leo explicitly requests a remote. Do not make the experience public or upload assets without Leo's explicit instruction.
 
 ## The three-channel development loop
 
 1. **Filesystem + Git are code truth.** Edit `.luau` under `src/`.
 2. **Rojo is the live code bridge.** One Rojo server owns `localhost:34872` and syncs disk code into Studio.
-3. **Studio MCP is the observation/test bridge.** Use it to inspect instances, execute bounded Luau, read Output, capture screenshots, and control playtests.
+3. **Studio MCP is the observation/test bridge.** Use it only after verifying the active instance's PlaceId. The older unrelated `Pipilabu` (`PlaceId 104936800417970`) must never receive Jon-and-Leo mutations.
 
 Never edit Rojo-owned scripts through Studio or MCP `multi_edit`. Those edits do not become Git state and can be clobbered by Rojo.
 
@@ -42,4 +43,3 @@ For meaningful changes:
 3. Confirm Studio MCP sees the intended Studio instance and Edit DataModel.
 4. Playtest the changed behavior and inspect Output for errors.
 5. Update `docs/codex/HANDOFF.md` with verified state and the next gate.
-

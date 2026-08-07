@@ -3,8 +3,11 @@
 ## Current verified state
 
 - Project root: `C:\Users\fricc\Documents\Roblox\jon-and-leo-development`.
-- Local Git repository with no remote; do not publish or enable Team Create.
-- Local place: `places/JonAndLeoDevelopment.rbxlx` (`PlaceId = 0`, `GameId = 0`).
+- Local Git repository with no remote.
+- Private cloud experience: `Pipilabu` (`PlaceId = 133099029551440`, `GameId = 10646495069`).
+- Jon's Roblox accounts `jwallyguy` and `Awchism` are verified collaborators with Edit access.
+- The older unrelated `Pipilabu` is `PlaceId = 104936800417970`, `GameId = 10646407271`; never mutate it.
+- Local fallback place: `places/JonAndLeoDevelopment.rbxlx` (`PlaceId = 0`, `GameId = 0`).
 - Rojo 7.6.1 serves `localhost:34872`; code is owned by `src/` and synchronized into Studio.
 - Shared voice is configured through XSplit; see `docs/codex/VOICE_WORKFLOW.md`.
 - The old Tung/Claude setup remains untouched; recovered notes are in `docs/legacy/CLAUDE_WORKFLOW_RECOVERY.md`.
@@ -25,19 +28,23 @@
 - Fresh player state verified as `Coins 0`, `Served 0`, `Waiting 3`.
 - One controlled loop verified: pickup produced `HasApple = true` plus `HeldApple`; serving produced `Coins 1`, `Served 1`, `Waiting 3`, `HasApple = false`, and removed `HeldApple`.
 - Pickup and serve prompts are each limited to six studs so they cannot overlap into a hold-to-farm loop.
+- Pickup and serve explicitly use `ButtonX` on gamepad, the HUD respects device-safe insets, and successful service produces a short controller pulse.
+- The world builder lowers the counter from four studs to three; the already-open cloud world still needs a bounded Edit-mode world adjustment before this geometry change is persisted there.
 - Local place saved after the world and procedural model were added.
 
 ## Studio safety lesson
 
-An unrelated Team Create tab named `Pipilabu` was briefly active during setup. The bounded Jon-and-Leo instances were immediately removed from that tab, its prior lighting/name were restored, and Rojo was disconnected. Nothing was published. Every future Studio mutation must first:
+An unrelated older tab is also named `Pipilabu`. Every future Studio mutation must first:
 
 1. Call `list_roblox_studios`.
-2. Set the local `JonAndLeoDevelopment.rbxlx` instance active.
-3. Assert `game.PlaceId == 0` and `game.GameId == 0` inside the mutation itself.
+2. Set the intended instance active.
+3. Assert either the local IDs are both zero or the cloud IDs exactly match `133099029551440` / `10646495069` inside the mutation itself.
+
+At the 2026-08-07 handoff, Rojo is verified connected to the correct cloud Studio window, but Studio MCP still reports only the older unrelated place. Until the correct instance appears in MCP, use Rojo for code and do not issue MCP mutations.
 
 ## Session startup
 
-1. Open `places/JonAndLeoDevelopment.rbxlx`.
+1. Open the private `Pipilabu` experience (`PlaceId 133099029551440`) or the local fallback place.
 2. Run `scripts/dev.ps1` and connect Rojo to `localhost:34872`.
 3. Confirm Studio Assistant > Manage MCP Servers has the Studio server and Codex enabled.
 4. Before mutations, verify the active MCP instance and both local IDs.
@@ -45,4 +52,4 @@ An unrelated Team Create tab named `Pipilabu` was briefly active during setup. T
 
 ## Next gate
 
-Test the slice with Leo and Jon controlling it normally. Then choose one vertical improvement: player Doge character/animation, a second order type, or the first shop upgrade. Do not build the farmer's-market meta-loop until the one-apple service loop feels good by hand.
+Run Gate A from `docs/codex/PLAYTEST_GATES.md`: the serve-feel test. Do not add potions, robberies, the farmer's market, or the town until Leo and Jon voluntarily serve an eleventh plain red apple after serving ten.

@@ -29,8 +29,12 @@ The slice is successful when two people can understand that loop without develop
 
 ## Next layers, not MVP
 
+- Timed orders that begin with red and gold apple matching.
+- Treated apples made at a potion/barista-style station after color matching is proven fun.
 - Shop upgrades and additional products.
 - Busier days, more complicated orders, and Overcooked-style coordination.
+- A street of player shops where neighbors can carry supplies, clear overflow orders, and earn visible Goodwill for helping.
+- Controlled surprise events such as a Golden Apple Rush, a rotten-apple cleanup, fire, or a robber. Surprises must use rules the player already understands.
 - A weekly farmer's market where players compete for limited crates and bring inventory home for the week.
 - Physical competition at the market, including scrambling and playful punching.
 - A larger story and more explicit thematic meaning once the core service loop is fun.
@@ -39,3 +43,7 @@ The slice is successful when two people can understand that loop without develop
 ## Current experiment
 
 The first build uses deterministic primitive Doge customers for reliable movement and interaction. One generated Doge asset is tested separately so model-generation quality cannot block the playable loop.
+
+## Prototype doctrine
+
+The internal culture shorthand is “new Valve”: Leo and Jon talk freely, Codex turns the discussion into small playable builds, and the humans enter at explicit gates. The game is not allowed to grow past the service loop until serving a plain red apple is satisfying enough that a player voluntarily serves one more.

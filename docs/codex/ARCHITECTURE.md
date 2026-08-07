@@ -17,7 +17,8 @@ Codex edits local .luau files
 The code layer and world layer are intentionally separate:
 
 - `src/` is reproducible, reviewable, and versioned.
-- `places/JonAndLeoDevelopment.rbxlx` is local world state and gitignored.
+- The private cloud place (`PlaceId 133099029551440`, `GameId 10646495069`) is the shared world-editing lane.
+- `places/JonAndLeoDevelopment.rbxlx` is the gitignored local fallback world.
 - MCP validates the combined live result but does not replace Rojo as the code path.
 
 ## Doge Apple Shop slice
@@ -29,4 +30,4 @@ The code layer and world layer are intentionally separate:
 - `scripts/build-doge-shop-world.luau` can recreate that contract only in a local `PlaceId = 0`, `GameId = 0` file.
 - `Workspace.DogeAppleShop.MascotExperiments.DogeShopkeeper` is a native `ProceduralModel` experiment and is deliberately not required by gameplay.
 
-Before any Studio mutation, list connected Studio instances, select `JonAndLeoDevelopment.rbxlx`, and assert `PlaceId = 0` and `GameId = 0`.
+Before any Studio mutation, list connected Studio instances and assert either the exact private cloud IDs (`133099029551440` / `10646495069`) or both local IDs are zero. Never mutate the older unrelated `Pipilabu` (`PlaceId 104936800417970`).

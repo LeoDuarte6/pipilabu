@@ -2,7 +2,7 @@
 
 local Config = {
 	ProjectName = "Jon and Leo Development",
-	DevelopmentVersion = "0.2.0",
+	DevelopmentVersion = "0.3.0",
 	Shop = table.freeze({
 		StartingQueueSize = 3,
 		MaximumQueueSize = 4,

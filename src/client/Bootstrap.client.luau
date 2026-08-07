@@ -1,5 +1,6 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local HapticService = game:GetService("HapticService")
 local TweenService = game:GetService("TweenService")
 
 local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
@@ -19,6 +20,7 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "DogeAppleHUD"
 screenGui.ResetOnSpawn = false
 screenGui.IgnoreGuiInset = false
+screenGui.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 screenGui.Parent = playerGui
 
 local panel = Instance.new("Frame")
@@ -108,6 +110,19 @@ local function pulse()
 	brighten:Play()
 end
 
+local function confirmWithController()
+	local gamepad = Enum.UserInputType.Gamepad1
+	local motor = Enum.VibrationMotor.Small
+	if not HapticService:IsVibrationSupported(gamepad) or not HapticService:IsMotorSupported(gamepad, motor) then
+		return
+	end
+
+	HapticService:SetMotor(gamepad, motor, 0.55)
+	task.delay(0.09, function()
+		HapticService:SetMotor(gamepad, motor, 0)
+	end)
+end
+
 player:GetAttributeChangedSignal("HasApple"):Connect(render)
 player:GetAttributeChangedSignal("ShopMessage"):Connect(render)
 player:GetAttributeChangedSignal("QueueSize"):Connect(render)
@@ -120,6 +135,7 @@ task.spawn(function()
 	served.Changed:Connect(function()
 		render()
 		pulse()
+		confirmWithController()
 	end)
 	render()
 end)

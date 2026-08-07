@@ -1,12 +1,12 @@
 # Jon and Leo Development
 
-Local-first Roblox Studio workspace for Leo Duarte and Jon Walworth.
+Local-first Roblox Studio workspace for Leo Duarte and Jon Walworth, connected to the private `Pipilabu` Roblox experience.
 
 This repository is the durable code layer. Roblox Studio is the live world editor. Rojo synchronizes `.luau` files into Studio, while Studio MCP lets Codex inspect the DataModel, execute bounded Luau, read Output, capture the viewport, and playtest.
 
 ## Start a development session
 
-1. Open `places/JonAndLeoDevelopment.rbxlx` in Roblox Studio.
+1. Open the private `Pipilabu` experience (`PlaceId 133099029551440`) in Roblox Studio. Use `places/JonAndLeoDevelopment.rbxlx` only as the local fallback.
 2. Run `powershell -ExecutionPolicy Bypass -File scripts/dev.ps1`.
 3. In Studio, open the Rojo plugin and connect to `localhost:34872`.
 4. Keep **Enable Studio as MCP server** on in Assistant > Manage MCP Servers.
@@ -33,7 +33,9 @@ Edit scripts on disk. Do not use Studio or MCP script editing for Rojo-owned cod
 
 ## Current status
 
-- Local Git repository only; no remote and no Roblox cloud workflow.
+- Local Git repository with no remote. The private Roblox experience is `Pipilabu` (`GameId 10646495069`, `PlaceId 133099029551440`).
+- Jon's `jwallyguy` and `Awchism` accounts have Edit access.
+- Rojo is connected to the correct Studio window at `localhost:34872`; always verify PlaceId before using Studio MCP because an older unrelated `Pipilabu` may also be open.
 - Rojo 7.6.1, Lune 0.10.4, and Wally 0.3.2 are pinned through Rokit.
 - The first playable is **Doge Apple Shop**: take one apple, serve the front Doge, earn a coin, and cycle the queue.
 - `places/JonAndLeoDevelopment.rbxlx` contains the local shop world and one native procedural Doge experiment.
