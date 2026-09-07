@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">Pigeon micro-documentary treatment board</title>
+  <desc id="desc">Three distinct cinematic treatments: Street Saint, Rooftop Kingdom, and Underdog Athlete.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101417"/><stop offset="1" stop-color="#060708"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#77949a"/><stop offset=".52" stop-color="#27383b"/><stop offset="1" stop-color="#101416"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5d6670"/><stop offset=".5" stop-color="#20262b"/><stop offset="1" stop-color="#0d1012"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a36d3d"/><stop offset=".48" stop-color="#4d3021"/><stop offset="1" stop-color="#15100d"/></linearGradient>
+    <filter id="grain"><feTurbulence baseFrequency=".8" numOctaves="3" seed="8" type="fractalNoise"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .09 0"/></filter>
+    <style>
+      .eyebrow{font:600 18px 'Segoe UI',sans-serif;letter-spacing:4px;fill:#b7c0c4}.title{font:700 50px 'Segoe UI',sans-serif;fill:#f4f1ea}.sub{font:400 21px 'Segoe UI',sans-serif;fill:#d1d4d2}.body{font:400 22px 'Segoe UI',sans-serif;fill:#e4e1d9}.small{font:500 17px 'Segoe UI',sans-serif;fill:#b9c0c0;letter-spacing:.4px}.letter{font:800 72px 'Segoe UI',sans-serif;fill:#f4f1ea}.tag{font:700 16px 'Segoe UI',sans-serif;fill:#151719;letter-spacing:2px}
+    </style>
+  </defs>
+  <rect width="1500" height="900" fill="url(#bg)"/>
+  <text x="70" y="70" class="eyebrow">FIRST FILM · TASTE GATE</text>
+  <text x="70" y="125" class="title">Choose a world, not a form.</text>
+  <text x="70" y="165" class="sub">Pick A, B, or C. We explore cheap stills next; nothing has been generated or spent.</text>
+
+  <g transform="translate(70 215)">
+    <rect width="420" height="610" rx="16" fill="url(#a)"/>
+    <rect width="420" height="610" rx="16" filter="url(#grain)" opacity=".65"/>
+    <circle cx="342" cy="82" r="52" fill="#d69f61" opacity=".35"/>
+    <path d="M0 357 Q120 310 220 354 T420 332 V610 H0Z" fill="#0a0e0f" opacity=".7"/>
+    <path d="M143 369 q34-68 82-13 q19 22 7 56 h-91 q-15-22 2-43m89-17 42-8-31 27" fill="#131719" stroke="#b9cac9" stroke-width="3"/>
+    <path d="M171 410 l-9 49m34-48 5 48" stroke="#b9cac9" stroke-width="3"/>
+    <text x="28" y="70" class="letter">A</text>
+    <rect x="245" y="30" width="145" height="34" rx="17" fill="#e9c28f"/><text x="266" y="53" class="tag">RECOMMENDED</text>
+    <text x="28" y="492" class="eyebrow">22 SEC · 9:16</text>
+    <text x="28" y="538" class="title" font-size="42">Street Saint</text>
+    <text x="28" y="574" class="small">RAIN-SLICK · LOW CAMERA · SINCERE</text>
+  </g>
+
+  <g transform="translate(540 215)">
+    <rect width="420" height="610" rx="16" fill="url(#b)"/>
+    <rect width="420" height="610" rx="16" filter="url(#grain)" opacity=".65"/>
+    <path d="M0 325 L72 265 124 299 189 210 247 265 315 180 420 265 V610 H0Z" fill="#0a0c0e" opacity=".8"/>
+    <path d="M177 348 q31-65 79-13 q17 22 6 52 h-87 q-13-20 2-39m86-17 40-7-30 26" fill="#101416" stroke="#bec7cc" stroke-width="3"/>
+    <path d="M204 386 l-8 47m31-46 5 46" stroke="#bec7cc" stroke-width="3"/>
+    <text x="28" y="70" class="letter">B</text>
+    <text x="28" y="492" class="eyebrow">25 SEC · 16:9</text>
+    <text x="28" y="538" class="title" font-size="42">Rooftop Kingdom</text>
+    <text x="28" y="574" class="small">NOIR · ARCHITECTURAL · STATELY</text>
+  </g>
+
+  <g transform="translate(1010 215)">
+    <rect width="420" height="610" rx="16" fill="url(#c)"/>
+    <rect width="420" height="610" rx="16" filter="url(#grain)" opacity=".65"/>
+    <path d="M0 407 L420 296 V610 H0Z" fill="#100d0a" opacity=".75"/>
+    <path d="M121 373 q39-70 91-3 q18 24 5 58 h-99 q-14-27 3-55m97-18 49-9-36 29" fill="#17120f" stroke="#e0b27e" stroke-width="3"/>
+    <path d="M151 426 l-13 47m46-49 11 46" stroke="#e0b27e" stroke-width="3"/>
+    <path d="M32 340 L115 316M260 281 l123-35M286 318 l93-18" stroke="#e6b57a" opacity=".45" stroke-width="5"/>
+    <text x="28" y="70" class="letter">C</text>
+    <text x="28" y="492" class="eyebrow">18 SEC · 9:16</text>
+    <text x="28" y="538" class="title" font-size="42">Underdog Athlete</text>
+    <text x="28" y="574" class="small">PUNCHY · PHYSICAL · PLATFORM-NATIVE</text>
+  </g>
+  <text x="750" y="872" text-anchor="middle" class="sub">Smallest next decision: A, B, or C — then a separate positive credit cap.</text>
+</svg>

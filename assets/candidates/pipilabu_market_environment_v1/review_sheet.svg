@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Pipi Labu market environment kit v1 review sheet</title>
+  <desc id="desc">Production blueprint showing the stall bay, awning, eight stud service corridor, street edge, and module hierarchy.</desc>
+  <rect width="1200" height="760" fill="#f4ead8"/>
+  <rect x="32" y="28" width="1136" height="704" rx="18" fill="#fff9ee" stroke="#493226" stroke-width="3"/>
+  <text x="66" y="82" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#493226">PIPI LABU / MARKET KIT V1</text>
+  <text x="68" y="112" font-family="Arial, sans-serif" font-size="15" letter-spacing="2" fill="#8a5b45">REVIEW CANDIDATE · STUDS · +Z SERVICE SIDE · +Y UP</text>
+
+  <g transform="translate(72 154)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#493226">PLAN / CORRIDOR READ</text>
+    <text x="0" y="25" font-family="Arial, sans-serif" font-size="13" fill="#6d5140">one stall bay · front edge +Z · props stay outside the central handoff lane</text>
+    <g transform="translate(12 56)">
+      <rect x="0" y="0" width="240" height="160" fill="#e4d5b8" stroke="#493226" stroke-width="2"/>
+      <rect x="0" y="-64" width="240" height="64" fill="#d24a36" opacity="0.9" stroke="#493226" stroke-width="2"/>
+      <rect x="18" y="18" width="204" height="28" fill="#70472d"/>
+      <rect x="18" y="20" width="204" height="16" fill="#a16b40"/>
+      <rect x="18" y="62" width="204" height="8" fill="#493226"/>
+      <rect x="18" y="126" width="204" height="22" fill="#493226"/>
+      <rect x="240" y="0" width="160" height="160" fill="#ecdfc8" stroke="#c5a77e" stroke-width="2"/>
+      <rect x="400" y="0" width="24" height="160" fill="#a99b83"/>
+      <text x="26" y="108" font-family="Arial, sans-serif" font-size="12" fill="#fff9ee">COUNTER / DISPLAY</text>
+      <text x="253" y="83" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#493226">8 STUD</text>
+      <text x="253" y="101" font-family="Arial, sans-serif" font-size="12" fill="#6d5140">SERVICE LANE</text>
+      <text x="405" y="184" font-family="Arial, sans-serif" font-size="12" fill="#6d5140">CURB / DRAIN</text>
+      <line x1="0" y1="178" x2="240" y2="178" stroke="#493226" stroke-width="1.5"/>
+      <line x1="0" y1="172" x2="0" y2="184" stroke="#493226" stroke-width="1.5"/>
+      <line x1="240" y1="172" x2="240" y2="184" stroke="#493226" stroke-width="1.5"/>
+      <text x="94" y="200" font-family="Arial, sans-serif" font-size="13" fill="#493226">12 STUD BAY</text>
+      <line x1="240" y1="-78" x2="400" y2="-78" stroke="#493226" stroke-width="1.5"/>
+      <line x1="240" y1="-84" x2="240" y2="-72" stroke="#493226" stroke-width="1.5"/>
+      <line x1="400" y1="-84" x2="400" y2="-72" stroke="#493226" stroke-width="1.5"/>
+      <text x="274" y="-88" font-family="Arial, sans-serif" font-size="13" fill="#493226">8 STUD KEEP-OUT</text>
+    </g>
+  </g>
+
+  <g transform="translate(640 154)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#493226">FRONT / MOBILE SCALE</text>
+    <text x="0" y="25" font-family="Arial, sans-serif" font-size="13" fill="#6d5140">low roofline, fruit at hand height, no top-heavy sign or prop wall</text>
+    <g transform="translate(42 56)">
+      <rect x="0" y="0" width="240" height="125" fill="#e4d5b8" stroke="#493226" stroke-width="2"/>
+      <rect x="0" y="-18" width="240" height="18" fill="#d24a36"/>
+      <rect x="0" y="-40" width="240" height="22" fill="#f1dfbb" stroke="#493226" stroke-width="2"/>
+      <rect x="24" y="58" width="192" height="20" fill="#493226"/>
+      <rect x="16" y="35" width="208" height="12" fill="#a16b40"/>
+      <rect x="24" y="95" width="192" height="18" fill="#70472d"/>
+      <rect x="30" y="18" width="180" height="10" fill="#70472d"/>
+      <circle cx="120" cy="35" r="5" fill="#d24a36"/>
+      <text x="254" y="12" font-family="Arial, sans-serif" font-size="13" fill="#493226">6.25 STUD MAX</text>
+      <text x="254" y="34" font-family="Arial, sans-serif" font-size="12" fill="#6d5140">roof + front beam</text>
+      <text x="254" y="65" font-family="Arial, sans-serif" font-size="12" fill="#6d5140">fruit / shelf band</text>
+      <text x="254" y="103" font-family="Arial, sans-serif" font-size="12" fill="#6d5140">counter band</text>
+      <line x1="0" y1="137" x2="240" y2="137" stroke="#493226" stroke-width="1.5"/>
+      <line x1="0" y1="131" x2="0" y2="143" stroke="#493226" stroke-width="1.5"/>
+      <line x1="240" y1="131" x2="240" y2="143" stroke="#493226" stroke-width="1.5"/>
+      <text x="91" y="162" font-family="Arial, sans-serif" font-size="13" fill="#493226">12 STUD</text>
+    </g>
+  </g>
+
+  <g transform="translate(72 502)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#493226">MODULE ROLES / IMPORT RULES</text>
+    <g transform="translate(0 30)" font-family="Arial, sans-serif" font-size="13" fill="#493226">
+      <rect x="0" y="0" width="16" height="16" fill="#70472d"/><text x="28" y="13">structural visual + separate solid proxy</text>
+      <rect x="0" y="30" width="16" height="16" fill="#d24a36"/><text x="28" y="43">awning / authored silhouette, proxy remains one bounded slab</text>
+      <rect x="0" y="60" width="16" height="16" fill="#f1dfbb" stroke="#493226"/><text x="28" y="73">display-only sign, fruit, stripe detail: CanCollide/Touch/Query false</text>
+      <rect x="0" y="90" width="16" height="16" fill="#a99b83"/><text x="28" y="103">walk-surface edge: collision true, no prompt or gameplay behavior</text>
+    </g>
+  </g>
+  <g transform="translate(730 505)" font-family="Arial, sans-serif" fill="#493226">
+    <text x="0" y="0" font-size="18" font-weight="700">PIVOT / AXIS</text>
+    <text x="0" y="30" font-size="13">ground-center modules: origin at Y=0</text>
+    <text x="0" y="52" font-size="13">awning: rear-mount center, geometry extends +Z</text>
+    <text x="0" y="74" font-size="13">all dimensions are authored in Roblox studs</text>
+    <text x="0" y="106" font-size="13" fill="#8a5b45">NOT APPROVED · NOT IMPORTED · NOT LIVE</text>
+  </g>
+  <text x="66" y="700" font-family="Arial, sans-serif" font-size="12" fill="#8a5b45">PIPILABU-MARKET-ENV-V1 · authored geometry only · supplied video used as visual grammar, never as baked texture</text>
+</svg>

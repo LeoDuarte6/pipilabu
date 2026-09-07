@@ -1,0 +1,65 @@
+# Pipi Labu market kit material roles 1.0.0
+newmtl WoodWarm
+Kd 0.4900 0.2900 0.1700
+# roughness 0.880
+illum 2
+
+newmtl WoodDark
+Kd 0.2500 0.1400 0.0800
+# roughness 0.920
+illum 2
+
+newmtl PlasterCream
+Kd 0.9000 0.8200 0.6800
+# roughness 0.930
+illum 2
+
+newmtl CanvasVermilion
+Kd 0.7800 0.2000 0.1400
+# roughness 0.950
+illum 2
+
+newmtl CanvasPaper
+Kd 0.9500 0.8800 0.7200
+# roughness 0.960
+illum 2
+
+newmtl Ink
+Kd 0.1500 0.0900 0.0600
+# roughness 0.820
+illum 2
+
+newmtl MetalDark
+Kd 0.1800 0.1800 0.1600
+# roughness 0.620
+illum 2
+
+newmtl LanternAmber
+Kd 1.0000 0.5800 0.1500
+# roughness 0.420
+illum 2
+
+newmtl Leaf
+Kd 0.2200 0.4000 0.2000
+# roughness 0.900
+illum 2
+
+newmtl FruitRuby
+Kd 0.7200 0.1200 0.0800
+# roughness 0.460
+illum 2
+
+newmtl FruitHoneygold
+Kd 0.9500 0.6000 0.1200
+# roughness 0.440
+illum 2
+
+newmtl StoneWarm
+Kd 0.5400 0.4800 0.3900
+# roughness 0.970
+illum 2
+
+newmtl CollisionProxy
+Kd 0.2500 0.2500 0.2500
+# roughness 1.000
+illum 2

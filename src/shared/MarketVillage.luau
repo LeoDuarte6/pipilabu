@@ -5,7 +5,7 @@
 -- the world can be re-authored without changing gameplay code.
 local MarketVillage = {
 	RootName = "PipilabuMarketVillagePrototype",
-	Build = "LAYOUT-0.1.0",
+	Build = "LAYOUT-0.2.0",
 	PresentationEnabledAttribute = "PresentationEnabled",
 	GroundingFolderName = "Grounding",
 	FixturesFolderName = "AuthoredFixtures",

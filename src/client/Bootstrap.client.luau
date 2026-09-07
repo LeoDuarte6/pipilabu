@@ -4,12 +4,13 @@ local ContextActionService = game:GetService("ContextActionService")
 local Debris = game:GetService("Debris")
 local HapticService = game:GetService("HapticService")
 local SoundService = game:GetService("SoundService")
-local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 
 local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
+local AppleCatalog = require(projectRoot:WaitForChild("AppleCatalog"))
 local Config = require(projectRoot:WaitForChild("Config"))
 local Copy = require(projectRoot:WaitForChild("Copy"))
+local HudView = require(script.Parent:WaitForChild("HudView"))
 
 print(string.format("[JonAndLeo] client online - %s v%s", Config.ProjectName, Config.DevelopmentVersion))
 
@@ -32,120 +33,12 @@ Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(applyCameraDefaults)
 local feedbackEvent = projectRoot:WaitForChild("ShopFeedback") :: RemoteEvent
 local controlEvent = projectRoot:WaitForChild("ShopControl") :: RemoteEvent
 
-local existing = playerGui:FindFirstChild("DogeAppleHUD")
-if existing then
-	existing:Destroy()
-end
-
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "DogeAppleHUD"
-screenGui.ResetOnSpawn = false
-screenGui.IgnoreGuiInset = false
-screenGui.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
-screenGui.Parent = playerGui
-
-local panel = Instance.new("Frame")
-panel.Name = "Panel"
-panel.AnchorPoint = Vector2.new(0, 0)
-panel.Position = UDim2.fromOffset(22, 18)
-panel.Size = UDim2.fromOffset(430, 152)
-panel.BackgroundColor3 = Color3.fromRGB(36, 33, 30)
-panel.BackgroundTransparency = 0.1
-panel.BorderSizePixel = 0
-panel.Parent = screenGui
-
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 12)
-corner.Parent = panel
-
-local stroke = Instance.new("UIStroke")
-stroke.Color = Color3.fromRGB(135, 76, 63)
-stroke.Thickness = 1.5
-stroke.Transparency = 0.25
-stroke.Parent = panel
-
-local panelScale = Instance.new("UIScale")
-panelScale.Name = "FeedbackScale"
-panelScale.Scale = 1
-panelScale.Parent = panel
-
-local title = Instance.new("TextLabel")
-title.Name = "Title"
-title.BackgroundTransparency = 1
-title.Position = UDim2.fromOffset(20, 12)
-title.Size = UDim2.new(1, -40, 0, 30)
-title.Font = Enum.Font.GothamBold
-title.Text = Copy.Hud.Title
-title.TextColor3 = Color3.fromRGB(245, 235, 215)
-title.TextSize = 24
-title.TextXAlignment = Enum.TextXAlignment.Left
-title.Parent = panel
-
-local progress = Instance.new("TextLabel")
-progress.Name = "Progress"
-progress.BackgroundTransparency = 1
-progress.Position = UDim2.fromOffset(20, 43)
-progress.Size = UDim2.new(1, -40, 0, 25)
-progress.Font = Enum.Font.GothamSemibold
-progress.TextColor3 = Color3.fromRGB(236, 232, 223)
-progress.TextSize = 17
-progress.TextXAlignment = Enum.TextXAlignment.Left
-progress.Parent = panel
-
-local detail = Instance.new("TextLabel")
-detail.Name = "Detail"
-detail.BackgroundTransparency = 1
-detail.Position = UDim2.fromOffset(20, 67)
-detail.Size = UDim2.new(1, -40, 0, 20)
-detail.Font = Enum.Font.Gotham
-detail.TextColor3 = Color3.fromRGB(204, 196, 183)
-detail.TextSize = 14
-detail.TextXAlignment = Enum.TextXAlignment.Left
-detail.Parent = panel
-
-local instruction = Instance.new("TextLabel")
-instruction.Name = "Instruction"
-instruction.BackgroundTransparency = 1
-instruction.Position = UDim2.fromOffset(20, 89)
-instruction.Size = UDim2.new(1, -40, 0, 24)
-instruction.Font = Enum.Font.Gotham
-instruction.TextColor3 = Color3.fromRGB(204, 196, 183)
-instruction.TextSize = 16
-instruction.TextWrapped = true
-instruction.TextXAlignment = Enum.TextXAlignment.Left
-instruction.Parent = panel
-
-local actionButton = Instance.new("TextButton")
-actionButton.Name = "ShiftAction"
-actionButton.AnchorPoint = Vector2.new(0.5, 1)
-actionButton.AutoButtonColor = true
-actionButton.BackgroundColor3 = Color3.fromRGB(164, 67, 54)
-actionButton.BorderSizePixel = 0
-actionButton.Font = Enum.Font.GothamBold
-actionButton.Position = UDim2.new(0.5, 0, 1, -10)
-actionButton.Size = UDim2.new(1, -40, 0, 28)
-actionButton.TextColor3 = Color3.fromRGB(255, 245, 231)
-actionButton.TextSize = 14
-actionButton.Parent = panel
-
-local actionCorner = Instance.new("UICorner")
-actionCorner.CornerRadius = UDim.new(0, 8)
-actionCorner.Parent = actionButton
-
-local celebration = Instance.new("TextLabel")
-celebration.Name = "Celebration"
-celebration.AnchorPoint = Vector2.new(0.5, 0.5)
-celebration.BackgroundTransparency = 1
-celebration.Font = Enum.Font.GothamBlack
-celebration.Position = UDim2.fromScale(0.5, 0.64)
-celebration.Size = UDim2.fromOffset(520, 100)
-celebration.Text = Copy.Hud.Celebration
-celebration.TextColor3 = Color3.fromRGB(250, 242, 224)
-celebration.TextScaled = true
-celebration.TextStrokeColor3 = Color3.fromRGB(55, 31, 20)
-celebration.TextStrokeTransparency = 1
-celebration.TextTransparency = 1
-celebration.Parent = screenGui
+local hud = HudView.new(playerGui, {
+	Time = Copy.Hud.TimeLabel,
+	Served = Copy.Hud.ServedLabel,
+	Missed = Copy.Hud.MissedLabel,
+	Celebration = Copy.Hud.Celebration,
+})
 
 local pickupSound = Instance.new("Sound")
 pickupSound.Name = "PickupFeedback"
@@ -159,11 +52,17 @@ serveSound.SoundId = Config.Audio.ServeSoundId
 serveSound.Volume = Config.Audio.ServeVolume
 serveSound.PlaybackSpeed = 1.04
 
-local function getStat(name: string): IntValue?
-	local leaderstats = player:FindFirstChild("leaderstats")
-	local value = leaderstats and leaderstats:FindFirstChild(name)
-	return if value and value:IsA("IntValue") then value else nil
-end
+local wrongAppleSound = Instance.new("Sound")
+wrongAppleSound.Name = "WrongAppleFeedback"
+wrongAppleSound.SoundId = Config.Audio.PickupSoundId
+wrongAppleSound.Volume = 0.16
+wrongAppleSound.PlaybackSpeed = 0.72
+
+local cashSound = Instance.new("Sound")
+cashSound.Name = "CashFeedback"
+cashSound.SoundId = Config.Audio.ServeSoundId
+cashSound.Volume = 0.48
+cashSound.PlaybackSpeed = 1.22
 
 local function formatTime(seconds: number): string
 	local safeSeconds = math.max(0, math.ceil(seconds))
@@ -171,75 +70,53 @@ local function formatTime(seconds: number): string
 end
 
 local function render()
-	local coins = getStat("Coins")
-	local served = getStat("Served")
-	local queueSize = player:GetAttribute("QueueSize") or 0
 	local hasApple = player:GetAttribute("HasApple") == true
+	local heldAppleType = player:GetAttribute("HeldAppleType") :: string?
 	local shiftState = tostring(player:GetAttribute("ShiftState") or "Waiting")
 	local timeRemaining = player:GetAttribute("ShiftTimeRemaining") or 0
 	local shiftServed = player:GetAttribute("ShiftServed") or 0
 	local shiftTarget = player:GetAttribute("ShiftTarget") or Config.Shift.TargetServed
 	local shiftMissed = player:GetAttribute("ShiftMissed") or 0
 	local maximumMissed = player:GetAttribute("ShiftMaximumMissed") or Config.Shift.MaximumMissed
-	local patienceRemaining = player:GetAttribute("FrontPatienceRemaining") or 0
+	local payoutReady = player:GetAttribute("ShiftPayoutReady") == true
+	local payoutCollected = player:GetAttribute("ShiftPayoutCollected") == true
+	local payoutAmount = tonumber(player:GetAttribute("ShiftPayoutAmount")) or 0
+	local wonText = if payoutReady
+		then string.format(Copy.Hud.ShiftWonPayout, payoutAmount)
+		elseif payoutCollected
+		then string.format(Copy.Hud.ShiftWonPaid, payoutAmount)
+		else Copy.Hud.ShiftWon
+	local lostText = if payoutReady
+		then string.format(Copy.Hud.ShiftLostPayout, payoutAmount)
+		elseif payoutCollected
+		then string.format(Copy.Hud.ShiftLostPaid, payoutAmount)
+		else Copy.Hud.ShiftLost
 
-	if shiftState == "Active" then
-		progress.Text = string.format(Copy.Hud.ShiftActive, formatTime(timeRemaining), shiftServed, shiftTarget, shiftMissed, maximumMissed)
-		detail.Text = string.format(Copy.Hud.ShiftDetail, coins and coins.Value or 0, queueSize, patienceRemaining)
-		actionButton.Visible = false
-	elseif shiftState == "Won" then
-		progress.Text = string.format(Copy.Hud.ShiftActive, formatTime(timeRemaining), shiftServed, shiftTarget, shiftMissed, maximumMissed)
-		detail.Text = string.format(Copy.Hud.Progress, coins and coins.Value or 0, served and served.Value or 0, queueSize)
-		actionButton.Text = Copy.Hud.RestartButton
-		actionButton.Visible = true
-	elseif shiftState == "Lost" then
-		progress.Text = string.format(Copy.Hud.ShiftActive, formatTime(timeRemaining), shiftServed, shiftTarget, shiftMissed, maximumMissed)
-		detail.Text = string.format(Copy.Hud.Progress, coins and coins.Value or 0, served and served.Value or 0, queueSize)
-		actionButton.Text = Copy.Hud.RestartButton
-		actionButton.Visible = true
-	else
-		progress.Text = string.format(Copy.Hud.Progress, coins and coins.Value or 0, served and served.Value or 0, queueSize)
-		detail.Text = ""
-		actionButton.Text = Copy.Hud.StartButton
-		actionButton.Visible = true
-	end
-	instruction.Text = tostring(player:GetAttribute("ShopMessage") or if hasApple then Copy.Messages.AppleReady else Copy.Messages.TakeApple)
-	title.Text = if shiftState == "Won"
-		then Copy.Hud.ShiftWon
-		elseif shiftState == "Lost" then Copy.Hud.ShiftLost
-		elseif shiftState == "Waiting" then string.format(Copy.Hud.ShiftReady, Config.Shift.DurationSeconds)
-		elseif hasApple then Copy.Hud.TitleAppleReady
-		else Copy.Hud.Title
-	title.TextColor3 = if hasApple then Color3.fromRGB(255, 206, 191) else Color3.fromRGB(245, 235, 215)
-	stroke.Color = if hasApple then Color3.fromRGB(202, 72, 59) else Color3.fromRGB(135, 76, 63)
-end
-
-local function pulse()
-	local brighten = TweenService:Create(stroke, TweenInfo.new(0.12), {
-		Color = Color3.fromRGB(122, 230, 127),
-		Thickness = 4,
+	hud:Render({
+		HasApple = hasApple,
+		HeldAppleColor = AppleCatalog.get(heldAppleType).Color,
+		ShiftState = shiftState,
+		TimeText = if shiftState == "Waiting" then "--:--" else formatTime(timeRemaining),
+		ServedText = string.format("%d / %d", shiftServed, shiftTarget),
+		MissedText = string.format("%d / %d", shiftMissed, maximumMissed),
+		Instruction = tostring(player:GetAttribute("ShopMessage") or Copy.Messages.TakeApple),
+		StartText = Copy.Hud.StartButton,
+		NextShiftText = if payoutReady then Copy.Hud.CollectPayButton else Copy.Hud.NextShiftButton,
+		RetryText = if payoutReady then Copy.Hud.CollectPayButton else Copy.Hud.RetryButton,
+		ShiftWonText = wonText,
+		ShiftLostText = lostText,
 	})
-	local settle = TweenService:Create(stroke, TweenInfo.new(0.45), {
-		Color = if player:GetAttribute("HasApple") == true then Color3.fromRGB(202, 72, 59) else Color3.fromRGB(135, 76, 63),
-		Thickness = 1.5,
-	})
-	brighten.Completed:Once(function()
-		settle:Play()
-	end)
-	brighten:Play()
 end
 
 local function confirmWithController()
 	local gamepad = Enum.UserInputType.Gamepad1
 	local motor = Enum.VibrationMotor.Small
-	if not HapticService:IsVibrationSupported(gamepad) or not HapticService:IsMotorSupported(gamepad, motor) then
-		return
+	if HapticService:IsVibrationSupported(gamepad) and HapticService:IsMotorSupported(gamepad, motor) then
+		HapticService:SetMotor(gamepad, motor, 0.55)
+		task.delay(0.09, function()
+			HapticService:SetMotor(gamepad, motor, 0)
+		end)
 	end
-
-	HapticService:SetMotor(gamepad, motor, 0.55)
-	task.delay(0.09, function()
-		HapticService:SetMotor(gamepad, motor, 0)
-	end)
 end
 
 local function playOneShot(template: Sound)
@@ -249,40 +126,24 @@ local function playOneShot(template: Sound)
 	Debris:AddItem(sound, 4)
 end
 
-local function bumpPanel(amount: number)
-	panelScale.Scale = 1
-	local expand = TweenService:Create(panelScale, TweenInfo.new(0.09, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-		Scale = amount,
-	})
-	local settle = TweenService:Create(panelScale, TweenInfo.new(0.18, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-		Scale = 1,
-	})
-	expand.Completed:Once(function()
-		settle:Play()
-	end)
-	expand:Play()
-end
-
-local function showBanner(text: string)
-	celebration.Text = text
-	celebration.Position = UDim2.fromScale(0.5, 0.66)
-	celebration.TextTransparency = 0
-	celebration.TextStrokeTransparency = 0.18
-	local rise = TweenService:Create(celebration, TweenInfo.new(0.62, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-		Position = UDim2.fromScale(0.5, 0.56),
-		TextTransparency = 1,
-		TextStrokeTransparency = 1,
-	})
-	rise:Play()
-end
-
 local function requestShift()
 	if player:GetAttribute("ShiftState") ~= "Active" then
+		if player:GetAttribute("ShiftPayoutReady") == true then
+			local payoutCopy = if player:GetAttribute("ShiftState") == "Won" then Copy.Owner.PayoutWon else Copy.Owner.PayoutLost
+			hud:ShowBanner(Copy.Hud.CollectPayButton)
+			hud:ShowDialogue(
+				Copy.Hud.OwnerSpeaker,
+				string.format(payoutCopy, tonumber(player:GetAttribute("ShiftPayoutAmount")) or 0),
+				Copy.Owner.PayoutTask,
+				Config.OwnerInteraction.BubbleSeconds
+			)
+			return
+		end
 		controlEvent:FireServer("StartShift")
 	end
 end
 
-actionButton.Activated:Connect(requestShift)
+hud:ConnectAction(requestShift)
 ContextActionService:BindAction("PipilabuStartShift", function(_, inputState)
 	if inputState == Enum.UserInputState.Begin then
 		requestShift()
@@ -290,44 +151,68 @@ ContextActionService:BindAction("PipilabuStartShift", function(_, inputState)
 	return Enum.ContextActionResult.Pass
 end, false, Enum.KeyCode.R, Enum.KeyCode.ButtonY)
 
-feedbackEvent.OnClientEvent:Connect(function(action: string)
+feedbackEvent.OnClientEvent:Connect(function(action: string, value: unknown, detail: unknown)
 	if action == "Pickup" then
 		playOneShot(pickupSound)
-		bumpPanel(1.025)
+		hud:Bump(1.012)
 	elseif action == "Serve" then
 		playOneShot(serveSound)
-		bumpPanel(1.055)
-		showBanner(Copy.Hud.Celebration)
-	elseif action == "Miss" then
-		bumpPanel(1.035)
+		hud:Bump(1.025)
+		hud:PulseServe()
+		confirmWithController()
+		hud:ShowBanner(Copy.Hud.Celebration)
+	elseif action == "Wrong" then
+		playOneShot(wrongAppleSound)
+		hud:Bump(0.988)
+		hud:ShowBanner(Copy.Messages.WrongAppleReaction)
 	elseif action == "Won" then
-		bumpPanel(1.07)
-		showBanner(Copy.Hud.ShiftWon)
+		hud:ShowBanner(Copy.Hud.ShiftWon)
 	elseif action == "Lost" then
-		showBanner(Copy.Hud.ShiftLost)
+		hud:ShowBanner(Copy.Hud.ShiftLost)
+	elseif action == "PayoutReady" then
+		local amount = if type(value) == "number" then value else 0
+		local dialogue = if detail == "Won" then Copy.Owner.PayoutWon else Copy.Owner.PayoutLost
+		hud:ShowDialogue(Copy.Hud.OwnerSpeaker, string.format(dialogue, amount), Copy.Owner.PayoutTask, Config.OwnerInteraction.BubbleSeconds)
+	elseif action == "PayoutRequired" then
+		hud:ShowBanner(Copy.Hud.CollectPayButton)
+	elseif action == "PayoutCollected" then
+		local amount = if type(value) == "number" then value else 0
+		playOneShot(cashSound)
+		hud:Bump(1.035)
+		hud:ShowBanner(string.format("$%d CASH", amount))
+		hud:ShowDialogue(Copy.Hud.OwnerSpeaker, Copy.Owner.PayoutCollected, tostring(player:GetAttribute("ShopMessage") or ""), Config.OwnerInteraction.BubbleSeconds)
 	end
 end)
 
-player:GetAttributeChangedSignal("HasApple"):Connect(render)
-player:GetAttributeChangedSignal("ShopMessage"):Connect(render)
-player:GetAttributeChangedSignal("QueueSize"):Connect(render)
-player:GetAttributeChangedSignal("ShiftState"):Connect(render)
-player:GetAttributeChangedSignal("ShiftTimeRemaining"):Connect(render)
-player:GetAttributeChangedSignal("ShiftServed"):Connect(render)
-player:GetAttributeChangedSignal("ShiftMissed"):Connect(render)
-player:GetAttributeChangedSignal("FrontPatienceRemaining"):Connect(render)
-
-task.spawn(function()
-	local leaderstats = player:WaitForChild("leaderstats")
-	local coins = leaderstats:WaitForChild("Coins") :: IntValue
-	local served = leaderstats:WaitForChild("Served") :: IntValue
-	coins.Changed:Connect(render)
-	served.Changed:Connect(function()
-		render()
-		pulse()
-		confirmWithController()
-	end)
-	render()
+player:GetAttributeChangedSignal("OwnerDialogueSerial"):Connect(function()
+	local dialogueText = tostring(player:GetAttribute("OwnerDialogueText") or "")
+	if dialogueText == "" then
+		return
+	end
+	hud:ShowDialogue(
+		Copy.Hud.OwnerSpeaker,
+		dialogueText,
+		tostring(player:GetAttribute("OwnerTaskText") or ""),
+		Config.OwnerInteraction.BubbleSeconds
+	)
 end)
+
+for _, attribute in {
+	"HasApple",
+	"HeldAppleType",
+	"ShopMessage",
+	"ShiftState",
+	"ShiftTimeRemaining",
+	"ShiftTarget",
+	"ShiftServed",
+	"ShiftMissed",
+	"ShiftMaximumMissed",
+	"ShiftPayoutAmount",
+	"ShiftPayoutReady",
+	"ShiftPayoutCollected",
+	"ShiftCashBalance",
+} do
+	player:GetAttributeChangedSignal(attribute):Connect(render)
+end
 
 render()

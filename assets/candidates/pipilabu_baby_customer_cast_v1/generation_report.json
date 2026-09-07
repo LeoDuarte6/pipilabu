@@ -1,0 +1,17 @@
+{
+  "generator_version": "1.0.0",
+  "candidate_id": "PIPILABU-BABY-CUSTOMER-CAST-V1",
+  "file": "baby_customer_cast_sheet.png",
+  "width": 1600,
+  "height": 1000,
+  "sha256": "7426bf3bda6f77d1897b59f5d5a32452a9449eafd9c01881a6aed3dc379eef66",
+  "role_ids": [
+    "RubySprout",
+    "HoneygoldHugger",
+    "ShyLoaf",
+    "HurryWaddle"
+  ],
+  "source_pixels": "procedural Pillow drawing only",
+  "studio_imported": false,
+  "human_approved": false
+}

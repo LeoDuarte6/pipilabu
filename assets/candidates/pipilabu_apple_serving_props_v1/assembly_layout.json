@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "units": "Roblox studs",
+  "coordinate_contract": {
+    "up": "+Y",
+    "service_front": "+Z",
+    "right": "+X"
+  },
+  "placements": [
+    {
+      "module_id": "CRATE_RUBY_6X2_5",
+      "position": [
+        -4.25,
+        0.0,
+        0.0
+      ],
+      "state": "source_baseline"
+    },
+    {
+      "module_id": "CRATE_HONEYGOLD_6X2_5",
+      "position": [
+        4.25,
+        0.0,
+        0.0
+      ],
+      "state": "source_contrast"
+    },
+    {
+      "module_id": "APPLE_RUBY_HANDOFF_1_3",
+      "position": [
+        -4.25,
+        2.75,
+        0.0
+      ],
+      "state": "display_only"
+    },
+    {
+      "module_id": "APPLE_HONEYGOLD_HANDOFF_1_3",
+      "position": [
+        4.25,
+        2.75,
+        0.0
+      ],
+      "state": "display_only"
+    },
+    {
+      "module_id": "COUNTER_TRAY_3X1_6",
+      "position": [
+        0.0,
+        2.65,
+        3.8
+      ],
+      "state": "counter_display"
+    },
+    {
+      "module_id": "PRICE_MARKER_RUBY_1X0_75",
+      "position": [
+        -1.25,
+        2.65,
+        3.8
+      ],
+      "state": "display_label"
+    },
+    {
+      "module_id": "PRICE_MARKER_HONEYGOLD_1X0_75",
+      "position": [
+        1.25,
+        2.65,
+        3.8
+      ],
+      "state": "display_label"
+    }
+  ],
+  "handoff_story": [
+    {
+      "state": "carry",
+      "prop_id": "APPLE_RUBY_HANDOFF_1_3",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "collision_mode": "none"
+    },
+    {
+      "state": "contact",
+      "prop_id": "APPLE_RUBY_HANDOFF_1_3",
+      "scale": [
+        1.09,
+        0.89,
+        1.09
+      ],
+      "target": "Paw_R / paired-paw midpoint",
+      "visual_only": true
+    },
+    {
+      "state": "customer_hold",
+      "prop_id": "APPLE_HONEYGOLD_HANDOFF_1_3",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "target": "CustomerAppleWeld",
+      "collision_mode": "none"
+    }
+  ],
+  "rarity_seam": {
+    "status": "reserved_omitted",
+    "runtime": false
+  }
+}

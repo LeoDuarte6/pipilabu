@@ -24,6 +24,8 @@ ServerPackages/
 .DS_Store
 Thumbs.db
 .vscode/
+__pycache__/
+*.pyc
 
 # Codex desktop runtime and task staging.
 .codex/

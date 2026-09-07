@@ -9,7 +9,7 @@ Reference images are for silhouette exploration, not automatic production rigs. 
 1. Keep a source-and-rights ledger for every reference and imported asset.
 2. Explore three quarantined lanes: Roblox generated mesh, an eight-part procedural silhouette, and a Creator Store candidate with every script removed or disabled before inspection.
 3. Choose a silhouette without coupling gameplay to it.
-4. Build an original upright low-poly Shiba in Blender: roughly 6–10k triangles for the player, 2–4k for customers, and one 512px atlas.
+4. Build Peepilabu first as a counter-anchored hero owner with a round fused body/head, tiny animated paws, and explicit face/ear controls. Keep the player on the normal Roblox avatar until a later color-variable worker-dog gate.
 5. Use R15/Humanoid for the playable Doge. Use a lightweight custom rig with `AnimationController` and `Animator` for customers.
 6. Require the model contract `Root`, `Head`, `AppleGrip`, `OrderBillboardAttachment`, and `Animator`, plus `CharacterKind`, `RigVersion`, and `VisualVariant` attributes.
 7. Player animations: idle, walk, carry, take, handoff, celebrate. Customer animations: idle, ask, receive/cheer, impatient, leave.

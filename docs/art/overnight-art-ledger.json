@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "batches": [
+    {
+      "id": "ART-001",
+      "priority": 10,
+      "status": "completed",
+      "title": "Pipi Labu hero character sheet",
+      "briefHeading": "ART-001 - Pipi Labu hero character sheet",
+      "dependsOnBatches": [],
+      "requiresGameplayGate": null,
+      "checkinId": "ART-001-CHECKIN",
+      "completedArtifact": "assets/concepts/peepilabu_character_sheet_v1.png",
+      "completionNote": "Gray-board presentation structure exists. Its prominent top ears are rejected; all future geometry follows the tiny lateral/no-top-ear universal correction."
+    },
+    {
+      "id": "ART-002",
+      "priority": 20,
+      "status": "completed",
+      "title": "Pipi Labu baby customer cast sheet",
+      "briefHeading": "ART-002 - Pipi Labu baby customer cast sheet",
+      "dependsOnBatches": [],
+      "requiresGameplayGate": null,
+      "checkinId": "ART-002-CHECKIN",
+      "completedArtifact": "assets/candidates/pipilabu_baby_customer_cast_v1/baby_customer_cast_sheet.png",
+      "completionNote": "Deterministic local review candidate with RubySprout, HoneygoldHugger, ShyLoaf, and HurryWaddle. Human approval and Studio integration remain false."
+    },
+    {
+      "id": "ART-005",
+      "priority": 15,
+      "status": "completed",
+      "title": "Pipi Labu owner integration specification after hero-sheet gate",
+      "briefHeading": "ART-005 - Owner integration specification",
+      "dependsOnBatches": ["ART-001"],
+      "requiresGameplayGate": "ART-001-CHECKIN",
+      "checkinId": "ART-005-CHECKIN"
+    },
+    {
+      "id": "ART-003",
+      "priority": 30,
+      "status": "completed",
+      "title": "Apple and serving-prop kit",
+      "briefHeading": "ART-003 - Apple and serving-prop kit",
+      "dependsOnBatches": [],
+      "requiresGameplayGate": null,
+      "checkinId": "ART-003-CHECKIN",
+      "artifact": "assets/candidates/pipilabu_apple_serving_props_v1/apple_serving_props_sheet.png",
+      "note": "Canonical local review candidate integrated and structurally verified; not human-approved or Studio-imported."
+    },
+    {
+      "id": "ART-004",
+      "priority": 40,
+      "status": "ready",
+      "title": "Pipi Labu market street modular kit",
+      "briefHeading": "ART-004 - Market street modular kit",
+      "dependsOnBatches": [],
+      "requiresGameplayGate": null,
+      "checkinId": "ART-004-CHECKIN"
+    },
+    {
+      "id": "ART-006",
+      "priority": 35,
+      "status": "ready",
+      "title": "Pear-cat harvest-event study",
+      "briefHeading": "ART-006 - Pear-cat harvest-event study",
+      "dependsOnBatches": [],
+      "requiresGameplayGate": null,
+      "checkinId": "ART-006-CHECKIN",
+      "artifact": "assets/candidates/pipilabu_pear_cat_harvest_event_v1/pear_cat_harvest_event_sheet.png",
+      "note": "Canonical local review candidate integrated and deterministically verified after rejecting the literal green-pear drift. The final board is a warm golden spherical orchard cat-loaf with tiny lateral ears and tree-hang, hand-squash, basket-cluster, and receipt-delight states; not human-approved or Studio-imported."
+    }
+  ]
+}

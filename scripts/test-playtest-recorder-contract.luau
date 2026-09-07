@@ -1,0 +1,38 @@
+local fs = require("@lune/fs")
+
+local recorder = fs.readFile("src/server/PlaytestRecorderService.luau")
+local gameService = fs.readFile("src/server/GameService.luau")
+
+assert(string.find(recorder, 'evidence:SetAttribute("SchemaVersion", 4)', 1, true), "recorder schema must be v4")
+assert(string.find(recorder, 'evidence:SetAttribute("BuildVersion", Config.DevelopmentVersion)', 1, true), "build identity is missing")
+assert(string.find(recorder, 'evidence:SetAttribute("PlaceId", game.PlaceId)', 1, true), "place identity is missing")
+assert(string.find(recorder, 'evidence:SetAttribute("CompletedRunCount", #finishedRuns)', 1, true), "completed-run count is missing")
+assert(string.find(recorder, 'evidence:SetAttribute("PairWrongAttempts", pairWrongAttempts)', 1, true), "wrong-attempt summary is missing")
+assert(string.find(recorder, 'then "AwaitingTwoCompletedRuns"', 1, true), "two-run gate state is missing")
+assert(string.find(recorder, 'elseif pairWrongAttempts < 1 then "NeedsWrongAppleAttempt"', 1, true), "wrong-apple requirement is missing")
+assert(string.find(recorder, 'else "AwaitingQualitativeVerdict"', 1, true), "qualitative handoff state is missing")
+assert(string.find(recorder, 'evidence:SetAttribute("QualitativeVerdictRecorded", false)', 1, true), "recorder must not pretend the human verdict exists")
+assert(string.find(recorder, 'if #finishedRuns > 2 then', 1, true), "latest-pair bound is missing")
+assert(string.find(recorder, "MAX_EVENTS_PER_RUN = 128", 1, true), "per-run event bound is missing")
+assert(string.find(recorder, 'record(run, "CustomerReady"', 1, true), "customer-ready timing seam is missing")
+assert(string.find(recorder, 'record(run, "HandoffStarted"', 1, true), "handoff-start evidence is missing")
+assert(string.find(recorder, 'record(run, "HandoffCompleted"', 1, true), "handoff-completion evidence is missing")
+assert(string.find(recorder, 'record(run, "ImmediateNextPickup"', 1, true), "fast-next-pickup evidence is missing")
+assert(string.find(recorder, 'player:GetAttributeChangedSignal("WrongAppleSerial")', 1, true), "repeatable wrong-apple serial evidence is missing")
+assert(string.find(recorder, 'record(run, "ReplayStarted"', 1, true), "voluntary replay evidence is missing")
+assert(string.find(recorder, "appleHeldSeconds", 1, true), "apple visibility duration evidence is missing")
+assert(string.find(recorder, "approachSeconds", 1, true), "customer approach duration evidence is missing")
+
+local handoffTypePosition = string.find(gameService, 'player:SetAttribute("LastHandoffAppleType", order.Id)', 1, true)
+local handoffSerialPosition = string.find(gameService, 'bumpPlayerSerial(player, "HandoffSerial")', 1, true)
+assert(handoffTypePosition and handoffSerialPosition and handoffTypePosition < handoffSerialPosition, "handoff type must publish before the observer serial")
+
+local nextPickupTypePosition = string.find(gameService, 'player:SetAttribute("ImmediateNextPickupAppleType", appleDefinition.Id)', 1, true)
+local nextPickupSerialPosition = string.find(gameService, 'bumpPlayerSerial(player, "ImmediateNextPickupSerial")', 1, true)
+assert(nextPickupTypePosition and nextPickupSerialPosition and nextPickupTypePosition < nextPickupSerialPosition, "fast-next-pickup type must publish before the observer serial")
+
+local wrongTypePosition = string.find(gameService, 'player:SetAttribute("LastWrongAppleType"', 1, true)
+local wrongSerialPosition = string.find(gameService, 'bumpPlayerSerial(player, "WrongAppleSerial")', 1, true)
+assert(wrongTypePosition and wrongSerialPosition and wrongTypePosition < wrongSerialPosition, "wrong-apple type must publish before the observer serial")
+
+print("Pipi Labu playtest recorder contract passed identity, bounded timing, handoff continuity, replay, and human-verdict gates")

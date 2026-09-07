@@ -1,0 +1,898 @@
+{
+  "status": "ok",
+  "verifier_version": "1.0.0",
+  "candidate_id": "PIPILABU-MARKET-ENV-V1",
+  "candidate_status": "REVIEW_CANDIDATE",
+  "approval": {
+    "ApprovedForPresentation": false,
+    "StudioImported": false,
+    "CloudTouched": false,
+    "PublicRelease": false
+  },
+  "modules": {
+    "STALL_BAY_12X8": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/STALL_BAY_12X8.obj",
+      "vertices": 96,
+      "faces": 72,
+      "triangles": 144,
+      "bounds_min": [
+        -6.0,
+        0.0,
+        -4.0
+      ],
+      "bounds_max": [
+        6.0,
+        6.25,
+        4.0
+      ],
+      "materials": [
+        "PlasterCream",
+        "WoodDark",
+        "WoodWarm"
+      ],
+      "objects": {
+        "STALL_BAY_12X8": {
+          "vertices": 96,
+          "faces": 72,
+          "materials": [
+            "PlasterCream",
+            "WoodDark",
+            "WoodWarm"
+          ]
+        }
+      }
+    },
+    "AWNING_12X3_BAY": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/AWNING_12X3_BAY.obj",
+      "vertices": 72,
+      "faces": 54,
+      "triangles": 108,
+      "bounds_min": [
+        -6.2,
+        0.0,
+        0.0
+      ],
+      "bounds_max": [
+        6.2,
+        0.32,
+        3.2
+      ],
+      "materials": [
+        "CanvasPaper",
+        "CanvasVermilion"
+      ],
+      "objects": {
+        "AWNING_12X3_BAY": {
+          "vertices": 72,
+          "faces": 54,
+          "materials": [
+            "CanvasPaper",
+            "CanvasVermilion"
+          ]
+        }
+      }
+    },
+    "SHELF_WALL_6X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/SHELF_WALL_6X2.obj",
+      "vertices": 48,
+      "faces": 36,
+      "triangles": 72,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -0.45
+      ],
+      "bounds_max": [
+        3.0,
+        2.4,
+        0.45
+      ],
+      "materials": [
+        "WoodDark",
+        "WoodWarm"
+      ],
+      "objects": {
+        "SHELF_WALL_6X2": {
+          "vertices": 48,
+          "faces": 36,
+          "materials": [
+            "WoodDark",
+            "WoodWarm"
+          ]
+        }
+      }
+    },
+    "CRATE_STACK_2X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/CRATE_STACK_2X2.obj",
+      "vertices": 56,
+      "faces": 42,
+      "triangles": 84,
+      "bounds_min": [
+        -1.2,
+        0.0,
+        -1.0
+      ],
+      "bounds_max": [
+        1.2,
+        1.5,
+        1.0
+      ],
+      "materials": [
+        "WoodDark",
+        "WoodWarm"
+      ],
+      "objects": {
+        "CRATE_STACK_2X2": {
+          "vertices": 56,
+          "faces": 42,
+          "materials": [
+            "WoodDark",
+            "WoodWarm"
+          ]
+        }
+      }
+    },
+    "FRUIT_TRAY_3": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/FRUIT_TRAY_3.obj",
+      "vertices": 136,
+      "faces": 86,
+      "triangles": 236,
+      "bounds_min": [
+        -1.6,
+        0.0,
+        -0.6
+      ],
+      "bounds_max": [
+        1.6,
+        1.05,
+        0.6
+      ],
+      "materials": [
+        "FruitHoneygold",
+        "FruitRuby",
+        "WoodDark",
+        "WoodWarm"
+      ],
+      "objects": {
+        "FRUIT_TRAY_3": {
+          "vertices": 136,
+          "faces": 86,
+          "materials": [
+            "FruitHoneygold",
+            "FruitRuby",
+            "WoodDark",
+            "WoodWarm"
+          ]
+        }
+      }
+    },
+    "LANTERN_POST_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/LANTERN_POST_4.obj",
+      "vertices": 56,
+      "faces": 34,
+      "triangles": 100,
+      "bounds_min": [
+        -0.45,
+        0.0,
+        -0.45
+      ],
+      "bounds_max": [
+        0.45,
+        4.7,
+        0.45
+      ],
+      "materials": [
+        "LanternAmber",
+        "WoodDark"
+      ],
+      "objects": {
+        "LANTERN_POST_4": {
+          "vertices": 56,
+          "faces": 34,
+          "materials": [
+            "LanternAmber",
+            "WoodDark"
+          ]
+        }
+      }
+    },
+    "STREET_EDGE_CURB_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/STREET_EDGE_CURB_4.obj",
+      "vertices": 16,
+      "faces": 12,
+      "triangles": 24,
+      "bounds_min": [
+        -2.0,
+        0.0,
+        -0.325
+      ],
+      "bounds_max": [
+        2.0,
+        0.45,
+        0.325
+      ],
+      "materials": [
+        "PlasterCream",
+        "StoneWarm"
+      ],
+      "objects": {
+        "STREET_EDGE_CURB_4": {
+          "vertices": 16,
+          "faces": 12,
+          "materials": [
+            "PlasterCream",
+            "StoneWarm"
+          ]
+        }
+      }
+    },
+    "STREET_EDGE_DRAIN_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/STREET_EDGE_DRAIN_4.obj",
+      "vertices": 16,
+      "faces": 12,
+      "triangles": 24,
+      "bounds_min": [
+        -2.0,
+        0.0,
+        -0.15
+      ],
+      "bounds_max": [
+        2.0,
+        0.16,
+        0.15
+      ],
+      "materials": [
+        "Ink",
+        "MetalDark"
+      ],
+      "objects": {
+        "STREET_EDGE_DRAIN_4": {
+          "vertices": 16,
+          "faces": 12,
+          "materials": [
+            "Ink",
+            "MetalDark"
+          ]
+        }
+      }
+    },
+    "FACADE_PANEL_6": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/FACADE_PANEL_6.obj",
+      "vertices": 24,
+      "faces": 18,
+      "triangles": 36,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -0.15
+      ],
+      "bounds_max": [
+        3.0,
+        5.4,
+        0.15
+      ],
+      "materials": [
+        "PlasterCream",
+        "WoodDark",
+        "WoodWarm"
+      ],
+      "objects": {
+        "FACADE_PANEL_6": {
+          "vertices": 24,
+          "faces": 18,
+          "materials": [
+            "PlasterCream",
+            "WoodDark",
+            "WoodWarm"
+          ]
+        }
+      }
+    },
+    "SIGNBOARD_3": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/SIGNBOARD_3.obj",
+      "vertices": 24,
+      "faces": 18,
+      "triangles": 36,
+      "bounds_min": [
+        -1.6,
+        0.0,
+        -0.09
+      ],
+      "bounds_max": [
+        1.6,
+        1.0,
+        0.09
+      ],
+      "materials": [
+        "CanvasPaper",
+        "WoodDark"
+      ],
+      "objects": {
+        "SIGNBOARD_3": {
+          "vertices": 24,
+          "faces": 18,
+          "materials": [
+            "CanvasPaper",
+            "WoodDark"
+          ]
+        }
+      }
+    },
+    "PLANTER_2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/PLANTER_2.obj",
+      "vertices": 40,
+      "faces": 26,
+      "triangles": 68,
+      "bounds_min": [
+        -1.0,
+        0.0,
+        -0.45
+      ],
+      "bounds_max": [
+        1.0,
+        0.95,
+        0.45
+      ],
+      "materials": [
+        "Leaf",
+        "StoneWarm",
+        "WoodDark"
+      ],
+      "objects": {
+        "PLANTER_2": {
+          "vertices": 40,
+          "faces": 26,
+          "materials": [
+            "Leaf",
+            "StoneWarm",
+            "WoodDark"
+          ]
+        }
+      }
+    },
+    "BOLLARD_05": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/BOLLARD_05.obj",
+      "vertices": 48,
+      "faces": 28,
+      "triangles": 88,
+      "bounds_min": [
+        -0.25,
+        0.0,
+        -0.25
+      ],
+      "bounds_max": [
+        0.25,
+        1.1,
+        0.25
+      ],
+      "materials": [
+        "LanternAmber",
+        "WoodDark"
+      ],
+      "objects": {
+        "BOLLARD_05": {
+          "vertices": 48,
+          "faces": 28,
+          "materials": [
+            "LanternAmber",
+            "WoodDark"
+          ]
+        }
+      }
+    }
+  },
+  "collision": {
+    "STALL_BAY_12X8": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_STALL_BAY_12X8.obj",
+      "vertices": 48,
+      "faces": 36,
+      "triangles": 72,
+      "bounds_min": [
+        -6.0,
+        0.0,
+        -4.0
+      ],
+      "bounds_max": [
+        6.0,
+        6.25,
+        4.0
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_STALL_BAY_12X8": {
+          "vertices": 48,
+          "faces": 36,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "AWNING_12X3_BAY": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_AWNING_12X3_BAY.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -6.2,
+        0.0,
+        0.0
+      ],
+      "bounds_max": [
+        6.2,
+        0.3,
+        3.2
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_AWNING_12X3_BAY": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "SHELF_WALL_6X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_SHELF_WALL_6X2.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -0.45
+      ],
+      "bounds_max": [
+        3.0,
+        2.4,
+        0.45
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_SHELF_WALL_6X2": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "CRATE_STACK_2X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_CRATE_STACK_2X2.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -1.2,
+        0.0,
+        -1.0
+      ],
+      "bounds_max": [
+        1.2,
+        1.5,
+        1.0
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_CRATE_STACK_2X2": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "LANTERN_POST_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_LANTERN_POST_4.obj",
+      "vertices": 32,
+      "faces": 20,
+      "triangles": 56,
+      "bounds_min": [
+        -0.35,
+        0.0,
+        -0.35
+      ],
+      "bounds_max": [
+        0.35,
+        4.525,
+        0.35
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_LANTERN_POST_4": {
+          "vertices": 32,
+          "faces": 20,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "STREET_EDGE_CURB_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_STREET_EDGE_CURB_4.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -2.0,
+        0.0,
+        -0.325
+      ],
+      "bounds_max": [
+        2.0,
+        0.45,
+        0.325
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_STREET_EDGE_CURB_4": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "STREET_EDGE_DRAIN_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_STREET_EDGE_DRAIN_4.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -2.0,
+        0.0,
+        -0.15
+      ],
+      "bounds_max": [
+        2.0,
+        0.16,
+        0.15
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_STREET_EDGE_DRAIN_4": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "FACADE_PANEL_6": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_FACADE_PANEL_6.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -0.15
+      ],
+      "bounds_max": [
+        3.0,
+        5.4,
+        0.15
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_FACADE_PANEL_6": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "PLANTER_2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_PLANTER_2.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -1.0,
+        0.0,
+        -0.45
+      ],
+      "bounds_max": [
+        1.0,
+        0.76,
+        0.45
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_PLANTER_2": {
+          "vertices": 8,
+          "faces": 6,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    },
+    "BOLLARD_05": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_BOLLARD_05.obj",
+      "vertices": 24,
+      "faces": 14,
+      "triangles": 44,
+      "bounds_min": [
+        -0.25,
+        0.3,
+        -0.25
+      ],
+      "bounds_max": [
+        0.25,
+        1.1,
+        0.25
+      ],
+      "materials": [
+        "CollisionProxy"
+      ],
+      "objects": {
+        "COLLISION_BOLLARD_05": {
+          "vertices": 24,
+          "faces": 14,
+          "materials": [
+            "CollisionProxy"
+          ]
+        }
+      }
+    }
+  },
+  "assembly": {
+    "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/market_kit_assembly.obj",
+    "vertices": 632,
+    "faces": 438,
+    "triangles": 1020,
+    "bounds_min": [
+      -12.0,
+      0.0,
+      -4.09
+    ],
+    "bounds_max": [
+      7.7,
+      6.25,
+      12.825
+    ],
+    "materials": [
+      "CanvasPaper",
+      "CanvasVermilion",
+      "FruitHoneygold",
+      "FruitRuby",
+      "Ink",
+      "LanternAmber",
+      "Leaf",
+      "MetalDark",
+      "PlasterCream",
+      "StoneWarm",
+      "WoodDark",
+      "WoodWarm"
+    ],
+    "objects": {
+      "StallBay": {
+        "vertices": 96,
+        "faces": 72,
+        "materials": [
+          "PlasterCream",
+          "WoodDark",
+          "WoodWarm"
+        ]
+      },
+      "Awning": {
+        "vertices": 72,
+        "faces": 54,
+        "materials": [
+          "CanvasPaper",
+          "CanvasVermilion"
+        ]
+      },
+      "BackShelf": {
+        "vertices": 48,
+        "faces": 36,
+        "materials": [
+          "WoodDark",
+          "WoodWarm"
+        ]
+      },
+      "NeighborFacade": {
+        "vertices": 24,
+        "faces": 18,
+        "materials": [
+          "PlasterCream",
+          "WoodDark",
+          "WoodWarm"
+        ]
+      },
+      "AppleCrates": {
+        "vertices": 56,
+        "faces": 42,
+        "materials": [
+          "WoodDark",
+          "WoodWarm"
+        ]
+      },
+      "FruitTray": {
+        "vertices": 136,
+        "faces": 86,
+        "materials": [
+          "FruitHoneygold",
+          "FruitRuby",
+          "WoodDark",
+          "WoodWarm"
+        ]
+      },
+      "Sign": {
+        "vertices": 24,
+        "faces": 18,
+        "materials": [
+          "CanvasPaper",
+          "WoodDark"
+        ]
+      },
+      "Lantern": {
+        "vertices": 56,
+        "faces": 34,
+        "materials": [
+          "LanternAmber",
+          "WoodDark"
+        ]
+      },
+      "Planter": {
+        "vertices": 40,
+        "faces": 26,
+        "materials": [
+          "Leaf",
+          "StoneWarm",
+          "WoodDark"
+        ]
+      },
+      "Drain": {
+        "vertices": 16,
+        "faces": 12,
+        "materials": [
+          "Ink",
+          "MetalDark"
+        ]
+      },
+      "Curb": {
+        "vertices": 16,
+        "faces": 12,
+        "materials": [
+          "PlasterCream",
+          "StoneWarm"
+        ]
+      },
+      "EdgeBollard": {
+        "vertices": 48,
+        "faces": 28,
+        "materials": [
+          "LanternAmber",
+          "WoodDark"
+        ]
+      }
+    }
+  },
+  "assembly_collision": {
+    "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/market_kit_assembly_collision.obj",
+    "vertices": 160,
+    "faces": 112,
+    "triangles": 256,
+    "bounds_min": [
+      -12.0,
+      0.0,
+      -4.0
+    ],
+    "bounds_max": [
+      7.6,
+      6.25,
+      12.825
+    ],
+    "materials": [
+      "CollisionProxy"
+    ],
+    "objects": {
+      "COLLISION_StallBay": {
+        "vertices": 48,
+        "faces": 36,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_Awning": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_BackShelf": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_NeighborFacade": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_AppleCrates": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_Lantern": {
+        "vertices": 32,
+        "faces": 20,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_Planter": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_Drain": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_Curb": {
+        "vertices": 8,
+        "faces": 6,
+        "materials": [
+          "CollisionProxy"
+        ]
+      },
+      "COLLISION_EdgeBollard": {
+        "vertices": 24,
+        "faces": 14,
+        "materials": [
+          "CollisionProxy"
+        ]
+      }
+    }
+  },
+  "checks": {
+    "exact_module_bounds": true,
+    "pivot_offsets_hidden": true,
+    "collision_proxies_inside_visual_bounds": true,
+    "service_corridor_clear": true,
+    "grid_aligned_layout": true,
+    "no_live_or_cloud_scope": true
+  }
+}

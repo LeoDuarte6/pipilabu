@@ -1,11 +1,12 @@
 [CmdletBinding()]
 param(
     [switch]$OpenStudio,
+    [switch]$UseVoiceBridge,
+    [switch]$SkipVoiceBridge,
     [int]$RojoPort = 34872
 )
 
 $ErrorActionPreference = 'Stop'
-$expectedRoot = 'C:\Users\fricc\Documents\Codex\2026-08-07\pipilabu'
 $expectedPlaceId = 133099029551440L
 $expectedGameId = 10646495069L
 $blockedPlaceId = 104936800417970L
@@ -30,9 +31,8 @@ function Get-ListenerPids([int]$port) {
 }
 
 $repoRoot = [System.IO.Path]::GetFullPath((Find-RepoRoot $PSScriptRoot))
-
-if (-not $repoRoot.Equals($expectedRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
-    throw "Refusing to boot from non-canonical repo: $repoRoot"
+if ($UseVoiceBridge -and $SkipVoiceBridge) {
+    throw 'UseVoiceBridge and SkipVoiceBridge cannot both be set.'
 }
 
 Push-Location $repoRoot
@@ -47,10 +47,7 @@ try {
         throw "HEAD $head does not contain required baseline $baselineCommit"
     }
     $gitStatus = @(& git -c "safe.directory=$repoRoot" status --short)
-    $remotes = @(& git -c "safe.directory=$repoRoot" remote)
-    if ($remotes.Count -ne 0) {
-        throw "This local-only repo unexpectedly has Git remotes: $($remotes -join ', ')"
-    }
+    $remotes = @(& git -c "safe.directory=$repoRoot" remote -v)
 
     $playtestQueuePath = Join-Path $repoRoot 'docs\codex\PLAYTEST_QUEUE.md'
     if (-not (Test-Path -LiteralPath $playtestQueuePath)) {
@@ -60,6 +57,24 @@ try {
     # adapted Get-Content object here makes ConvertTo-Json recursively walk PSDrive and
     # provider type metadata, which can make an otherwise healthy boot appear hung.
     $playtestQueue = (Get-Content -Raw -LiteralPath $playtestQueuePath).ToString()
+
+    $developmentModeScript = Join-Path $repoRoot 'scripts\set-pipilabu-development-mode.ps1'
+    if (-not (Test-Path -LiteralPath $developmentModeScript)) {
+        throw "Missing development-mode guard: $developmentModeScript"
+    }
+    & $developmentModeScript -Mode Live -Reason 'Interactive Pipilabu boot: isolated production remains eligible; Studio integration stays human-controlled.' | Out-Null
+    $developmentMode = Get-Content -Raw -LiteralPath (Join-Path $repoRoot '.local\overnight-art\control.json') | ConvertFrom-Json
+
+    $voiceAction = 'not-requested'
+    $voiceProcess = $null
+    if ($UseVoiceBridge -and -not $SkipVoiceBridge) {
+        $voiceWasRunning = @(Get-Process -Name 'XSplit.Core' -ErrorAction SilentlyContinue).Count -gt 0
+        # Keep the boot helper's stdout valid JSON while the standalone voice helper
+        # retains useful operator messages when invoked directly.
+        & (Join-Path $repoRoot 'scripts\start-voice-bridge.ps1') 6>$null | Out-Null
+        $voiceProcess = Get-Process -Name 'XSplit.Core' -ErrorAction Stop | Select-Object -First 1
+        $voiceAction = if ($voiceWasRunning) { 'reused' } else { 'started-minimized' }
+    }
 
     $project = Get-Content -Raw -LiteralPath 'default.project.json' | ConvertFrom-Json
     $allowlist = @($project.servePlaceIds | ForEach-Object { [long]$_ })
@@ -151,8 +166,26 @@ try {
             })
             note = 'Use Studio MCP plus computer use to assert exact IDs, enable Assistant MCP, close only proven disposable duplicates, and foreground the correct editor.'
         }
-        voiceBridge = 'off'
+        voiceBridge = if (-not $UseVoiceBridge -or $SkipVoiceBridge) {
+            [pscustomobject]@{
+                action = $voiceAction
+                running = $false
+                note = 'Voice bridge is optional and was not started. The recorded XSplit/HyperX routing is Leo-specific and must be re-verified before reuse.'
+            }
+        } else {
+            [pscustomobject]@{
+                action = $voiceAction
+                running = $true
+                pid = $voiceProcess.Id
+                processPath = $voiceProcess.Path
+                discordInput = 'Microphone (HyperX Cloud III)'
+                discordOutput = 'Headphones (HyperX Cloud III)'
+                codexInput = 'XSplit Audio (Broadcaster)'
+                note = 'Keep XSplit running; verify both microphone and system-sound meters before shared dictation.'
+            }
+        }
         playtestQueue = $playtestQueue
+        developmentMode = $developmentMode
     } | ConvertTo-Json -Depth 8
 }
 finally {

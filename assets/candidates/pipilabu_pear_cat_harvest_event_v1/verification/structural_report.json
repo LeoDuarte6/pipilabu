@@ -1,0 +1,73 @@
+{
+  "candidate_id": "PIPILABU-PEAR-CAT-HARVEST-EVENT-V1",
+  "checks": [
+    "ART-006 contract identity/status and all approval flags are bounded",
+    "fallback brief and local doctrine source paths/hashes are recorded",
+    "golden feline family boundary, exact scale, ground pivot, no-top-ear, whisker, and no-literal-pear rules are present",
+    "tree-hang/hand-squash/basket-cluster/receipt-delight states are ordered and mobile-read fields are non-empty",
+    "review sheet is RGB 1800x1120 with eye catchlights and receipt accent",
+    "mobile strip is RGB 960x420",
+    "generation artifacts match their recorded SHA-256 hashes",
+    "candidate contains no Studio/place/Blender/runtime source asset"
+  ],
+  "fallback_brief_sha256": "1b14b2ea52ec5bb99e378f9901894a970ee16f1596b7a30961ef2ede2a911542",
+  "human_approved": false,
+  "review_artifacts": [
+    {
+      "bytes": 129143,
+      "dimensions": [
+        1800,
+        1120
+      ],
+      "mode": "RGB",
+      "path": "pear_cat_harvest_event_sheet.png",
+      "sha256": "e7bf4623cf7649646caa7791d3b8533ae5e5e45d4be7221e83d9215065142cbf"
+    },
+    {
+      "bytes": 33303,
+      "dimensions": [
+        960,
+        420
+      ],
+      "mode": "RGB",
+      "path": "pear_cat_harvest_event_mobile_strip.png",
+      "sha256": "7a68a2259862fbec1dd6920638420114db4d26bd634e35b48591bb1021bb87a0"
+    }
+  ],
+  "source_hashes": [
+    {
+      "bytes": 17180,
+      "path": "docs/IDEA_LEDGER.md",
+      "reason": "canonical tiny-side-ear dog identity, gated orchard sourcing, and reusing existing verbs",
+      "sha256": "674cb18fa7883f383c901a5dcabc004e10dfa09bd40042d386096130b5c8221a"
+    },
+    {
+      "bytes": 4185,
+      "path": "docs/CHARACTER_ART_DIRECTION.md",
+      "reason": "approved rendered Pipi Labu face/material language and reference translation rules",
+      "sha256": "f6fafecf76723ccec1dca8b8a8119f3aa6682a29d676a86560a2df4f02d697dd"
+    },
+    {
+      "bytes": 4496,
+      "path": "docs/GAME_CONCEPT.md",
+      "reason": "serve/contact/receipt loop and future rare-event boundaries",
+      "sha256": "342ee92c93a28ac73d0158b9d3e8f6d4c03e4205796efa1fae83b732d8341b84"
+    },
+    {
+      "bytes": 7923,
+      "path": "docs/art/OVERNIGHT_ART_LEDGER.md",
+      "reason": "isolated review-candidate lane and no-promotion rule",
+      "sha256": "831dd2b1e988840c43b0fb0832255676d473666dab9807a2475127e16790bada"
+    },
+    {
+      "bytes": 3971,
+      "path": "docs/codex/PLAYTEST_QUEUE.md",
+      "reason": "current private-play identity and gameplay gate context",
+      "sha256": "778beba0d3bcc3e6f13a6ee9e03c75eebc64efd69345b2439ff27ee1fe6ae327"
+    }
+  ],
+  "status": "PASS",
+  "studio_imported": false,
+  "ticket": "ART-006",
+  "verifier_version": "1.0.0"
+}

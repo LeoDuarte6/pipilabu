@@ -29,7 +29,7 @@ local Presentation = {
 		CardCornerRadius = UDim.new(0, 12),
 		CardStrokeThickness = 1.5,
 		HudLeft = 22,
-		HudTop = 126,
+		HudTop = 180,
 	}),
 }
 

@@ -1,0 +1,133 @@
+{
+  "candidate_id": "PIPILABU-MARKET-ENV-V1",
+  "layout_name": "single_stall_review_vignette",
+  "front_axis": "+Z",
+  "instances": [
+    {
+      "name": "StallBay",
+      "module": "STALL_BAY_12X8",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Awning",
+      "module": "AWNING_12X3_BAY",
+      "position": [
+        0.0,
+        5.75,
+        0.0
+      ]
+    },
+    {
+      "name": "BackShelf",
+      "module": "SHELF_WALL_6X2",
+      "position": [
+        0.0,
+        0.0,
+        -3.0
+      ]
+    },
+    {
+      "name": "NeighborFacade",
+      "module": "FACADE_PANEL_6",
+      "position": [
+        -9.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "AppleCrates",
+      "module": "CRATE_STACK_2X2",
+      "position": [
+        -3.5,
+        1.5,
+        2.25
+      ]
+    },
+    {
+      "name": "FruitTray",
+      "module": "FRUIT_TRAY_3",
+      "position": [
+        2.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "name": "Sign",
+      "module": "SIGNBOARD_3",
+      "position": [
+        0.0,
+        4.5,
+        -4.0
+      ]
+    },
+    {
+      "name": "Lantern",
+      "module": "LANTERN_POST_4",
+      "position": [
+        7.25,
+        0.0,
+        8.75
+      ]
+    },
+    {
+      "name": "Planter",
+      "module": "PLANTER_2",
+      "position": [
+        -7.25,
+        0.0,
+        8.75
+      ]
+    },
+    {
+      "name": "Drain",
+      "module": "STREET_EDGE_DRAIN_4",
+      "position": [
+        0.0,
+        0.0,
+        11.75
+      ]
+    },
+    {
+      "name": "Curb",
+      "module": "STREET_EDGE_CURB_4",
+      "position": [
+        0.0,
+        0.0,
+        12.5
+      ]
+    },
+    {
+      "name": "EdgeBollard",
+      "module": "BOLLARD_05",
+      "position": [
+        7.25,
+        0.0,
+        10.75
+      ]
+    }
+  ],
+  "service_corridor": {
+    "min": [
+      -6.0,
+      0.0,
+      4.0
+    ],
+    "max": [
+      6.0,
+      4.25,
+      12.0
+    ],
+    "width": 8.0
+  },
+  "notes": [
+    "The corridor is a review keepout, not gameplay navigation or an active world layout.",
+    "Lantern, planter, and bollard sit outside the central service sightline; display fruit stays behind the counter.",
+    "The existing DogeAppleShop and PipilabuMarketVillagePrototype coordinates are not imported or modified by this layout."
+  ]
+}

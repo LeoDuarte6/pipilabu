@@ -1,0 +1,69 @@
+{
+  "contract": "PIPI_LABU_MESHY_OWNER_INPUTS_V2",
+  "preset": "rig_ready_v12",
+  "source": "C:\\Users\\fricc\\Documents\\Codex\\2026-08-07\\pipilabu\\assets\\concepts\\pipi-labu-owner-rig-ready-turnaround-v12.png",
+  "source_sha256": "48B44233ED0A1AD436B19FEE18D03B037C674C90A554C65339CF6D8E87283733",
+  "rights": "Original project-authored concept; no marketplace mesh or reel frame included.",
+  "views": [
+    {
+      "view": "front",
+      "crop_box": [
+        0,
+        45,
+        465,
+        790
+      ],
+      "output": "pipi_labu_owner_rig_ready_v12_front.png",
+      "dimensions": [
+        1024,
+        1641
+      ],
+      "sha256": "4BD25D9EFCFDECCF2D8D3A8EC7F0BC0978CC483D0729CF6FFE92CC7E86D83D14"
+    },
+    {
+      "view": "profile_left",
+      "crop_box": [
+        465,
+        45,
+        930,
+        790
+      ],
+      "output": "pipi_labu_owner_rig_ready_v12_profile_left.png",
+      "dimensions": [
+        1024,
+        1641
+      ],
+      "sha256": "216050DF446A8868BCCFE5591143925CE04432EAD033C6D223D1EA3C5F6C2774"
+    },
+    {
+      "view": "rear",
+      "crop_box": [
+        930,
+        45,
+        1395,
+        790
+      ],
+      "output": "pipi_labu_owner_rig_ready_v12_rear.png",
+      "dimensions": [
+        1024,
+        1641
+      ],
+      "sha256": "A2800C2CCD605596EDB4A9BE5C1B3B8DE93A1931235F18481A88399BCBE68A5A"
+    },
+    {
+      "view": "profile_right",
+      "crop_box": [
+        1395,
+        45,
+        1859,
+        790
+      ],
+      "output": "pipi_labu_owner_rig_ready_v12_profile_right.png",
+      "dimensions": [
+        1024,
+        1644
+      ],
+      "sha256": "AFAC6032021B67E57915230C4A5CC85460BD82902744370E459B239695B61D68"
+    }
+  ]
+}

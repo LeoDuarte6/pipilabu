@@ -1,0 +1,265 @@
+{
+  "candidate_id": "PIPILABU-APPLE-SERVING-PROP-KIT-V1",
+  "ticket": "ART-003",
+  "display_name": "Pipi Labu Apple and Serving-Prop Kit v1",
+  "status": "REVIEW_CANDIDATE",
+  "approval": {
+    "ApprovedForPresentation": false,
+    "HumanVisualVerdictRecorded": false,
+    "StudioImported": false,
+    "GameplayChanged": false,
+    "CloudTouched": false,
+    "Uploaded": false,
+    "Published": false
+  },
+  "purpose": "An authored Ruby/Honeygold apple and serving-prop family that strengthens hand visibility, contact readability, and customer receipt without changing the current service loop.",
+  "design_contract": {
+    "audience": "Roblox players reading one physical apple service beat on desktop, console, and mobile.",
+    "emotional_register": "Warm Japanese-market craft, tactile wood and fruit, generous and playful without toy-menu noise.",
+    "accepted_state_to_preserve": [
+      "Ruby is the ordinary baseline and Honeygold is the single current color contrast.",
+      "The held apple remains visible in the player hand and the customer visibly holds the received apple.",
+      "The HUD supports the world; the prop, contact, motion, sound, and customer reaction own the sensory reward.",
+      "Existing v4 character face/material/PBR direction and Paw_R-centered handoff remain source truth."
+    ],
+    "focal_event": "Serving contact and the first held-by-customer beat are larger and clearer than pickup; pickup remains quiet and functional.",
+    "proof": "Exact stud bounds, pivots, collision flags, material roles, contact timing references, authored OBJ/MTL meshes, and a rendered review board.",
+    "reference_translation": {
+      "accepted": [
+        "Apple as the highest-salience social prop at receipt.",
+        "Warm wood, cream, vermilion, and honey-gold hierarchy from the approved HUD and market direction.",
+        "Existing 1.3-stud apple scale and paired-paw contact target from read-only gameplay source.",
+        "Grounded crate/tray surfaces that frame the handoff without entering the service sightline."
+      ],
+      "contextual": [
+        "Japanese market/farmers-market craft cues expressed through slats, shallow trays, restrained markers, and material rhythm.",
+        "A small contact accent in the review board as visual explanation only, not a runtime VFX or reward mechanic.",
+        "Future rarity seam reserved as a controlled material slot, omitted from the baseline render."
+      ],
+      "rejected": [
+        "Pickup spectacle that competes with serving contact.",
+        "Glow, particles, floating labels, rarity clutter, or new order/patience/reward mechanics.",
+        "Opaque collision on apples, stems, leaves, tray lips, markers, or display fruit.",
+        "Pasted HUD/video pixels, logos, social UI, generic asset-store crate decoration, or unbounded prop sprawl."
+      ]
+    }
+  },
+  "source_truth": {
+    "catalog_file": "src/shared/AppleCatalog.luau",
+    "gameplay_file": "src/server/GameService.luau",
+    "world_builder_file": "scripts/build-doge-shop-world.luau",
+    "catalog_colors": {
+      "Ruby": {"display_name": "Ruby Apple", "short_name": "RUBY", "crate_name": "Ruby Apples", "color_rgb": [210, 49, 42], "dark_rgb": [133, 35, 32]},
+      "Honeygold": {"display_name": "Honeygold Apple", "short_name": "HONEYGOLD", "crate_name": "Honeygold Apples", "color_rgb": [239, 181, 54], "dark_rgb": [145, 94, 24]}
+    },
+    "existing_prop_contract": {
+      "held_apple_size_studs": [1.3, 1.3, 1.3],
+      "received_target_size_studs": [1.42, 1.16, 1.42],
+      "received_settle_size_studs": [1.3, 1.3, 1.3],
+      "handoff_duration_seconds": 0.16,
+      "handoff_arc_height_studs": 0.28,
+      "handoff_spin_degrees": 18.0,
+      "handoff_settle_seconds": 0.08,
+      "preferred_player_attachment": "RightHand",
+      "preferred_customer_attachment": "Paw_R",
+      "paired_customer_contact": "midpoint of Paw_R and Paw_L when both are present",
+      "fallback_customer_attachment": "Muzzle or PrimaryPart"
+    },
+    "existing_crate_size_studs": [6.0, 2.5, 5.0],
+    "reuse_rule": "Read-only source context only. Do not edit or overwrite AppleCatalog, GameService, the local shop builder, or any existing candidate in this ticket."
+  },
+  "coordinate_contract": {
+    "units": "Roblox studs",
+    "up_axis": "+Y",
+    "service_front": "+Z",
+    "right_axis": "+X",
+    "mesh_origin_rule": "Do not bake placement into module meshes; pivots are explicit and assembly placement lives in assembly_layout.json.",
+    "hand_visibility_rule": "At authored mobile review distance, the apple body must remain separated from the player/customer paw silhouettes and never hide the paw target."
+  },
+  "material_contract": {
+    "metalness": 0.0,
+    "roles": {
+      "AppleSkin_Ruby": {"base_color_rgb": [210, 49, 42], "dark_color_rgb": [133, 35, 32], "roughness": [0.28, 0.40], "notes": "Glossy enough to read as fruit; no glow or metallic response."},
+      "AppleSkin_Honeygold": {"base_color_rgb": [239, 181, 54], "dark_color_rgb": [145, 94, 24], "roughness": [0.28, 0.40], "notes": "Single current gold contrast; rarity is not implied."},
+      "Stem_Wood": {"base_color_rgb": [82, 53, 31], "roughness": [0.70, 0.84]},
+      "Leaf_Muted": {"base_color_rgb": [62, 112, 62], "roughness": [0.48, 0.66]},
+      "Crate_WarmWood": {"base_color_rgb": [118, 78, 52], "roughness": [0.62, 0.82]},
+      "Crate_DarkWood": {"base_color_rgb": [66, 46, 34], "roughness": [0.68, 0.88]},
+      "Tray_Cream": {"base_color_rgb": [240, 226, 200], "roughness": [0.72, 0.88]},
+      "Marker_Paper": {"base_color_rgb": [244, 231, 206], "roughness": [0.80, 0.94]},
+      "RaritySeam_Reserved": {"base_color_rgb": [240, 196, 108], "roughness": [0.34, 0.48], "default_visibility": "omitted"}
+    },
+    "pbr_import_rule": "These OBJ/MTL colors are review-grade authored roles. A later Blender/Roblox pass may replace them with named PBR maps, but must preserve the role hierarchy and metalness zero."
+  },
+  "modules": [
+    {
+      "id": "APPLE_RUBY_HANDOFF_1_3",
+      "file": "modules/APPLE_RUBY_HANDOFF_1_3.obj",
+      "material_file": "modules/APPLE_RUBY_HANDOFF_1_3.mtl",
+      "type": "apple_visual",
+      "size_studs": [1.3, 1.32, 1.3],
+      "bounds_min": [-0.65, -0.52, -0.65],
+      "bounds_max": [0.65, 0.8, 0.65],
+      "pivot": {"type": "contact_center", "local": [0.0, 0.0, 0.0], "axis": "+Y stem-up"},
+      "collision_mode": "none",
+      "can_collide": false,
+      "can_touch": false,
+      "can_query": false,
+      "materials": ["AppleSkin_Ruby", "Stem_Wood", "Leaf_Muted"],
+      "attachment_seams": ["AppleRoot", "Hand", "Paw_R", "CustomerHold"]
+    },
+    {
+      "id": "APPLE_HONEYGOLD_HANDOFF_1_3",
+      "file": "modules/APPLE_HONEYGOLD_HANDOFF_1_3.obj",
+      "material_file": "modules/APPLE_HONEYGOLD_HANDOFF_1_3.mtl",
+      "type": "apple_visual",
+      "size_studs": [1.3, 1.32, 1.3],
+      "bounds_min": [-0.65, -0.52, -0.65],
+      "bounds_max": [0.65, 0.8, 0.65],
+      "pivot": {"type": "contact_center", "local": [0.0, 0.0, 0.0], "axis": "+Y stem-up"},
+      "collision_mode": "none",
+      "can_collide": false,
+      "can_touch": false,
+      "can_query": false,
+      "materials": ["AppleSkin_Honeygold", "Stem_Wood", "Leaf_Muted"],
+      "attachment_seams": ["AppleRoot", "Hand", "Paw_R", "CustomerHold"]
+    },
+    {
+      "id": "CRATE_RUBY_6X2_5",
+      "file": "modules/CRATE_RUBY_6X2_5.obj",
+      "material_file": "modules/CRATE_RUBY_6X2_5.mtl",
+      "collision_file": "collision/COLLISION_CRATE_6X2_5.obj",
+      "type": "apple_crate_visual",
+      "size_studs": [6.0, 2.5, 5.0],
+      "bounds_min": [-3.0, 0.0, -2.5],
+      "bounds_max": [3.0, 2.5, 2.5],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "can_collide": true,
+      "can_touch": false,
+      "can_query": true,
+      "display_parts_collision": "none",
+      "materials": ["Crate_WarmWood", "Crate_DarkWood", "AppleSkin_Ruby"]
+    },
+    {
+      "id": "CRATE_HONEYGOLD_6X2_5",
+      "file": "modules/CRATE_HONEYGOLD_6X2_5.obj",
+      "material_file": "modules/CRATE_HONEYGOLD_6X2_5.mtl",
+      "collision_file": "collision/COLLISION_CRATE_6X2_5.obj",
+      "type": "apple_crate_visual",
+      "size_studs": [6.0, 2.5, 5.0],
+      "bounds_min": [-3.0, 0.0, -2.5],
+      "bounds_max": [3.0, 2.5, 2.5],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "can_collide": true,
+      "can_touch": false,
+      "can_query": true,
+      "display_parts_collision": "none",
+      "materials": ["Crate_WarmWood", "Crate_DarkWood", "AppleSkin_Honeygold"]
+    },
+    {
+      "id": "COUNTER_TRAY_3X1_6",
+      "file": "modules/COUNTER_TRAY_3X1_6.obj",
+      "material_file": "modules/COUNTER_TRAY_3X1_6.mtl",
+      "type": "counter_display_tray",
+      "size_studs": [3.2, 0.32, 1.6],
+      "bounds_min": [-1.6, 0.0, -0.8],
+      "bounds_max": [1.6, 0.32, 0.8],
+      "pivot": {"type": "surface_center", "local": [0.0, 0.0, 0.0], "surface_height": 0.0},
+      "collision_mode": "none",
+      "can_collide": false,
+      "can_touch": false,
+      "can_query": false,
+      "materials": ["Crate_WarmWood", "Crate_DarkWood", "Tray_Cream"],
+      "handoff_clearance_rule": "Keep the front 0.65 studs open so the apple contact path and Paw_R target remain unobstructed."
+    },
+    {
+      "id": "PRICE_MARKER_RUBY_1X0_75",
+      "file": "modules/PRICE_MARKER_RUBY_1X0_75.obj",
+      "material_file": "modules/PRICE_MARKER_RUBY_1X0_75.mtl",
+      "type": "price_marker_display",
+      "size_studs": [1.0, 0.75, 0.12],
+      "bounds_min": [-0.5, 0.0, -0.06],
+      "bounds_max": [0.5, 0.75, 0.06],
+      "pivot": {"type": "surface_mount_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "none",
+      "can_collide": false,
+      "can_touch": false,
+      "can_query": false,
+      "materials": ["Marker_Paper", "Crate_DarkWood", "AppleSkin_Ruby", "Stem_Wood"],
+      "copy_rule": "RUBY is an authored current-state label only; no price, rarity, economy, or prompt behavior is implied."
+    },
+    {
+      "id": "PRICE_MARKER_HONEYGOLD_1X0_75",
+      "file": "modules/PRICE_MARKER_HONEYGOLD_1X0_75.obj",
+      "material_file": "modules/PRICE_MARKER_HONEYGOLD_1X0_75.mtl",
+      "type": "price_marker_display",
+      "size_studs": [1.0, 0.75, 0.12],
+      "bounds_min": [-0.5, 0.0, -0.06],
+      "bounds_max": [0.5, 0.75, 0.06],
+      "pivot": {"type": "surface_mount_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "none",
+      "can_collide": false,
+      "can_touch": false,
+      "can_query": false,
+      "materials": ["Marker_Paper", "Crate_DarkWood", "AppleSkin_Honeygold", "Stem_Wood"],
+      "copy_rule": "HONEYGOLD is an authored current-state label only; no price, rarity, economy, or prompt behavior is implied."
+    }
+  ],
+  "collision_contract": {
+    "file": "collision/COLLISION_CRATE_6X2_5.obj",
+    "bounds_min": [-3.0, 0.0, -2.5],
+    "bounds_max": [3.0, 2.5, 2.5],
+    "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+    "flags": {"CanCollide": true, "CanTouch": false, "CanQuery": true},
+    "rule": "Only the structural crate proxy collides. Apples, stems, leaves, tray, marker, and display accents never steal movement, touch, query, or prompts."
+  },
+  "handoff_contract": {
+    "player_hold": {"attachment": "RightHand", "root_pivot": [0.0, 0.0, 0.0], "visible_body_diameter": 1.3, "collision_mode": "none"},
+    "handoff": {"duration_seconds": 0.16, "arc_height_studs": 0.28, "spin_degrees": 18.0, "target": "Paw_R preferred; midpoint of Paw_R/Paw_L when both exist", "focal_rule": "Contact is the largest visual beat; pickup has no special spectacle."},
+    "customer_receipt": {"prop_name": "ReceivedApple", "pre_settle_size": [1.42, 1.16, 1.42], "settle_size": [1.3, 1.3, 1.3], "attachment": "CustomerAppleWeld to Paw_R or root fallback", "visible_hold_seconds": "existing gameplay celebration/hold contract; no new timing added"}
+  },
+  "rarity_seam": {
+    "status": "RESERVED_NO_RUNTIME",
+    "default_state": "omitted",
+    "allowed_slot": "one thin shoulder material seam or one marker accent band, never both in the same baseline prop",
+    "future_values": ["Common", "Rare", "Mythic"],
+    "prohibited_now": ["new mechanics", "extra particles", "glow", "economy values", "prompt text", "inventory rules", "rarity UI"],
+    "promotion_rule": "A later rarity experiment must be one-variable, visually bounded, and separately gated."
+  },
+  "review_artifact": {
+    "file": "apple_serving_props_sheet.png",
+    "width": 1800,
+    "height": 1100,
+    "source": "deterministic Pillow drawing plus generated OBJ contract labels; no external image pixels",
+    "required_views": ["family modules", "mobile silhouette strip", "carry -> contact -> customer hold storyboard"],
+    "contact_emphasis_rule": "The contact frame is the largest, warmest, and clearest state; pickup remains visually quieter."
+  },
+  "import_contract": {
+    "source_format": "OBJ + MTL for inspection; Blender 4.x LTS / FBX is the future Roblox import path",
+    "transforms": "Apply scale and rotation in Blender before FBX export; preserve the explicit module pivots and stud dimensions.",
+    "part_naming": "Keep named roots AppleRoot, Stem, Leaf, Tray, CrateFrame, MarkerFace, and CollisionProxy where applicable.",
+    "surface_appearance": "Future Roblox PBR wiring must preserve the material roles and metalness zero; no asset IDs are included here.",
+    "scripts": "No scripts, prompts, ownership, economy, or gameplay authority are embedded in the candidate.",
+    "review_budget": {"apple_triangles_max": 384, "crate_triangles_max": 384, "tray_triangles_max": 192, "marker_triangles_max": 96, "collision_triangles_max": 12}
+  },
+  "future_private_play_gate": {
+    "precondition": "The v0.9.3 human service-loop gate is recorded or explicitly deferred; ART-003 is not gameplay evidence and does not promote any mechanic.",
+    "visual_review": [
+      "Leo and Jon review the generated board and a mobile-sized thumbnail; Ruby remains the ordinary baseline and Honeygold remains the only current contrast.",
+      "Reject if the apple disappears against the hand/customer, the stem/leaf creates a noisy silhouette, the tray/crate blocks Paw_R or the service line, or contact reads weaker than pickup.",
+      "Reject any glow, rarity clutter, false price/economy implication, or collision-looking display detail."
+    ],
+    "sandbox": "In a disposable local PlaceId=0 / GameId=0 sandbox, import one apple plus one crate proxy and one tray. Validate pivot, size, material roles, attachment offsets, collision/query flags, and mobile camera read before any private-place test.",
+    "private_place_identity": {"PlaceId": 133099029551440, "GameId": 10646495069, "mode": "Edit", "root": "ServerStorage.PipilabuCandidateAssets.AppleServingPropsV1"},
+    "bounded_private_test": [
+      "List Studio instances and assert the exact PlaceId/GameId inside the bounded mutation.",
+      "Keep AppleCatalog, GameService, prompts, queue membership, order sequence, patience, rewards, audio, and HUD source unchanged.",
+      "Test Ruby and Honeygold through pickup, visible carry, toss, contact, and customer-held receipt at desktop and mobile camera distances; contact/receipt must remain the sensory peak.",
+      "Walk through the crate and counter area; confirm only the crate proxy collides and no apple/tray/marker steals a prompt or creates collision ambiguity.",
+      "Remove the candidate root if it hides the hand, obscures the ready customer, weakens the contact beat, adds clutter, or makes pickup feel more rewarding than service."
+    ],
+    "promotion": "Only an explicit later Leo/Jon visual decision followed by sandbox and exact-private-place validation may approve the prop family; no upload, publish, canonical replacement, or mechanic is implied."
+  }
+}

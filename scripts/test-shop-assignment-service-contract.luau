@@ -1,0 +1,20 @@
+local fs = require("@lune/fs")
+
+local Config = require("../src/shared/Config")
+local service = fs.readFile("src/server/ShopAssignmentService.luau")
+local bootstrap = fs.readFile("src/server/Bootstrap.server.luau")
+
+assert(Config.MultiplayerShopAssignment.Enabled == false, "runtime shop assignment must remain disabled by default")
+assert(string.find(service, 'local ASSIGNMENT_ATTRIBUTE = "PipiLabuShopBay"', 1, true), "stable assignment attribute is missing")
+assert(string.find(service, "Players.PlayerAdded:Connect(assignPlayer)", 1, true), "late join assignment is missing")
+assert(string.find(service, "Players.PlayerRemoving:Connect(releasePlayer)", 1, true), "leave release is missing")
+assert(string.find(service, "for _, player in Players:GetPlayers() do", 1, true), "existing-player assignment is missing")
+assert(string.find(service, "currentRegistry.release(player.UserId)", 1, true), "registry release is missing")
+assert(string.find(service, "clearAssignment(player)", 1, true), "player attribute cleanup is missing")
+assert(string.find(service, 'Code = "Disabled"', 1, true), "disabled result must be explicit")
+assert(string.find(service, '"AlreadyStarted"', 1, true), "idempotent start result is missing")
+assert(not string.find(service, "GetDataStore", 1, true), "assignment adapter must not access DataStore")
+assert(not string.find(service, "Teleport", 1, true), "assignment adapter must not teleport players")
+assert(string.find(bootstrap, "ShopAssignmentService.Start(Config.MultiplayerShopAssignment)", 1, true), "bootstrap must route through the disabled config gate")
+
+print("Pipi Labu shop-assignment service contract passed disabled gate, join, leave, cleanup, and no-persistence checks")

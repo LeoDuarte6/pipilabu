@@ -7,6 +7,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 
 local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
+local Config = require(projectRoot:WaitForChild("Config"))
 local Copy = require(projectRoot:WaitForChild("Copy"))
 local MarketVillage = require(projectRoot:WaitForChild("MarketVillage"))
 local Presentation = require(projectRoot:WaitForChild("Presentation"))
@@ -23,6 +24,10 @@ local playerGui = player:WaitForChild("PlayerGui")
 local existing = playerGui:FindFirstChild("MarketVillagePresentation")
 if existing then
 	existing:Destroy()
+end
+
+if not Config.MarketPresentation.ShowCareHud then
+	return
 end
 
 local screenGui = Instance.new("ScreenGui")

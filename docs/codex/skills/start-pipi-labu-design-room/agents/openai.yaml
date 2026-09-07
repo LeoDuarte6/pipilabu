@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pipi Labu Design Room"
+  short_description: "Start a voice-first gameplay specification room"
+  default_prompt: "Use $start-pipi-labu-design-room to open or resume the Pipi Labu Design Room while implementation continues separately."

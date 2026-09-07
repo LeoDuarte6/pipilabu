@@ -1,0 +1,32 @@
+{
+  "verifier_version": "1.0.0",
+  "candidate_id": "PIPILABU-BABY-CUSTOMER-CAST-V1",
+  "ticket": "ART-002",
+  "status": "PASS",
+  "checks": {
+    "contract_status": true,
+    "approval_flags_false": true,
+    "v4_source_invariants": true,
+    "four_roles_in_contract_order": true,
+    "shared_circular_crown_lateral_ear_rule": true,
+    "role_scale_band": true,
+    "png_dimensions_and_mode": true,
+    "png_thumbnail_detail": true,
+    "generation_hash": true,
+    "studio_or_human_approval": false
+  },
+  "image": {
+    "file": "baby_customer_cast_sheet.png",
+    "width": 1600,
+    "height": 1000,
+    "sha256": "7426bf3bda6f77d1897b59f5d5a32452a9449eafd9c01881a6aed3dc379eef66"
+  },
+  "role_ids": [
+    "RubySprout",
+    "HoneygoldHugger",
+    "ShyLoaf",
+    "HurryWaddle"
+  ],
+  "studio_imported": false,
+  "human_approved": false
+}

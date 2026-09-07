@@ -1,0 +1,63 @@
+{
+  "generator_version": "3.3.0",
+  "model_version": "v6",
+  "blender_version": "4.5.12 LTS",
+  "variant": "owner",
+  "scale_multiplier": 1.65,
+  "mesh_objects": 22,
+  "vertices": 8899,
+  "triangles": 17566,
+  "largest_mesh_triangles": 9510,
+  "meshes_over_20000_triangles": [],
+  "bones": 9,
+  "actions": [
+    "Pipilabu_Happy",
+    "Pipilabu_Idle",
+    "Pipilabu_Serve",
+    "Pipilabu_Stressed",
+    "Pipilabu_Talk"
+  ],
+  "attachments": [
+    "ATTACH_Back",
+    "ATTACH_Fruit_L",
+    "ATTACH_Fruit_R",
+    "ATTACH_Mouth",
+    "ATTACH_OrderBillboard",
+    "ATTACH_ShopkeeperProp"
+  ],
+  "collision_marker": "COLLISION_ROOT",
+  "bounds_meters_approx": [
+    3.712,
+    3.547,
+    3.877
+  ],
+  "surface_maps": {
+    "colormap": "pipilabu_shiba_owner_v6.colormap.png",
+    "metalnessmap": "pipilabu_shiba_owner_v6.metalness.png",
+    "normalmap": "pipilabu_shiba_owner_v6.normal.png",
+    "roughnessmap": "pipilabu_shiba_owner_v6.roughness.png"
+  },
+  "blend_file": "pipilabu_shiba_owner_v6.blend",
+  "fbx_file": "pipilabu_shiba_owner_v6.fbx",
+  "blend_bytes": 2479458,
+  "fbx_bytes": 3147756,
+  "animation_fbx_files": [
+    "pipilabu_shiba_owner_v6.happy.fbx",
+    "pipilabu_shiba_owner_v6.idle.fbx",
+    "pipilabu_shiba_owner_v6.serve.fbx",
+    "pipilabu_shiba_owner_v6.stressed.fbx",
+    "pipilabu_shiba_owner_v6.talk.fbx"
+  ],
+  "preview_file": "pipilabu_shiba_owner_v6.preview.png",
+  "preview_bytes": 636564,
+  "validation_renders": [
+    "pipilabu_shiba_owner_v6.back.png",
+    "pipilabu_shiba_owner_v6.front.png",
+    "pipilabu_shiba_owner_v6.happy.png",
+    "pipilabu_shiba_owner_v6.preview.png",
+    "pipilabu_shiba_owner_v6.serve.png",
+    "pipilabu_shiba_owner_v6.side.png",
+    "pipilabu_shiba_owner_v6.stressed.png",
+    "pipilabu_shiba_owner_v6.talk.png"
+  ]
+}

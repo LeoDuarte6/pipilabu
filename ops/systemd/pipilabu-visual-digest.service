@@ -1,0 +1,13 @@
+[Unit]
+Description=Deliver new Pipi Labu review visuals to Jon
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flock -n /home/leo/.hermes/pipilabu-visual-digest/run.lock /usr/bin/python3 /home/leo/.hermes/scripts/pipilabu-visual-digest.py --live
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ReadWritePaths=/home/leo/.hermes/pipilabu-visual-digest

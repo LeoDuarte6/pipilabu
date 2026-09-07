@@ -1,0 +1,7 @@
+# ART-003 authored material roles; review-only OBJ/MTL output.
+newmtl CollisionProxy
+Kd 0.392157 0.392157 0.392157
+Ks 0.040000 0.040000 0.040000
+Ns 1
+d 1.000000
+illum 2

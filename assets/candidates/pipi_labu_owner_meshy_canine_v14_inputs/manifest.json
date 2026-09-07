@@ -1,0 +1,69 @@
+{
+  "contract": "PIPI_LABU_MESHY_CHARACTER_INPUTS_V3",
+  "preset": "owner_canine_v14",
+  "source": "C:\\Users\\fricc\\Documents\\Codex\\2026-08-07\\pipilabu\\assets\\concepts\\pipi-labu-owner-canine-turnaround-v14.png",
+  "source_sha256": "37EF824BD572A8AC0465554FB82D144F580CAD54164D1B9F83D626647D85F447",
+  "rights": "Original project-authored concept; no marketplace mesh or reel frame included.",
+  "views": [
+    {
+      "view": "front",
+      "crop_box": [
+        0,
+        120,
+        430,
+        850
+      ],
+      "output": "pipi_labu_owner_canine_v14_front.png",
+      "dimensions": [
+        1024,
+        1738
+      ],
+      "sha256": "1F7400778E6ADCE6E8E8F60CEA9E104362195E924CE04224F296F1A4851AF967"
+    },
+    {
+      "view": "profile_left",
+      "crop_box": [
+        430,
+        120,
+        875,
+        850
+      ],
+      "output": "pipi_labu_owner_canine_v14_profile_left.png",
+      "dimensions": [
+        1024,
+        1680
+      ],
+      "sha256": "B4C5EC7240D554A7DF6672D253EE1884F65CAAFFBB048D83AD6E7964CBD2DCBF"
+    },
+    {
+      "view": "rear",
+      "crop_box": [
+        875,
+        120,
+        1310,
+        850
+      ],
+      "output": "pipi_labu_owner_canine_v14_rear.png",
+      "dimensions": [
+        1024,
+        1718
+      ],
+      "sha256": "CBF078D18431922C75E0CC6EF56AE2978AB57014FDCBD1391C6E2B910AE67869"
+    },
+    {
+      "view": "profile_right",
+      "crop_box": [
+        1310,
+        120,
+        1755,
+        850
+      ],
+      "output": "pipi_labu_owner_canine_v14_profile_right.png",
+      "dimensions": [
+        1024,
+        1680
+      ],
+      "sha256": "417A61AE53367AB2A3550F7330CC8C6898B864EBF5B7D155E1A393097759F910"
+    }
+  ]
+}

@@ -2,18 +2,12 @@
   "mcpServers": {
     "Roblox_Studio": {
       "type": "stdio",
-      "command": "powershell.exe",
+      "command": "cmd.exe",
       "args": [
-        "-NoLogo",
-        "-NoProfile",
-        "-NonInteractive",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "C:\\Users\\fricc\\AppData\\Local\\Roblox\\codex-studio-mcp.ps1"
+        "/c",
+        "%LOCALAPPDATA%\\Roblox\\mcp.bat"
       ],
       "env": {}
     }
   }
 }
-

@@ -1,0 +1,68 @@
+{
+  "contract": "PIPI_LABU_MESHY_OWNER_INPUTS_V1",
+  "source": "C:\\Users\\fricc\\Documents\\Codex\\2026-08-07\\pipilabu\\assets\\concepts\\pipi-labu-owner-reconstruction-sheet-v11.png",
+  "source_sha256": "AE00C040C7A78286784FBA316C3B3736D31F9742BCAEE39DB79741969FB9E22F",
+  "rights": "Original project-authored concept; no marketplace mesh or reel frame included.",
+  "views": [
+    {
+      "view": "front",
+      "crop_box": [
+        0,
+        260,
+        379,
+        775
+      ],
+      "output": "pipi_labu_owner_v11_front.png",
+      "dimensions": [
+        1024,
+        1391
+      ],
+      "sha256": "870C060E0E2E181BE2B03CA5A13B10881CD5E6E3B3EB50B12F40B80488117EA0"
+    },
+    {
+      "view": "profile_left",
+      "crop_box": [
+        383,
+        260,
+        760,
+        775
+      ],
+      "output": "pipi_labu_owner_v11_profile_left.png",
+      "dimensions": [
+        1024,
+        1399
+      ],
+      "sha256": "EA4D8829247AD0CC155D056C87C0F3D74EEA9BD5BA69722F80284614B1C17303"
+    },
+    {
+      "view": "rear",
+      "crop_box": [
+        764,
+        260,
+        1140,
+        775
+      ],
+      "output": "pipi_labu_owner_v11_rear.png",
+      "dimensions": [
+        1024,
+        1403
+      ],
+      "sha256": "BCB932B779CD8CE5B07772B7931DCE72369D7DF3832B85816D57AEE834811B8A"
+    },
+    {
+      "view": "three_quarter",
+      "crop_box": [
+        1145,
+        260,
+        1536,
+        775
+      ],
+      "output": "pipi_labu_owner_v11_three_quarter.png",
+      "dimensions": [
+        1024,
+        1349
+      ],
+      "sha256": "DCB7A7A41198404CE7C0C91E0EF1919862A51CD0F5ACEC4CF755776AF1676E90"
+    }
+  ]
+}

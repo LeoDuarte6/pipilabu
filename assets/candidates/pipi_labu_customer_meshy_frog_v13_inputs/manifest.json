@@ -1,0 +1,69 @@
+{
+  "contract": "PIPI_LABU_MESHY_CHARACTER_INPUTS_V3",
+  "preset": "customer_frog_v13",
+  "source": "C:\\Users\\fricc\\Documents\\Codex\\2026-08-07\\pipilabu\\assets\\concepts\\pipi-labu-customer-frog-leg-turnaround-v13.png",
+  "source_sha256": "7FCC18BA3560DA978DF2F64FC12B677B3CCB01927635A17A086D129B09BAF2F8",
+  "rights": "Original project-authored concept; no marketplace mesh or reel frame included.",
+  "views": [
+    {
+      "view": "front",
+      "crop_box": [
+        0,
+        45,
+        455,
+        790
+      ],
+      "output": "pipi_labu_customer_frog_v13_front.png",
+      "dimensions": [
+        1024,
+        1677
+      ],
+      "sha256": "D69D6B398DB593762AE16EF5D23218ACE64C7D35CDE81AB8443FD37EB3EE28A8"
+    },
+    {
+      "view": "profile_left",
+      "crop_box": [
+        470,
+        45,
+        915,
+        790
+      ],
+      "output": "pipi_labu_customer_frog_v13_profile_left.png",
+      "dimensions": [
+        1024,
+        1714
+      ],
+      "sha256": "1249A3406850F30F5D2B7A02BA193129377E0CB3CEAFAA2727C886B4E42B885E"
+    },
+    {
+      "view": "rear",
+      "crop_box": [
+        930,
+        45,
+        1380,
+        790
+      ],
+      "output": "pipi_labu_customer_frog_v13_rear.png",
+      "dimensions": [
+        1024,
+        1695
+      ],
+      "sha256": "4658C538583BBA1F9F7E1C2C8A1A9761698D65664B3DF2D66A8263686A785F55"
+    },
+    {
+      "view": "profile_right",
+      "crop_box": [
+        1400,
+        45,
+        1858,
+        790
+      ],
+      "output": "pipi_labu_customer_frog_v13_profile_right.png",
+      "dimensions": [
+        1024,
+        1666
+      ],
+      "sha256": "BB46D8A09B892CDA082CC465AE40C511E9E0E430D925A06927F6DDD135D0D35E"
+    }
+  ]
+}

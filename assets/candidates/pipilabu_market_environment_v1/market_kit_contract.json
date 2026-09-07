@@ -1,0 +1,265 @@
+{
+  "candidate_id": "PIPILABU-MARKET-ENV-V1",
+  "display_name": "Pipi Labu Market Environment Kit v1",
+  "status": "REVIEW_CANDIDATE",
+  "approval": {
+    "ApprovedForPresentation": false,
+    "StudioImported": false,
+    "CloudTouched": false,
+    "PublicRelease": false
+  },
+  "purpose": "Reusable compact Japanese market/farmers-market environment pieces that enrich the world around the one-shop service loop without changing gameplay authority.",
+  "reference_translation": {
+    "accepted": [
+      "oversized focal seller versus a small, readable customer line",
+      "fruit as the highest-salience handoff prop",
+      "canopies, shelves, crates, and signs creating vertical market rhythm",
+      "warm rendered caramel, cream, vermilion, wood, and lantern amber roles",
+      "grounded stalls with a clear service lane"
+    ],
+    "contextual": [
+      "dense Japanese market/city-village cadence",
+      "repeated stall modules with small authored asymmetries",
+      "a warm lantern beat at the street edge"
+    ],
+    "rejected": [
+      "pasted video pixels, watermark, logos, skyline, or social UI",
+      "prominent upright/top ears as a character or sign silhouette",
+      "generic full-town/baseplate sprawl",
+      "decorative pieces occupying the handoff corridor",
+      "unbounded collision on fruit, fabric stripes, labels, or VFX"
+    ]
+  },
+  "coordinate_contract": {
+    "unit": "Roblox stud",
+    "up": "+Y",
+    "front_or_service_side": "+Z",
+    "right": "+X",
+    "origin": "per-module documented pivot; no hidden offset is allowed",
+    "grid_increment": 0.25,
+    "transform_rule": "Apply scale and rotation before export; instance by pivot CFrame; never use negative scale.",
+    "ground_rule": "Structural modules touch Y=0 at their lowest intended contact; visual-only props may float only when their contract explicitly says display-mount."
+  },
+  "world_constraints": {
+    "stall_bay_front_clearance": 4.0,
+    "minimum_walk_lane_width": 6.0,
+    "preferred_review_lane_width": 8.0,
+    "service_sightline_band_y": [0.75, 4.25],
+    "service_sightline_keepout": "Keep structural posts, signboards, planters, and lantern bodies outside the named customer/service lane. Fruit displays may sit behind a counter or on a shelf, never in the lane.",
+    "mobile_camera_rule": "At a classic third-person view, the ready customer, handoff, fruit source, and counter must remain visible without roof/canopy geometry crossing the focal screen band.",
+    "dense_market_rule": "Repeat modules in rows, but offset sign, crate, and lantern accents by one grid increment or by height; do not build an identical wall of props."
+  },
+  "import_contract": {
+    "source_formats": ["OBJ for review and quick module inspection", "FBX from Blender for Roblox 3D Importer promotion"],
+    "blender_version_target": "4.x LTS",
+    "unit_scale": 1.0,
+    "apply_transforms": true,
+    "forward_axis": "+Z",
+    "up_axis": "+Y",
+    "leaf_bones": false,
+    "scripts": "none",
+    "pivot_rule": "Set the Roblox Model.PrimaryPart or imported pivot to the contract pivot; do not repair offsets in Studio by eye.",
+    "visual_layer": {
+      "CanCollide": false,
+      "CanTouch": false,
+      "CanQuery": false,
+      "Anchored": true,
+      "purpose": "rendered color/material/shape only"
+    },
+    "collision_layer": {
+      "CanCollide": true,
+      "CanTouch": false,
+      "CanQuery": true,
+      "Anchored": true,
+      "purpose": "simple structural or walk-surface proxy; never a hidden gameplay trigger"
+    },
+    "display_layer": {
+      "CanCollide": false,
+      "CanTouch": false,
+      "CanQuery": false,
+      "Anchored": true,
+      "purpose": "fruit, labels, fabric stripes, and small authored detail"
+    },
+    "budget": {
+      "per_module_visual_triangles_max": 2500,
+      "per_module_collision_triangles_max": 96,
+      "assembly_visual_triangles_max": 24000,
+      "material_slots_per_module_max": 6,
+      "max_lantern_lights_per_review_vignette": 4
+    }
+  },
+  "material_roles": {
+    "WoodWarm": {"rgb": [0.49, 0.29, 0.17], "roughness": 0.88, "metalness": 0.0},
+    "WoodDark": {"rgb": [0.25, 0.14, 0.08], "roughness": 0.92, "metalness": 0.0},
+    "PlasterCream": {"rgb": [0.90, 0.82, 0.68], "roughness": 0.93, "metalness": 0.0},
+    "CanvasVermilion": {"rgb": [0.78, 0.20, 0.14], "roughness": 0.95, "metalness": 0.0},
+    "CanvasPaper": {"rgb": [0.95, 0.88, 0.72], "roughness": 0.96, "metalness": 0.0},
+    "Ink": {"rgb": [0.15, 0.09, 0.06], "roughness": 0.82, "metalness": 0.0},
+    "MetalDark": {"rgb": [0.18, 0.18, 0.16], "roughness": 0.62, "metalness": 0.0},
+    "LanternAmber": {"rgb": [1.0, 0.58, 0.15], "roughness": 0.42, "metalness": 0.0},
+    "Leaf": {"rgb": [0.22, 0.40, 0.20], "roughness": 0.90, "metalness": 0.0},
+    "FruitRuby": {"rgb": [0.72, 0.12, 0.08], "roughness": 0.46, "metalness": 0.0},
+    "FruitHoneygold": {"rgb": [0.95, 0.60, 0.12], "roughness": 0.44, "metalness": 0.0},
+    "StoneWarm": {"rgb": [0.54, 0.48, 0.39], "roughness": 0.97, "metalness": 0.0},
+    "CollisionProxy": {"rgb": [0.25, 0.25, 0.25], "roughness": 1.0, "metalness": 0.0}
+  },
+  "modules": [
+    {
+      "id": "STALL_BAY_12X8",
+      "file": "modules/STALL_BAY_12X8.obj",
+      "collision_file": "collision/COLLISION_STALL_BAY_12X8.obj",
+      "size": [12.0, 6.25, 8.0],
+      "bounds_min": [-6.0, 0.0, -4.0],
+      "bounds_max": [6.0, 6.25, 4.0],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["stall", "facade", "counter", "roof"]
+    },
+    {
+      "id": "AWNING_12X3_BAY",
+      "file": "modules/AWNING_12X3_BAY.obj",
+      "collision_file": "collision/COLLISION_AWNING_12X3_BAY.obj",
+      "size": [12.4, 0.32, 3.2],
+      "bounds_min": [-6.2, 0.0, 0.0],
+      "bounds_max": [6.2, 0.32, 3.2],
+      "pivot": {"type": "rear_mount_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["awning", "silhouette", "shade"]
+    },
+    {
+      "id": "SHELF_WALL_6X2",
+      "file": "modules/SHELF_WALL_6X2.obj",
+      "collision_file": "collision/COLLISION_SHELF_WALL_6X2.obj",
+      "size": [6.0, 2.4, 0.9],
+      "bounds_min": [-3.0, 0.0, -0.45],
+      "bounds_max": [3.0, 2.4, 0.45],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["shelf", "display_backing"]
+    },
+    {
+      "id": "CRATE_STACK_2X2",
+      "file": "modules/CRATE_STACK_2X2.obj",
+      "collision_file": "collision/COLLISION_CRATE_STACK_2X2.obj",
+      "size": [2.4, 1.5, 2.0],
+      "bounds_min": [-1.2, 0.0, -1.0],
+      "bounds_max": [1.2, 1.5, 1.0],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["crate", "source_display"]
+    },
+    {
+      "id": "FRUIT_TRAY_3",
+      "file": "modules/FRUIT_TRAY_3.obj",
+      "collision_file": null,
+      "size": [3.2, 1.05, 1.2],
+      "bounds_min": [-1.6, 0.0, -0.6],
+      "bounds_max": [1.6, 1.05, 0.6],
+      "pivot": {"type": "display_mount_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "none",
+      "visual_mode": "display_only",
+      "roles": ["fruit", "display"]
+    },
+    {
+      "id": "LANTERN_POST_4",
+      "file": "modules/LANTERN_POST_4.obj",
+      "collision_file": "collision/COLLISION_LANTERN_POST_4.obj",
+      "size": [0.9, 4.7, 0.9],
+      "bounds_min": [-0.45, 0.0, -0.45],
+      "bounds_max": [0.45, 4.7, 0.45],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["lantern", "street_marker"]
+    },
+    {
+      "id": "STREET_EDGE_CURB_4",
+      "file": "modules/STREET_EDGE_CURB_4.obj",
+      "collision_file": "collision/COLLISION_STREET_EDGE_CURB_4.obj",
+      "size": [4.0, 0.45, 0.65],
+      "bounds_min": [-2.0, 0.0, -0.325],
+      "bounds_max": [2.0, 0.45, 0.325],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "walk_surface",
+      "visual_mode": "structural_visual",
+      "roles": ["street_edge", "curb"]
+    },
+    {
+      "id": "STREET_EDGE_DRAIN_4",
+      "file": "modules/STREET_EDGE_DRAIN_4.obj",
+      "collision_file": "collision/COLLISION_STREET_EDGE_DRAIN_4.obj",
+      "size": [4.0, 0.16, 0.3],
+      "bounds_min": [-2.0, 0.0, -0.15],
+      "bounds_max": [2.0, 0.16, 0.15],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "walk_surface",
+      "visual_mode": "structural_visual",
+      "roles": ["street_edge", "drain"]
+    },
+    {
+      "id": "FACADE_PANEL_6",
+      "file": "modules/FACADE_PANEL_6.obj",
+      "collision_file": "collision/COLLISION_FACADE_PANEL_6.obj",
+      "size": [6.0, 5.4, 0.3],
+      "bounds_min": [-3.0, 0.0, -0.15],
+      "bounds_max": [3.0, 5.4, 0.15],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["facade", "neighbor_shop_backing"]
+    },
+    {
+      "id": "SIGNBOARD_3",
+      "file": "modules/SIGNBOARD_3.obj",
+      "collision_file": null,
+      "size": [3.2, 1.0, 0.18],
+      "bounds_min": [-1.6, 0.0, -0.09],
+      "bounds_max": [1.6, 1.0, 0.09],
+      "pivot": {"type": "wall_mount_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "none",
+      "visual_mode": "display_only",
+      "roles": ["sign", "orientation"]
+    },
+    {
+      "id": "PLANTER_2",
+      "file": "modules/PLANTER_2.obj",
+      "collision_file": "collision/COLLISION_PLANTER_2.obj",
+      "size": [2.0, 0.95, 0.9],
+      "bounds_min": [-1.0, 0.0, -0.45],
+      "bounds_max": [1.0, 0.95, 0.45],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["street_edge", "soft_boundary"]
+    },
+    {
+      "id": "BOLLARD_05",
+      "file": "modules/BOLLARD_05.obj",
+      "collision_file": "collision/COLLISION_BOLLARD_05.obj",
+      "size": [0.5, 1.1, 0.5],
+      "bounds_min": [-0.25, 0.0, -0.25],
+      "bounds_max": [0.25, 1.1, 0.25],
+      "pivot": {"type": "ground_center", "local": [0.0, 0.0, 0.0]},
+      "collision_mode": "structural_proxy",
+      "visual_mode": "structural_visual",
+      "roles": ["street_edge", "boundary"]
+    }
+  ],
+  "future_private_play_gate": {
+    "precondition": "The v0.9.3 human service-loop gate is recorded or explicitly deferred; this candidate does not count as gameplay evidence.",
+    "sandbox": "Import one module plus its collision proxy into a disposable local 0/0 sandbox first. Confirm pivot, scale, material slots, collision, mobile camera, and service sightline before loading the complete vignette.",
+    "private_place_identity": {"PlaceId": 133099029551440, "GameId": 10646495069, "mode": "Edit", "root": "Workspace.PipilabuMarketEnvironmentCandidateV1"},
+    "bounded_private_test": [
+      "List Studio instances and assert the exact PlaceId/GameId inside the mutation.",
+      "Create only the candidate root beside the existing world; do not edit DogeAppleShop, Rojo mappings, or live gameplay scripts.",
+      "Walk the service lane and touch-test stall, awning, shelves, curb, planter, and lantern proxies; confirm display fruit/sign/stripe parts are non-collidable.",
+      "At classic third-person and mobile emulation, confirm the ready customer, counter, carried apple, and handoff remain readable from the authored approach.",
+      "Record human answers to sightline, scale, authoredness, obstruction, and voluntary replay questions; remove the root if the candidate weakens the service loop."
+    ],
+    "promotion": "Only a separate human decision after the bounded private test may mark a version approved; no automatic promotion, asset upload, publish, or public release is implied."
+  }
+}

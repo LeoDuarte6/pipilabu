@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily deduplicated Pipi Labu visual digest
+
+[Timer]
+OnCalendar=*-*-* 08..23:15:00 America/New_York
+Persistent=true
+RandomizedDelaySec=5m
+Unit=pipilabu-visual-digest.service
+
+[Install]
+WantedBy=timers.target

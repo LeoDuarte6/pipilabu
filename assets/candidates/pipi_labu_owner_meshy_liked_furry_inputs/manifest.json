@@ -1,0 +1,69 @@
+{
+  "contract": "PIPI_LABU_MESHY_OWNER_INPUTS_V2",
+  "preset": "liked_furry",
+  "source": "C:\\Users\\fricc\\.codex\\generated_images\\019fe42c-dfe6-7d92-9af5-c2513b92d144\\exec-b4f38c07-bef2-4630-8811-31566a4c21be.png",
+  "source_sha256": "13348AE0FFA503C430A7F3AE0EA02F94D451B2418792EC5C67F7945658BEA3B7",
+  "rights": "Original project-authored concept; no marketplace mesh or reel frame included.",
+  "views": [
+    {
+      "view": "front",
+      "crop_box": [
+        0,
+        45,
+        455,
+        790
+      ],
+      "output": "pipi_labu_owner_liked_furry_front.png",
+      "dimensions": [
+        1024,
+        1677
+      ],
+      "sha256": "FCD717E502B08F4139BE590BCAD920296C3725303708440F59610E9F0B953CFD"
+    },
+    {
+      "view": "profile_left",
+      "crop_box": [
+        470,
+        45,
+        915,
+        790
+      ],
+      "output": "pipi_labu_owner_liked_furry_profile_left.png",
+      "dimensions": [
+        1024,
+        1714
+      ],
+      "sha256": "0625C99F1E7A9ABE6C784BCD9F854B22D608A06AA92EBB5EA3D9C1CB563673D6"
+    },
+    {
+      "view": "rear",
+      "crop_box": [
+        930,
+        45,
+        1380,
+        790
+      ],
+      "output": "pipi_labu_owner_liked_furry_rear.png",
+      "dimensions": [
+        1024,
+        1695
+      ],
+      "sha256": "FE18953C8DCF6ADAC4CB9A7958EC9FB184AC44996D70601F69CC1FA73515F83E"
+    },
+    {
+      "view": "profile_right",
+      "crop_box": [
+        1400,
+        45,
+        1858,
+        790
+      ],
+      "output": "pipi_labu_owner_liked_furry_profile_right.png",
+      "dimensions": [
+        1024,
+        1666
+      ],
+      "sha256": "468941F7BDAFABFABB0CFD98ACA2F77BC2B9A6C9B83D3F1C4B09AFF0457F19AC"
+    }
+  ]
+}

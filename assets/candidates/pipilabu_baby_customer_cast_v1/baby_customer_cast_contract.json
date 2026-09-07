@@ -1,0 +1,139 @@
+{
+  "candidate_id": "PIPILABU-BABY-CUSTOMER-CAST-V1",
+  "ticket": "ART-002",
+  "display_name": "Pipi Labu Baby Customer Cast v1",
+  "status": "REVIEW_CANDIDATE",
+  "approval": {
+    "ApprovedForPresentation": false,
+    "HumanVisualVerdictRecorded": false,
+    "StudioImported": false,
+    "GameplayChanged": false,
+    "CloudTouched": false,
+    "Uploaded": false,
+    "Published": false
+  },
+  "purpose": "A small, differentiated baby customer cast study that improves queue life and role readability without changing the canonical customer rig or gameplay loop.",
+  "source_truth": {
+    "base_asset": "assets/models/pipi_labu_customer_v4_side_ear_candidate/pipilabu_shiba_customer_v4.blend",
+    "base_fbx": "assets/models/pipi_labu_customer_v4_side_ear_candidate/pipilabu_shiba_customer_v4.fbx",
+    "base_model_version": "v4",
+    "base_generator_version": "2.3.0",
+    "base_bounds_meters_approx": [2.25, 2.05, 2.5],
+    "base_triangles": 21326,
+    "base_actions": ["Pipilabu_Idle", "Pipilabu_Receive", "Pipilabu_Hold", "Pipilabu_Happy", "Pipilabu_TurnLeave", "Pipilabu_Run"],
+    "reuse_rule": "Use this base face/material/rig language for future variants; do not edit or overwrite the referenced candidate in this ticket."
+  },
+  "reference_translation": {
+    "accepted": [
+      "small customer bodies with a strong size contrast against the oversized owner",
+      "fruit and apple receipt as the highest-salience social event",
+      "soft rendered caramel/cream urajiro, low eyes, compact muzzle, matte fur, glossy eyes and nose",
+      "anthropomorphic queue roles that can be understood at a glance",
+      "gray-board character-sheet clarity as presentation structure only"
+    ],
+    "contextual": [
+      "low four-legged baby-loaf anatomy from the supplied clips",
+      "motion cues that explain eagerness without becoming UI decoration",
+      "Ruby/Honeygold color accents as order/receipt context, never as a new gameplay rule"
+    ],
+    "rejected": [
+      "prominent upright or top-set ears",
+      "cream forehead mask",
+      "new player avatar or owner identity",
+      "role variation that changes collision, queue membership, patience timing, or service authority",
+      "generic mascot-card grid, pasted video pixels, watermark, logo, or social UI"
+    ]
+  },
+  "shared_silhouette_contract": {
+    "crown": "uninterrupted circular head/crown from front and three-quarter views",
+    "ear_policy": "tiny lateral fur-set hints swallowed by the contour; no geometry may rise above the crown",
+    "ear_placement": "lateral_embedded_only",
+    "face": "low dark oval eyes, compact black nose, cream lower muzzle, small curved mouth",
+    "coat": "caramel crown/back with soft cream urajiro lower cheeks, muzzle, belly, and paws",
+    "material": {"fur_roughness": [0.90, 0.95], "eye_nose_roughness": [0.15, 0.30], "metalness": 0.0},
+    "scale_band": {"body_scale_min": 0.90, "body_scale_max": 1.10, "head_scale_min": 0.96, "head_scale_max": 1.06},
+    "mobile_read_rule": "At queue distance, each role must read as the same Pipi Labu baby family before its expression detail is read."
+  },
+  "roles": [
+    {
+      "id": "RubySprout",
+      "display_name": "Ruby Sprout",
+      "queue_read": "curious newcomer asking for the first Ruby apple",
+      "primary_emotion": "curious / hopeful",
+      "body_scale": 0.92,
+      "head_scale": 1.05,
+      "gaze": "front with a slight leftward pull toward the fruit source",
+      "eye_treatment": "open low ovals with clear paired catchlights",
+      "paw_pose": "left paw lifted in a small asking gesture; right paw grounded",
+      "apple_state": "no apple held; Ruby marker is a small authored accent only",
+      "silhouette_delta": "slightly smaller body and larger head preserve baby-newcomer vulnerability",
+      "review_hypothesis": "A compact asking pose makes the order readable before the player reaches the customer."
+    },
+    {
+      "id": "HoneygoldHugger",
+      "display_name": "Honeygold Hugger",
+      "queue_read": "served customer visibly holding the Honeygold apple",
+      "primary_emotion": "relieved / delighted",
+      "body_scale": 1.05,
+      "head_scale": 1.00,
+      "gaze": "softly toward the received apple",
+      "eye_treatment": "relaxed smiling eyes with warm catchlights",
+      "paw_pose": "both paws close around the apple at chest height",
+      "apple_state": "Honeygold apple received and held",
+      "silhouette_delta": "slightly rounder torso gives the hold pose a stable cradle",
+      "review_hypothesis": "The hold pose should make receipt and possession legible without stealing the handoff peak."
+    },
+    {
+      "id": "ShyLoaf",
+      "display_name": "Shy Loaf",
+      "queue_read": "quiet customer waiting without becoming visually inert",
+      "primary_emotion": "bashful / patient",
+      "body_scale": 1.08,
+      "head_scale": 0.98,
+      "gaze": "downward and slightly aside",
+      "eye_treatment": "half-lowered ovals with offset catchlights",
+      "paw_pose": "paws tucked close under the muzzle; low loaf stance",
+      "apple_state": "no apple held",
+      "silhouette_delta": "wider, lower torso and tucked paws create a grounded loaf contrast",
+      "review_hypothesis": "A quieter grounded role can diversify the line without adding top-heavy or noisy detail."
+    },
+    {
+      "id": "HurryWaddle",
+      "display_name": "Hurry Waddle",
+      "queue_read": "eager regular leaning into the next handoff",
+      "primary_emotion": "eager / bright",
+      "body_scale": 0.95,
+      "head_scale": 1.03,
+      "gaze": "front, fixed on the service point",
+      "eye_treatment": "slightly wider ovals with clear catchlights",
+      "paw_pose": "one paw lifted and one paw braced; short forward lean",
+      "apple_state": "no apple held",
+      "silhouette_delta": "slightly taller stance and forward lean imply motion without changing the base rig",
+      "review_hypothesis": "One restrained eager pose can create queue energy while leaving the ready customer and apple as the focal event."
+    }
+  ],
+  "review_artifact": {
+    "file": "baby_customer_cast_sheet.png",
+    "width": 1600,
+    "height": 1000,
+    "background": "warm neutral gray board with restrained cream/amber annotation",
+    "source": "deterministic Pillow drawing from this contract; no external image pixels"
+  },
+  "future_integration_gate": {
+    "precondition": "The open v0.9.3 service-loop gate is recorded or explicitly deferred; this cast sheet cannot count as gameplay evidence.",
+    "visual_review": [
+      "Leo and Jon compare the four roles at the generated board scale and at a mobile-sized thumbnail.",
+      "Reject any role whose ears read above the circular crown, whose coat breaks the existing material hierarchy, or whose pose competes with the apple contact.",
+      "Record whether each role is identifiable in one second at queue distance and whether the line feels varied rather than noisy."
+    ],
+    "sandbox_import": "If the board survives visual review, generate one bounded role variant from the existing side-ear v4 base into a disposable local 0/0 sandbox. Keep the existing v4 FBX, maps, six actions, attachments, and collision marker as source truth until the variant passes technical checks.",
+    "private_place_identity": {"PlaceId": 133099029551440, "GameId": 10646495069, "mode": "Edit", "root": "ServerStorage.PipilabuCandidateAssets.BabyCustomerCastV1"},
+    "private_play_test": [
+      "List Studio instances and assert the exact PlaceId/GameId inside the bounded mutation.",
+      "Keep queue membership, prompt rules, patience, order data, handoff timing, rewards, and audio selection unchanged.",
+      "Review one complete ten-customer shift on mobile and desktop camera distances: role recognition, ready-customer targeting, apple receipt/hold, collision readability, and line direction.",
+      "Remove the candidate root if any role slows targeting, hides the apple, creates collision ambiguity, or makes customers feel like a generic crowd."
+    ],
+    "promotion": "Only a later explicit Leo/Jon visual decision followed by sandbox and exact-private-place validation may mark a role approved; no automatic promotion, upload, publish, or canonical replacement is implied."
+  }
+}

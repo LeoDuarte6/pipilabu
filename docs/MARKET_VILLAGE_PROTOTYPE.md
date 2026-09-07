@@ -1,6 +1,6 @@
 # Market Village Prototype
 
-This is an additive, local-only presentation prototype for Pipilabu's future compact Japanese market/city-village direction. It keeps `Workspace.DogeAppleShop` as the only active gameplay contract and creates a separate `Workspace.PipilabuMarketVillagePrototype` folder beside it.
+This is an additive presentation prototype for Pipilabu's future compact Japanese market/city-village direction. It may run in the local fallback file or the one exact private Pipilabu cloud place. It keeps `Workspace.DogeAppleShop` as the only active gameplay contract and creates a separate `Workspace.PipilabuMarketVillagePrototype` folder beside it.
 
 ## What the prototype answers
 
@@ -15,7 +15,7 @@ Run `scripts/build-market-village-prototype.luau` through Studio MCP or the Stud
 
 The script has two safety boundaries:
 
-1. It asserts `PlaceId == 0` and `GameId == 0`.
+1. It asserts either local IDs (`0` / `0`) or the exact private Pipilabu IDs (`PlaceId 133099029551440`, `GameId 10646495069`) and rejects every other experience.
 2. It deletes only a pre-existing folder with the exact prototype root name, then recreates that folder. It never edits, reparents, or replaces `Workspace.DogeAppleShop`, the Baseplate, Lighting, or SpawnLocation.
 
 The whole lane is removable with one bounded local deletion of `Workspace.PipilabuMarketVillagePrototype`. No asset upload, publish, remote, DataStore, multiplayer authority, or Blender workflow is involved.

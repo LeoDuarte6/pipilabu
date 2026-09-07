@@ -1,0 +1,21 @@
+# ART-003 authored material roles; review-only OBJ/MTL output.
+newmtl AppleSkin_Ruby
+Kd 0.823529 0.192157 0.164706
+Ks 0.160000 0.160000 0.160000
+Ns 119
+d 1.000000
+illum 2
+
+newmtl Marker_Paper
+Kd 0.956863 0.905882 0.807843
+Ks 0.040000 0.040000 0.040000
+Ns 22
+d 1.000000
+illum 2
+
+newmtl Stem_Wood
+Kd 0.321569 0.207843 0.121569
+Ks 0.040000 0.040000 0.040000
+Ns 40
+d 1.000000
+illum 2

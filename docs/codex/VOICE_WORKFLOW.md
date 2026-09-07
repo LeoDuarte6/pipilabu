@@ -20,7 +20,7 @@ The separate Discord input is important. If Discord uses XSplit as its microphon
 - Discord speaker: explicitly `Headphones (HyperX Cloud III)`.
 - Codex Settings > Voice > Microphone: `XSplit Audio (Broadcaster)`.
 
-Run `scripts/start-voice-bridge.ps1` before a shared session. XSplit may be minimized, but it must remain running.
+Run the repo-owned `boot-jon-leo-roblox` skill before a shared session. It invokes `scripts/start-voice-bridge.ps1` automatically, reusing XSplit when already open or launching it minimized when absent. Use the voice script directly only for a bounded voice-only recovery. XSplit may be minimized, but it must remain running.
 
 ## Codex modes
 

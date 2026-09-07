@@ -10,9 +10,18 @@ This repository is the durable code layer. Roblox Studio is the live world edito
 2. The skill runs the bounded boot helper, which starts or reuses the one Rojo server on `localhost:34872`.
 3. Use `places/JonAndLeoDevelopment.rbxlx` only as the local fallback; normal sessions use the verified private cloud place.
 
-## Start a shared voice session
+## Clone on a new development computer
 
-1. Run `powershell -ExecutionPolicy Bypass -File scripts/start-voice-bridge.ps1`.
+1. Accept the private GitHub invitation for <https://github.com/LeoDuarte6/pipilabu>.
+2. Install Git LFS and run `git lfs install` before cloning.
+3. Clone with `git clone https://github.com/LeoDuarte6/pipilabu.git`.
+4. Read `AGENTS.md`, this README, `docs/codex/HANDOFF.md`, and `docs/codex/PLAYTEST_QUEUE.md` before changing code.
+
+## Optional Leo-only shared voice session
+
+Jon does not need this. The preserved XSplit route was built for Leo's older HyperX setup and must be reverified against Leo's current QuadCast before reuse.
+
+1. Run `scripts/start-voice-bridge.ps1` only after the current hardware route is verified.
 2. Leave XSplit Broadcaster running, minimized if preferred.
 3. Discord stays on the physical HyperX microphone and headphones.
 4. Codex uses `XSplit Audio (Broadcaster)` in Settings > Voice.
@@ -32,9 +41,9 @@ Edit scripts on disk. Do not use Studio or MCP script editing for Rojo-owned cod
 
 ## Current status
 
-- Local Git repository with no remote. The private Roblox experience is `Pipilabu` (`GameId 10646495069`, `PlaceId 133099029551440`).
+- Private GitHub repository: <https://github.com/LeoDuarte6/pipilabu>. Large binary art/model/audio files are stored through Git LFS. The private Roblox experience is `Pipilabu` (`GameId 10646495069`, `PlaceId 133099029551440`).
 - Jon's `jwallyguy` and `Awchism` accounts have Edit access.
-- Jon is recorded as `jawnwalworth-tech` in `CONTRIBUTORS.md` and `.github/CODEOWNERS`; see `docs/codex/JON_ONBOARDING.md`. A GitHub remote and invitation do not exist yet.
+- Jon is recorded as `jawnwalworth-tech` in `CONTRIBUTORS.md` and `.github/CODEOWNERS`; see `docs/codex/JON_ONBOARDING.md`. A write-access GitHub invitation has been issued.
 - Rojo is connected to the correct Studio window at `localhost:34872`; always verify PlaceId before using Studio MCP because an older unrelated `Pipilabu` may also be open.
 - Rojo 7.6.1, Lune 0.10.4, and Wally 0.3.2 are pinned through Rokit.
 - The first playable is **Doge Apple Shop**: take one visible apple, toss it to the ready small Doge, earn a coin, and cycle the queue.

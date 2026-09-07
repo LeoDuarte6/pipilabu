@@ -1,5 +1,7 @@
 # Jon onboarding
 
+The full machine and Codex handoff is `docs/codex/JON_CODEX_BOOTSTRAP_BRIEF.md`. This short file remains the identity/access summary.
+
 ## Identity and access
 
 - Name: Jon Walworth
@@ -17,11 +19,11 @@ Never develop against the older duplicate `Pipilabu` (`PlaceId 104936800417970`)
 
 ## Current collaboration state
 
-The Git repository exists only on Leo's desktop at `C:\Users\fricc\Documents\Roblox\jon-and-leo-development`; it has no GitHub remote yet. Jon is recorded in `CONTRIBUTORS.md` and `.github/CODEOWNERS`, but cannot clone or push until Leo explicitly creates the remote and sends the invitation.
+The complete current repository is private at <https://github.com/LeoDuarte6/pipilabu>. Jon has been invited as `jawnwalworth-tech` with write access. The source includes the current `v0.9.9-dev` work and uses Git LFS for large binary art/model/audio files.
 
-Once the remote exists, Jon's independent lane is:
+Jon's independent lane is:
 
-1. Clone the repository and install the pinned Rokit tools.
+1. Accept the GitHub invitation, install Git LFS, clone the repository, and install the pinned Rokit tools.
 2. Open the shared cloud `Pipilabu` and confirm its PlaceId.
 3. Start the repository's Rojo server and connect Studio to it.
 4. Enable Studio as an MCP server for his own Codex task.

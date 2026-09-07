@@ -1,0 +1,125 @@
+{
+  "approval": {
+    "canonical_asset_changed": false,
+    "cloud_touched": false,
+    "gameplay_changed": false,
+    "human_approved": false,
+    "published": false,
+    "studio_imported": false,
+    "uploaded": false
+  },
+  "artifacts": [
+    {
+      "bytes": 129143,
+      "dimensions": [
+        1800,
+        1120
+      ],
+      "mode": "RGB",
+      "path": "pear_cat_harvest_event_sheet.png",
+      "sha256": "e7bf4623cf7649646caa7791d3b8533ae5e5e45d4be7221e83d9215065142cbf"
+    },
+    {
+      "bytes": 33303,
+      "dimensions": [
+        960,
+        420
+      ],
+      "mode": "RGB",
+      "path": "pear_cat_harvest_event_mobile_strip.png",
+      "sha256": "7a68a2259862fbec1dd6920638420114db4d26bd634e35b48591bb1021bb87a0"
+    }
+  ],
+  "candidate_id": "PIPILABU-PEAR-CAT-HARVEST-EVENT-V1",
+  "contract": {
+    "bytes": 10523,
+    "path": "pear_cat_harvest_event_contract.json",
+    "sha256": "2ccbd469a6065de77fa5e81529335c87ce900f915e2f00a968ba8e561214c327"
+  },
+  "render": {
+    "font_paths": [
+      "C:/Windows/Fonts/segoeui.ttf",
+      "C:/Windows/Fonts/segoeuib.ttf"
+    ],
+    "identity_palette_audit": {
+      "body_tone": "warm tan/golden",
+      "crop_box": [
+        200,
+        500,
+        520,
+        830
+      ],
+      "fruit_context_only": true,
+      "green_dominant_body": false,
+      "greenish_pixels": 13197,
+      "warm_tan_or_golden_pixels": 63741
+    },
+    "mobile_strip": {
+      "dimensions": [
+        960,
+        420
+      ],
+      "mode": "RGB"
+    },
+    "review_sheet": {
+      "dimensions": [
+        1800,
+        1120
+      ],
+      "mode": "RGB"
+    }
+  },
+  "runtime_mutation": {
+    "canonical_assets_changed": false,
+    "cloud_touched": false,
+    "gameplay_luau_changed": false,
+    "published": false,
+    "rojo_changed": false,
+    "studio_changed": false,
+    "uploaded": false
+  },
+  "script_version": "1.0.0",
+  "source_scan": {
+    "fallback_brief": {
+      "characters": 941,
+      "path": "<user-supplied ART-006 fallback brief>",
+      "sha256": "1b14b2ea52ec5bb99e378f9901894a970ee16f1596b7a30961ef2ede2a911542"
+    },
+    "fallback_brief_used": true,
+    "local_doctrine_refs": [
+      {
+        "bytes": 17180,
+        "path": "docs/IDEA_LEDGER.md",
+        "reason": "canonical tiny-side-ear dog identity, gated orchard sourcing, and reusing existing verbs",
+        "sha256": "674cb18fa7883f383c901a5dcabc004e10dfa09bd40042d386096130b5c8221a"
+      },
+      {
+        "bytes": 4185,
+        "path": "docs/CHARACTER_ART_DIRECTION.md",
+        "reason": "approved rendered Pipi Labu face/material language and reference translation rules",
+        "sha256": "f6fafecf76723ccec1dca8b8a8119f3aa6682a29d676a86560a2df4f02d697dd"
+      },
+      {
+        "bytes": 4496,
+        "path": "docs/GAME_CONCEPT.md",
+        "reason": "serve/contact/receipt loop and future rare-event boundaries",
+        "sha256": "342ee92c93a28ac73d0158b9d3e8f6d4c03e4205796efa1fae83b732d8341b84"
+      },
+      {
+        "bytes": 7923,
+        "path": "docs/art/OVERNIGHT_ART_LEDGER.md",
+        "reason": "isolated review-candidate lane and no-promotion rule",
+        "sha256": "831dd2b1e988840c43b0fb0832255676d473666dab9807a2475127e16790bada"
+      },
+      {
+        "bytes": 3971,
+        "path": "docs/codex/PLAYTEST_QUEUE.md",
+        "reason": "current private-play identity and gameplay gate context",
+        "sha256": "778beba0d3bcc3e6f13a6ee9e03c75eebc64efd69345b2439ff27ee1fe6ae327"
+      }
+    ],
+    "raw_attachment_status": "inaccessible_in_isolated_worktree",
+    "raw_reference_matches": []
+  },
+  "ticket": "ART-006"
+}

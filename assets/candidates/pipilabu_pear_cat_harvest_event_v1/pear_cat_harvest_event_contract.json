@@ -1,0 +1,184 @@
+{
+  "candidate_id": "PIPILABU-PEAR-CAT-HARVEST-EVENT-V1",
+  "ticket": "ART-006",
+  "title": "Pear-cat harvest-event study",
+  "status": "REVIEW_CANDIDATE",
+  "purpose": "Explore one rare orchard customer or harvest surprise that reuses the proven reach, carry, serve, contact, and receipt verbs without replacing the Pipi Labu owner, player, or baby customer cast.",
+  "approval": {
+    "human_approved": false,
+    "studio_imported": false,
+    "gameplay_changed": false,
+    "canonical_asset_changed": false,
+    "cloud_touched": false,
+    "uploaded": false,
+    "published": false
+  },
+  "source": {
+    "raw_attachment_status": "inaccessible_in_isolated_worktree",
+    "raw_reference_matches": [],
+    "fallback_brief_used": true,
+    "fallback_brief_sha256": "recorded_in_generation_report",
+    "fallback_brief": "Jon-supplied visual correction for ART-006: a warm tan/golden, nearly spherical orchard cat/loaf with extremely tiny side-folded ears, feline eyes, nose, mouth, whiskers, paws, and heavy hand-squash. The account/reference nickname may say pear-cat, but the visual essence is a round golden cat harvested from a tree and gathered in a basket, not a literal green pear or stemmed fruit creature. It must remain clearly distinct from the Pipi Labu dog cast and never replace the owner, babies, or player. Explore it only as a rare orchard customer, harvest surprise, or future sourcing encounter reusing reach/carry/serve verbs. Re-author an original, rights-safe design; do not copy watermarks, Instagram UI, or a specific creator's exact asset. Fruit may remain as surrounding orchard context or a receipt prop. Show silhouette/readability at Roblox gameplay scale and at least three expressions or states relevant to harvest/contact/receipt.",
+    "local_doctrine_refs": [
+      {
+        "path": "docs/IDEA_LEDGER.md",
+        "reason": "canonical tiny-side-ear dog identity, gated orchard sourcing, and reusing existing verbs"
+      },
+      {
+        "path": "docs/CHARACTER_ART_DIRECTION.md",
+        "reason": "approved rendered Pipi Labu face/material language and reference translation rules"
+      },
+      {
+        "path": "docs/GAME_CONCEPT.md",
+        "reason": "serve/contact/receipt loop and future rare-event boundaries"
+      },
+      {
+        "path": "docs/art/OVERNIGHT_ART_LEDGER.md",
+        "reason": "isolated review-candidate lane and no-promotion rule"
+      },
+      {
+        "path": "docs/codex/PLAYTEST_QUEUE.md",
+        "reason": "current private-play identity and gameplay gate context"
+      }
+    ]
+  },
+  "identity_contract": {
+    "role": "rare_orchard_customer_or_harvest_surprise",
+    "family_boundary": "The pear-cat nickname is a ticket label, not literal fruit anatomy. The golden orchard cat is not a Pipi Labu owner, player avatar, baby customer, or replacement canonical cast member.",
+    "visual_distinction": [
+      "warm tan/golden cat-loaf palette rather than the approved Pipi Labu caramel/cream dog palette",
+      "near-spherical heavy hand-squash with a broad grounded lower edge; fruit is context, not body anatomy",
+      "narrow feline eyes, cat nose/mouth, whiskers, and paw language rather than the dog muzzle/urajiro mask",
+      "extremely tiny lateral folded ear hints swallowed into the fur contour; no top or upright ears"
+    ],
+    "rights_safety": "Original authored study only. Do not reproduce watermarks, social UI, a named creator's composition, or a specific reference asset."
+  },
+  "silhouette_contract": {
+    "body_read": "near_spherical heavy hand-squashed cat loaf with a broad grounded lower edge and no literal pear taper",
+    "body_bounds_studs": [
+      2.25,
+      2.35,
+      2.1
+    ],
+    "pivot": "ground_center_under_body",
+    "ear_rule": "two extremely tiny lateral side-folded hints remain below the crown tangent and nearly disappear into the fur contour; no top or upright ears",
+    "forbidden_geometry": [
+      "prominent top ears",
+      "upright triangular ears",
+      "literal green pear body",
+      "stem or leaf growing from the cat crown",
+      "dog muzzle or cream forehead mask",
+      "default Roblox avatar head",
+      "replacement owner/player/baby proportions"
+    ],
+    "mobile_read_test": "At a 420 px review thumbnail and an estimated 10-14 stud gameplay distance, the tan/golden circular cat-loaf, nearly hidden side ears, feline eye direction/whiskers, and hand-held receipt fruit must read before facial detail."
+  },
+  "material_contract": {
+    "direction": "Approved rendered v4 quality remains the production bar; this flat board is a decision surface, not a replacement material asset.",
+    "base": "warm tan/golden fur-loaf with honey light and toasted brown shadow",
+    "accent": "ruby contact fruit, muted plum feline features, whisker strokes, bark brown basket/tree context",
+    "finish": "soft authored fur/loaf response with eye and nose catchlights in any future render",
+    "do_not": [
+      "copy the Pipi Labu caramel/cream urajiro hierarchy as the main identity",
+      "make the body green, literal pear-shaped, or stemmed",
+      "add noisy rarity particles or UI clutter",
+      "make the fruit prop visually compete with the receiving face"
+    ]
+  },
+  "scale_contract": {
+    "candidate_body_height_studs": 2.35,
+    "candidate_body_width_studs": 2.25,
+    "held_contact_fruit_diameter_studs": 1.3,
+    "suggested_floor_clearance_studs": 0.03,
+    "suggested_camera_distance_studs": {
+      "mobile": 12.0,
+      "desktop": 18.0
+    },
+    "gameplay_scale_rules": [
+      "body silhouette remains one readable golden cat-loaf beside the existing 1.3 stud apple",
+      "hands/paws never hide the contact fruit completely",
+      "tree and basket are context landmarks, not collision clutter",
+      "future rig may use the existing customer presentation verbs but must be authored as a separate identity"
+    ]
+  },
+  "states": [
+    {
+      "id": "TREE_HANG",
+      "label": "TREE HANG",
+      "emotion": "resting / watchful",
+      "context": "cat-loaf hangs or rests on an orchard branch among apples",
+      "pose": "round body nestled against the branch, paws tucked, eyes soft but alive",
+      "interaction": "arrival or discovery only; no new prompt or economy rule",
+      "mobile_read": "gold cat-loaf + branch/apples + tiny ears + relaxed feline eyes"
+    },
+    {
+      "id": "HAND_SQUASH",
+      "label": "HAND SQUASH",
+      "emotion": "held / surprised",
+      "context": "harvester hands gently gather and compress the soft round cat-loaf",
+      "pose": "two visible hands press the sides without hiding the feline face",
+      "interaction": "reuses carry/hold; no new capture or squeeze mechanic is introduced here",
+      "mobile_read": "side hands + compressed gold loaf + narrow feline eyes"
+    },
+    {
+      "id": "BASKET_CLUSTER",
+      "label": "BASKET CLUSTER",
+      "emotion": "clustered / cozy",
+      "context": "cat-loaf rests in a basket cluster with gathered apples",
+      "pose": "body stays circular and grounded while paws nestle among fruit context",
+      "interaction": "reuses carry/hold; basket is a context grouping, not a new inventory system",
+      "mobile_read": "basket rim + gold loaf + surrounding apples"
+    },
+    {
+      "id": "RECEIPT_DELIGHT",
+      "label": "RECEIPT",
+      "emotion": "delight / receives",
+      "context": "serve/contact is the sensory peak; a Ruby apple remains visible between paws",
+      "pose": "both paws frame the receipt fruit without covering the face",
+      "interaction": "reuses serve/contact/hold and existing receipt language",
+      "mobile_read": "red receipt fruit + feline mouth + eye catchlights"
+    }
+  ],
+  "mechanic_contract": {
+    "verb_sequence": [
+      "reach",
+      "carry",
+      "serve",
+      "contact",
+      "hold/receipt"
+    ],
+    "sensory_peak": "RECEIPT_DELIGHT",
+    "future_encounter_shape": "one rare optional orchard customer or harvest surprise that can be toggled off by default",
+    "new_mechanics_added": false,
+    "future_sourcing_rule": "Do not implement sourcing, plucking, rarity, economy, queue, patience, reward, or audio changes from this sheet alone.",
+    "sequence_note": "The golden orchard cat may enter as a customer or discovery beat, but the existing apple handoff remains the legible center of the event."
+  },
+  "artifacts": {
+    "review_sheet": "pear_cat_harvest_event_sheet.png",
+    "mobile_strip": "pear_cat_harvest_event_mobile_strip.png",
+    "generator": "scripts/generate_pear_cat_harvest_event.py",
+    "verifier": "scripts/verify_pear_cat_harvest_event.py",
+    "generation_report": "generation_report.json",
+    "verification_report": "verification/structural_report.json"
+  },
+  "future_gate": {
+    "human_visual_gate": "Leo and Jon must review the full sheet and mobile strip at native size and thumbnail size, explicitly deciding accept, revise, or reject. Approval must confirm the warm tan/golden orchard cat reads as feline and distinct from the Pipi Labu dog cast, no top/upright ears, readable contact/receipt state, and no owner/player/baby replacement reading.",
+    "private_play_gate": "Only after visual acceptance and a separately recorded gameplay gate may one disposable local 0/0 sandbox test the candidate at PlaceId 133099029551440 / GameId 10646495069, after verifying the intended Studio instance and Edit access. The test must reuse existing reach/carry/serve/hold verbs with rarity disabled by default.",
+    "test_questions": [
+      "Does the golden orchard cat read as a distinct feline encounter at mobile camera distance within one second?",
+      "Does the red apple remain visible at contact without hiding paws, face, or receipt?",
+      "Does the encounter preserve queue, prompt, collision, sightline, and service timing?",
+      "Does any harvest context improve surprise without becoming a new chore or noisy event system?"
+    ],
+    "rollback": "Remove the candidate root from the disposable sandbox if it reads as the dog cast, steals attention from serve/contact, adds collision ambiguity, slows targeting, or requires new mechanics to be understood."
+  },
+  "out_of_scope": [
+    "canonical character replacement",
+    "player rig or owner change",
+    "baby customer cast change",
+    "gameplay Luau, Rojo mapping, Studio, place, or cloud changes",
+    "asset upload or publish",
+    "new sourcing, rarity, economy, queue, patience, reward, HUD, or audio mechanics",
+    "final Blender mesh, PBR maps, rig, animation, collision, or import claim"
+  ]
+}

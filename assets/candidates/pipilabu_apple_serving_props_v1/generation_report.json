@@ -1,0 +1,250 @@
+{
+  "generator_version": "1.0.0",
+  "candidate_id": "PIPILABU-APPLE-SERVING-PROP-KIT-V1",
+  "ticket": "ART-003",
+  "module_count": 7,
+  "module_metrics": {
+    "APPLE_RUBY_HANDOFF_1_3": {
+      "file": "APPLE_RUBY_HANDOFF_1_3.obj",
+      "vertices": 124,
+      "faces": 144,
+      "triangles": 234,
+      "bounds_min": [
+        -0.65,
+        -0.52,
+        -0.65
+      ],
+      "bounds_max": [
+        0.65,
+        0.8,
+        0.65
+      ],
+      "materials": [
+        "AppleSkin_Ruby",
+        "Leaf_Muted",
+        "Stem_Wood"
+      ]
+    },
+    "APPLE_HONEYGOLD_HANDOFF_1_3": {
+      "file": "APPLE_HONEYGOLD_HANDOFF_1_3.obj",
+      "vertices": 124,
+      "faces": 144,
+      "triangles": 234,
+      "bounds_min": [
+        -0.65,
+        -0.52,
+        -0.65
+      ],
+      "bounds_max": [
+        0.65,
+        0.8,
+        0.65
+      ],
+      "materials": [
+        "AppleSkin_Honeygold",
+        "Leaf_Muted",
+        "Stem_Wood"
+      ]
+    },
+    "CRATE_RUBY_6X2_5": {
+      "file": "CRATE_RUBY_6X2_5.obj",
+      "vertices": 128,
+      "faces": 96,
+      "triangles": 192,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -2.5
+      ],
+      "bounds_max": [
+        3.0,
+        2.5,
+        2.5
+      ],
+      "materials": [
+        "AppleSkin_Ruby",
+        "Crate_DarkWood",
+        "Crate_WarmWood"
+      ]
+    },
+    "CRATE_HONEYGOLD_6X2_5": {
+      "file": "CRATE_HONEYGOLD_6X2_5.obj",
+      "vertices": 128,
+      "faces": 96,
+      "triangles": 192,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -2.5
+      ],
+      "bounds_max": [
+        3.0,
+        2.5,
+        2.5
+      ],
+      "materials": [
+        "AppleSkin_Honeygold",
+        "Crate_DarkWood",
+        "Crate_WarmWood"
+      ]
+    },
+    "COUNTER_TRAY_3X1_6": {
+      "file": "COUNTER_TRAY_3X1_6.obj",
+      "vertices": 48,
+      "faces": 36,
+      "triangles": 72,
+      "bounds_min": [
+        -1.6,
+        0.0,
+        -0.8
+      ],
+      "bounds_max": [
+        1.6,
+        0.32,
+        0.8
+      ],
+      "materials": [
+        "Crate_DarkWood",
+        "Crate_WarmWood",
+        "Tray_Cream"
+      ]
+    },
+    "PRICE_MARKER_RUBY_1X0_75": {
+      "file": "PRICE_MARKER_RUBY_1X0_75.obj",
+      "vertices": 24,
+      "faces": 18,
+      "triangles": 36,
+      "bounds_min": [
+        -0.5,
+        0.0,
+        -0.06
+      ],
+      "bounds_max": [
+        0.5,
+        0.75,
+        0.06
+      ],
+      "materials": [
+        "AppleSkin_Ruby",
+        "Marker_Paper",
+        "Stem_Wood"
+      ]
+    },
+    "PRICE_MARKER_HONEYGOLD_1X0_75": {
+      "file": "PRICE_MARKER_HONEYGOLD_1X0_75.obj",
+      "vertices": 24,
+      "faces": 18,
+      "triangles": 36,
+      "bounds_min": [
+        -0.5,
+        0.0,
+        -0.06
+      ],
+      "bounds_max": [
+        0.5,
+        0.75,
+        0.06
+      ],
+      "materials": [
+        "AppleSkin_Honeygold",
+        "Marker_Paper",
+        "Stem_Wood"
+      ]
+    },
+    "COLLISION_CRATE_6X2_5": {
+      "file": "COLLISION_CRATE_6X2_5.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "bounds_min": [
+        -3.0,
+        0.0,
+        -2.5
+      ],
+      "bounds_max": [
+        3.0,
+        2.5,
+        2.5
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    }
+  },
+  "collision_metrics": {
+    "file": "COLLISION_CRATE_6X2_5.obj",
+    "vertices": 8,
+    "faces": 6,
+    "triangles": 12,
+    "bounds_min": [
+      -3.0,
+      0.0,
+      -2.5
+    ],
+    "bounds_max": [
+      3.0,
+      2.5,
+      2.5
+    ],
+    "materials": [
+      "CollisionProxy"
+    ]
+  },
+  "assembly_metrics": {
+    "file": "apple_serving_prop_assembly.obj",
+    "vertices": 600,
+    "faces": 552,
+    "triangles": 996,
+    "bounds_min": [
+      -7.25,
+      0.0,
+      -2.5
+    ],
+    "bounds_max": [
+      7.25,
+      3.55,
+      4.6
+    ],
+    "materials": [
+      "AppleSkin_Honeygold",
+      "AppleSkin_Ruby",
+      "Crate_DarkWood",
+      "Crate_WarmWood",
+      "Leaf_Muted",
+      "Marker_Paper",
+      "Stem_Wood",
+      "Tray_Cream"
+    ]
+  },
+  "review_artifact": {
+    "file": "apple_serving_props_sheet.png",
+    "width": 1800,
+    "height": 1100,
+    "sha256": "9101ea506e30139ed1487b999fb4d4f2cbb192bfb4788d8f3def97f8ad92241d"
+  },
+  "generated_files": [
+    "apple_serving_prop_assembly.mtl",
+    "apple_serving_prop_assembly.obj",
+    "apple_serving_props_sheet.png",
+    "assembly_layout.json",
+    "collision/COLLISION_CRATE_6X2_5.mtl",
+    "collision/COLLISION_CRATE_6X2_5.obj",
+    "modules/APPLE_HONEYGOLD_HANDOFF_1_3.mtl",
+    "modules/APPLE_HONEYGOLD_HANDOFF_1_3.obj",
+    "modules/APPLE_RUBY_HANDOFF_1_3.mtl",
+    "modules/APPLE_RUBY_HANDOFF_1_3.obj",
+    "modules/COUNTER_TRAY_3X1_6.mtl",
+    "modules/COUNTER_TRAY_3X1_6.obj",
+    "modules/CRATE_HONEYGOLD_6X2_5.mtl",
+    "modules/CRATE_HONEYGOLD_6X2_5.obj",
+    "modules/CRATE_RUBY_6X2_5.mtl",
+    "modules/CRATE_RUBY_6X2_5.obj",
+    "modules/PRICE_MARKER_HONEYGOLD_1X0_75.mtl",
+    "modules/PRICE_MARKER_HONEYGOLD_1X0_75.obj",
+    "modules/PRICE_MARKER_RUBY_1X0_75.mtl",
+    "modules/PRICE_MARKER_RUBY_1X0_75.obj"
+  ],
+  "source_pixels": "procedural Pillow drawing and generated OBJ/MTL only",
+  "studio_imported": false,
+  "human_approved": false
+}

@@ -1,0 +1,520 @@
+{
+  "script_version": "1.0.0",
+  "modules": {
+    "STALL_BAY_12X8": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/STALL_BAY_12X8.obj",
+      "vertices": 96,
+      "faces": 72,
+      "triangles": 144,
+      "objects": [
+        {
+          "name": "STALL_BAY_12X8",
+          "vertices": 96,
+          "faces": 72
+        }
+      ],
+      "materials": [
+        "PlasterCream",
+        "WoodDark",
+        "WoodWarm"
+      ]
+    },
+    "AWNING_12X3_BAY": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/AWNING_12X3_BAY.obj",
+      "vertices": 72,
+      "faces": 54,
+      "triangles": 108,
+      "objects": [
+        {
+          "name": "AWNING_12X3_BAY",
+          "vertices": 72,
+          "faces": 54
+        }
+      ],
+      "materials": [
+        "CanvasPaper",
+        "CanvasVermilion"
+      ]
+    },
+    "SHELF_WALL_6X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/SHELF_WALL_6X2.obj",
+      "vertices": 48,
+      "faces": 36,
+      "triangles": 72,
+      "objects": [
+        {
+          "name": "SHELF_WALL_6X2",
+          "vertices": 48,
+          "faces": 36
+        }
+      ],
+      "materials": [
+        "WoodDark",
+        "WoodWarm"
+      ]
+    },
+    "CRATE_STACK_2X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/CRATE_STACK_2X2.obj",
+      "vertices": 56,
+      "faces": 42,
+      "triangles": 84,
+      "objects": [
+        {
+          "name": "CRATE_STACK_2X2",
+          "vertices": 56,
+          "faces": 42
+        }
+      ],
+      "materials": [
+        "WoodDark",
+        "WoodWarm"
+      ]
+    },
+    "FRUIT_TRAY_3": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/FRUIT_TRAY_3.obj",
+      "vertices": 136,
+      "faces": 86,
+      "triangles": 236,
+      "objects": [
+        {
+          "name": "FRUIT_TRAY_3",
+          "vertices": 136,
+          "faces": 86
+        }
+      ],
+      "materials": [
+        "FruitHoneygold",
+        "FruitRuby",
+        "WoodDark",
+        "WoodWarm"
+      ]
+    },
+    "LANTERN_POST_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/LANTERN_POST_4.obj",
+      "vertices": 56,
+      "faces": 34,
+      "triangles": 100,
+      "objects": [
+        {
+          "name": "LANTERN_POST_4",
+          "vertices": 56,
+          "faces": 34
+        }
+      ],
+      "materials": [
+        "LanternAmber",
+        "WoodDark"
+      ]
+    },
+    "STREET_EDGE_CURB_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/STREET_EDGE_CURB_4.obj",
+      "vertices": 16,
+      "faces": 12,
+      "triangles": 24,
+      "objects": [
+        {
+          "name": "STREET_EDGE_CURB_4",
+          "vertices": 16,
+          "faces": 12
+        }
+      ],
+      "materials": [
+        "PlasterCream",
+        "StoneWarm"
+      ]
+    },
+    "STREET_EDGE_DRAIN_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/STREET_EDGE_DRAIN_4.obj",
+      "vertices": 16,
+      "faces": 12,
+      "triangles": 24,
+      "objects": [
+        {
+          "name": "STREET_EDGE_DRAIN_4",
+          "vertices": 16,
+          "faces": 12
+        }
+      ],
+      "materials": [
+        "Ink",
+        "MetalDark"
+      ]
+    },
+    "FACADE_PANEL_6": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/FACADE_PANEL_6.obj",
+      "vertices": 24,
+      "faces": 18,
+      "triangles": 36,
+      "objects": [
+        {
+          "name": "FACADE_PANEL_6",
+          "vertices": 24,
+          "faces": 18
+        }
+      ],
+      "materials": [
+        "PlasterCream",
+        "WoodDark",
+        "WoodWarm"
+      ]
+    },
+    "SIGNBOARD_3": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/SIGNBOARD_3.obj",
+      "vertices": 24,
+      "faces": 18,
+      "triangles": 36,
+      "objects": [
+        {
+          "name": "SIGNBOARD_3",
+          "vertices": 24,
+          "faces": 18
+        }
+      ],
+      "materials": [
+        "CanvasPaper",
+        "WoodDark"
+      ]
+    },
+    "PLANTER_2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/PLANTER_2.obj",
+      "vertices": 40,
+      "faces": 26,
+      "triangles": 68,
+      "objects": [
+        {
+          "name": "PLANTER_2",
+          "vertices": 40,
+          "faces": 26
+        }
+      ],
+      "materials": [
+        "Leaf",
+        "StoneWarm",
+        "WoodDark"
+      ]
+    },
+    "BOLLARD_05": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/modules/BOLLARD_05.obj",
+      "vertices": 48,
+      "faces": 28,
+      "triangles": 88,
+      "objects": [
+        {
+          "name": "BOLLARD_05",
+          "vertices": 48,
+          "faces": 28
+        }
+      ],
+      "materials": [
+        "LanternAmber",
+        "WoodDark"
+      ]
+    }
+  },
+  "collision": {
+    "STALL_BAY_12X8": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_STALL_BAY_12X8.obj",
+      "vertices": 48,
+      "faces": 36,
+      "triangles": 72,
+      "objects": [
+        {
+          "name": "COLLISION_STALL_BAY_12X8",
+          "vertices": 48,
+          "faces": 36
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "AWNING_12X3_BAY": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_AWNING_12X3_BAY.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_AWNING_12X3_BAY",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "SHELF_WALL_6X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_SHELF_WALL_6X2.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_SHELF_WALL_6X2",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "CRATE_STACK_2X2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_CRATE_STACK_2X2.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_CRATE_STACK_2X2",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "LANTERN_POST_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_LANTERN_POST_4.obj",
+      "vertices": 32,
+      "faces": 20,
+      "triangles": 56,
+      "objects": [
+        {
+          "name": "COLLISION_LANTERN_POST_4",
+          "vertices": 32,
+          "faces": 20
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "STREET_EDGE_CURB_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_STREET_EDGE_CURB_4.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_STREET_EDGE_CURB_4",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "STREET_EDGE_DRAIN_4": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_STREET_EDGE_DRAIN_4.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_STREET_EDGE_DRAIN_4",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "FACADE_PANEL_6": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_FACADE_PANEL_6.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_FACADE_PANEL_6",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "PLANTER_2": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_PLANTER_2.obj",
+      "vertices": 8,
+      "faces": 6,
+      "triangles": 12,
+      "objects": [
+        {
+          "name": "COLLISION_PLANTER_2",
+          "vertices": 8,
+          "faces": 6
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    },
+    "BOLLARD_05": {
+      "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/collision/COLLISION_BOLLARD_05.obj",
+      "vertices": 24,
+      "faces": 14,
+      "triangles": 44,
+      "objects": [
+        {
+          "name": "COLLISION_BOLLARD_05",
+          "vertices": 24,
+          "faces": 14
+        }
+      ],
+      "materials": [
+        "CollisionProxy"
+      ]
+    }
+  },
+  "assembly": {
+    "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/market_kit_assembly.obj",
+    "vertices": 632,
+    "faces": 438,
+    "triangles": 1020,
+    "objects": [
+      {
+        "name": "StallBay",
+        "vertices": 96,
+        "faces": 72
+      },
+      {
+        "name": "Awning",
+        "vertices": 72,
+        "faces": 54
+      },
+      {
+        "name": "BackShelf",
+        "vertices": 48,
+        "faces": 36
+      },
+      {
+        "name": "NeighborFacade",
+        "vertices": 24,
+        "faces": 18
+      },
+      {
+        "name": "AppleCrates",
+        "vertices": 56,
+        "faces": 42
+      },
+      {
+        "name": "FruitTray",
+        "vertices": 136,
+        "faces": 86
+      },
+      {
+        "name": "Sign",
+        "vertices": 24,
+        "faces": 18
+      },
+      {
+        "name": "Lantern",
+        "vertices": 56,
+        "faces": 34
+      },
+      {
+        "name": "Planter",
+        "vertices": 40,
+        "faces": 26
+      },
+      {
+        "name": "Drain",
+        "vertices": 16,
+        "faces": 12
+      },
+      {
+        "name": "Curb",
+        "vertices": 16,
+        "faces": 12
+      },
+      {
+        "name": "EdgeBollard",
+        "vertices": 48,
+        "faces": 28
+      }
+    ],
+    "materials": [
+      "CanvasPaper",
+      "CanvasVermilion",
+      "FruitHoneygold",
+      "FruitRuby",
+      "Ink",
+      "LanternAmber",
+      "Leaf",
+      "MetalDark",
+      "PlasterCream",
+      "StoneWarm",
+      "WoodDark",
+      "WoodWarm"
+    ]
+  },
+  "assembly_collision": {
+    "path": "C:/Users/fricc/Documents/Codex/2026-08-07/pipilabu/assets/candidates/pipilabu_market_environment_v1/market_kit_assembly_collision.obj",
+    "vertices": 160,
+    "faces": 112,
+    "triangles": 256,
+    "objects": [
+      {
+        "name": "COLLISION_StallBay",
+        "vertices": 48,
+        "faces": 36
+      },
+      {
+        "name": "COLLISION_Awning",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_BackShelf",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_NeighborFacade",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_AppleCrates",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_Lantern",
+        "vertices": 32,
+        "faces": 20
+      },
+      {
+        "name": "COLLISION_Planter",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_Drain",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_Curb",
+        "vertices": 8,
+        "faces": 6
+      },
+      {
+        "name": "COLLISION_EdgeBollard",
+        "vertices": 24,
+        "faces": 14
+      }
+    ],
+    "materials": [
+      "CollisionProxy"
+    ]
+  },
+  "blender_scene": null
+}

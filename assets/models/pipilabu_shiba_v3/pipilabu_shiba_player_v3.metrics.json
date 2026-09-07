@@ -1,0 +1,38 @@
+{
+  "generator_version": "2.0.0",
+  "model_version": "v3",
+  "blender_version": "4.5.12 LTS",
+  "variant": "player",
+  "scale_multiplier": 1.0,
+  "mesh_objects": 20,
+  "vertices": 5003,
+  "triangles": 9926,
+  "bones": 19,
+  "actions": [
+    "Pipilabu_Carry",
+    "Pipilabu_Happy",
+    "Pipilabu_Idle",
+    "Pipilabu_Serve",
+    "Pipilabu_Walk"
+  ],
+  "attachments": [
+    "ATTACH_Back",
+    "ATTACH_Fruit_L",
+    "ATTACH_Fruit_R",
+    "ATTACH_Mouth",
+    "ATTACH_OrderBillboard",
+    "ATTACH_ShopkeeperProp"
+  ],
+  "collision_marker": "COLLISION_ROOT",
+  "bounds_meters_approx": [
+    1.85,
+    1.55,
+    2.55
+  ],
+  "blend_file": "pipilabu_shiba_player_v3.blend",
+  "fbx_file": "pipilabu_shiba_player_v3.fbx",
+  "blend_bytes": 1576101,
+  "fbx_bytes": 1199916,
+  "preview_file": "pipilabu_shiba_player_v3.preview.png",
+  "preview_bytes": 432670
+}

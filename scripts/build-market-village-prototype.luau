@@ -1,21 +1,28 @@
--- Builds an additive, local-only market-village presentation prototype.
+-- Builds an additive market-village presentation prototype in either the
+-- local fallback file or the one exact private Pipilabu cloud place.
 --
 -- This script never edits or reparents Workspace.DogeAppleShop. It replaces
 -- only its own exact root so the entire lane can be removed and rebuilt.
 -- Run through Studio MCP or the Studio Command Bar in Edit mode after Rojo
 -- has synced the shared modules.
 
-assert(game.PlaceId == 0 and game.GameId == 0, "Refusing to build outside a local file")
-assert(
-	game.Name == "JonAndLeoDevelopment" or game.Name == "JonAndLeoDevelopment.rbxlx",
-	"Unexpected local DataModel: " .. game.Name
-)
+local isLocalFallback = game.PlaceId == 0 and game.GameId == 0
+local isPrivatePipilabu = game.PlaceId == 133099029551440 and game.GameId == 10646495069
+assert(isLocalFallback or isPrivatePipilabu, "Refusing to build outside the Pipilabu allowlist")
+if isLocalFallback then
+	assert(
+		game.Name == "JonAndLeoDevelopment" or game.Name == "JonAndLeoDevelopment.rbxlx",
+		"Unexpected local DataModel: " .. game.Name
+	)
+else
+	assert(game.Name == "Pipilabu", "Unexpected private DataModel: " .. game.Name)
+end
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerStorage = game:GetService("ServerStorage")
 local Workspace = game:GetService("Workspace")
 
 local projectRoot = ReplicatedStorage:WaitForChild("JonAndLeoDevelopment")
-local Copy = require(projectRoot:WaitForChild("Copy"))
 local MarketVillage = require(projectRoot:WaitForChild("MarketVillage"))
 local Presentation = require(projectRoot:WaitForChild("Presentation"))
 
@@ -57,14 +64,15 @@ local function makePart(
 	color: Color3,
 	material: Enum.Material,
 	parent: Instance,
-	transparency: number?
+	transparency: number?,
+	canCollide: boolean?
 ): Part
 	local item = Instance.new("Part")
 	item.Name = name
 	item.Size = size
 	item.Position = position
 	item.Anchored = true
-	item.CanCollide = false
+	item.CanCollide = canCollide == true
 	item.CanTouch = false
 	item.CanQuery = false
 	item.CastShadow = true
@@ -91,7 +99,7 @@ local function makeBillboard(
 	billboard.Name = name .. "Billboard"
 	billboard.Adornee = adornee
 	billboard.AlwaysOnTop = false
-	billboard.MaxDistance = 80
+	billboard.MaxDistance = 42
 	billboard.Size = size
 	billboard.StudsOffset = offset
 	billboard.Parent = adornee
@@ -168,12 +176,13 @@ local function makeStall(
 	stall:SetAttribute("Role", "FutureNeighborShopDisplay")
 	stall:SetAttribute("InteractionEnabled", false)
 
-	makePart("Floor", Vector3.new(11, 0.12, 6), position + Vector3.new(0, 0.06, 0), Palette.Wood, Enum.Material.WoodPlanks, stall)
-	local back = makePart("BackWall", Vector3.new(10, 4.8, 0.4), position + Vector3.new(0, 2.4, 2.5), Palette.Cream, Enum.Material.SmoothPlastic, stall)
-	makePart("Counter", Vector3.new(9.8, 1.05, 2.1), position + Vector3.new(0, 0.55, -0.55), Palette.WoodDark, Enum.Material.WoodPlanks, stall)
-	makePart("CounterTop", Vector3.new(10.2, 0.22, 2.45), position + Vector3.new(0, 1.18, -0.55), Palette.Wood, Enum.Material.WoodPlanks, stall)
+	makePart("Floor", Vector3.new(11, 0.12, 6), position + Vector3.new(0, 0.06, 0), Palette.Wood, Enum.Material.WoodPlanks, stall, nil, true)
+	local back = makePart("BackWall", Vector3.new(10, 4.8, 0.4), position + Vector3.new(0, 2.4, 2.5), Palette.Cream, Enum.Material.SmoothPlastic, stall, nil, true)
+	makePart("Counter", Vector3.new(9.8, 1.05, 2.1), position + Vector3.new(0, 0.55, -0.55), Palette.WoodDark, Enum.Material.WoodPlanks, stall, nil, true)
+	makePart("CounterTop", Vector3.new(10.2, 0.22, 2.45), position + Vector3.new(0, 1.18, -0.55), Palette.Wood, Enum.Material.WoodPlanks, stall, nil, true)
+	makePart("Roof", Vector3.new(11, 0.38, 5.6), position + Vector3.new(0, 5.05, 0.25), Palette.Cream, Enum.Material.SmoothPlastic, stall, nil, true)
 
-	local awning = makePart("Awning", Vector3.new(11.2, 0.34, 3.2), position + Vector3.new(0, 5.05, -0.55), awningColor, Enum.Material.SmoothPlastic, stall)
+	local awning = makePart("Awning", Vector3.new(11.2, 0.34, 3.2), position + Vector3.new(0, 5.05, -1.15), awningColor, Enum.Material.SmoothPlastic, stall, nil, true)
 	for stripe = -2, 2 do
 		makePart(
 			string.format("AwningStripe_%02d", stripe + 3),
@@ -186,17 +195,17 @@ local function makeStall(
 	end
 	awning:SetAttribute("PresentationRole", "ShelterAndSilhouette")
 
-	makePart("ShelfUpper", Vector3.new(8.2, 0.24, 0.8), position + Vector3.new(0, 2.55, 1.9), Palette.Wood, Enum.Material.WoodPlanks, stall)
-	makePart("ShelfLower", Vector3.new(8.2, 0.24, 0.8), position + Vector3.new(0, 1.75, 1.9), Palette.Wood, Enum.Material.WoodPlanks, stall)
+	makePart("ShelfUpper", Vector3.new(8.2, 0.24, 0.8), position + Vector3.new(0, 2.55, 1.9), Palette.Wood, Enum.Material.WoodPlanks, stall, nil, true)
+	makePart("ShelfLower", Vector3.new(8.2, 0.24, 0.8), position + Vector3.new(0, 1.75, 1.9), Palette.Wood, Enum.Material.WoodPlanks, stall, nil, true)
 	addFruitDisplay(stall, position + Vector3.new(0, 1.42, -0.85), fruitColor)
-	makeBillboard(back, "ShopSign", signText, Palette.Ink, UDim2.fromOffset(190, 46), Vector3.new(0, 1.15, 0))
+	makeBillboard(back, "ShopSign", signText, Palette.Ink, UDim2.fromOffset(112, 28), Vector3.new(0, 1.15, 0))
 
 	return stall
 end
 
 local function makeLantern(parent: Folder, name: string, position: Vector3)
-	makePart("Post", Vector3.new(0.22, 3.8, 0.22), position + Vector3.new(0, 1.9, 0), Palette.WoodDark, Enum.Material.Wood, parent)
-	local lantern = makePart("Lantern", Vector3.new(0.92, 1.15, 0.92), position + Vector3.new(0, 3.85, 0), Palette.Lantern, Enum.Material.Glass, parent)
+	makePart("Post", Vector3.new(0.22, 3.8, 0.22), position + Vector3.new(0, 1.9, 0), Palette.WoodDark, Enum.Material.Wood, parent, nil, true)
+	local lantern = makePart("Lantern", Vector3.new(0.92, 1.15, 0.92), position + Vector3.new(0, 3.85, 0), Palette.Lantern, Enum.Material.Glass, parent, nil, true)
 	lantern.Shape = Enum.PartType.Ball
 	lantern:SetAttribute("FixtureName", name)
 
@@ -210,8 +219,10 @@ local function makeLantern(parent: Folder, name: string, position: Vector3)
 end
 
 local grounding = makeFolder(MarketVillage.GroundingFolderName, village)
-makePart("MarketStreet", Vector3.new(10, 0.08, 58), Vector3.new(0, 0.05, 42), Palette.Path, Enum.Material.Cobblestone, grounding)
+makePart("MarketStreet", Vector3.new(10, 0.08, 50), Vector3.new(0, 0.05, 25), Palette.Path, Enum.Material.Cobblestone, grounding)
 makePart("MarketPlaza", Vector3.new(42, 0.08, 12), Vector3.new(0, 0.07, 6), Palette.Stone, Enum.Material.Slate, grounding)
+makePart("LowerCrossStreet", Vector3.new(42, 0.08, 3.2), Vector3.new(0, 0.06, 17), Palette.Path, Enum.Material.Cobblestone, grounding)
+makePart("UpperCrossStreet", Vector3.new(42, 0.08, 3.2), Vector3.new(0, 0.06, 35), Palette.Path, Enum.Material.Cobblestone, grounding)
 local neighborLanes = makeFolder(MarketVillage.NeighborLanesFolderName, village)
 makePart("WestNeighborLane", Vector3.new(3.2, 0.08, 26), Vector3.new(-15, 0.08, -8), Palette.Path, Enum.Material.Cobblestone, neighborLanes)
 makePart("EastNeighborLane", Vector3.new(3.2, 0.08, 26), Vector3.new(15, 0.08, -8), Palette.Path, Enum.Material.Cobblestone, neighborLanes)
@@ -219,10 +230,10 @@ makePart("WestUpperLane", Vector3.new(3.2, 0.08, 20), Vector3.new(-15, 0.08, 61)
 makePart("EastUpperLane", Vector3.new(3.2, 0.08, 20), Vector3.new(15, 0.08, 61), Palette.Path, Enum.Material.Cobblestone, neighborLanes)
 
 fixtures = makeFolder(MarketVillage.FixturesFolderName, village)
-makeStall("TeaStall", Vector3.new(-19, 0, 28), Palette.Indigo, "TEA", Palette.Persimmon)
-makeStall("FlowerStall", Vector3.new(19, 0, 28), Palette.FlowerPink, "FLOWERS", Palette.FlowerPink)
-makeStall("RiceStall", Vector3.new(-19, 0, 49), Palette.Cream, "RICE", Palette.Paper)
-makeStall("LanternStall", Vector3.new(19, 0, 49), Palette.Vermilion, "LANTERNS", Palette.Lantern)
+makeStall("TeaStall", Vector3.new(-19, 0, 22), Palette.Vermilion, "TEA & TREATS", Palette.AppleRed)
+makeStall("FlowerStall", Vector3.new(19, 0, 22), Palette.Lantern, "FLOWER CART", Palette.Lantern)
+makeStall("RiceStall", Vector3.new(-19, 0, 40), Palette.Leaf, "RICE SHOP", Palette.Leaf)
+makeStall("LanternStall", Vector3.new(19, 0, 40), Palette.Indigo, "LANTERN SHOP", Palette.Paper)
 
 for index, position in ipairs({
 	Vector3.new(-6, 0, 16),
@@ -249,66 +260,15 @@ for _, data in ipairs(plotData) do
 	plot:SetAttribute("InteractionEnabled", false)
 	local pad = makePart("ReservedPad", Vector3.new(12, 0.08, 14), data.Position, Palette.Stone, Enum.Material.Slate, plot, 0.2)
 	pad:SetAttribute("FutureSystem", "OneShopPerPlayer after Gate F")
-	makeBillboard(pad, "PlotLabel", "FUTURE SHOP", Palette.Ink, UDim2.fromOffset(160, 38), Vector3.new(0, 1.6, 0))
+	makeBillboard(pad, "PlotLabel", "COMING SOON", Palette.Ink, UDim2.fromOffset(88, 22), Vector3.new(0, 1.15, 0))
 	for corner = -1, 1, 2 do
-		makePart("PlotPostX", Vector3.new(0.18, 2.1, 0.18), data.Position + Vector3.new(corner * 5.3, 1.05, -6), Palette.WoodDark, Enum.Material.Wood, plot)
-		makePart("PlotPostZ", Vector3.new(0.18, 2.1, 0.18), data.Position + Vector3.new(corner * 5.3, 1.05, 6), Palette.WoodDark, Enum.Material.Wood, plot)
+		makePart("PlotPostX", Vector3.new(0.18, 2.1, 0.18), data.Position + Vector3.new(corner * 5.3, 1.05, -6), Palette.WoodDark, Enum.Material.Wood, plot, nil, true)
+		makePart("PlotPostZ", Vector3.new(0.18, 2.1, 0.18), data.Position + Vector3.new(corner * 5.3, 1.05, 6), Palette.WoodDark, Enum.Material.Wood, plot, nil, true)
 	end
 end
 
 local stewardshipDisplay = makeFolder(MarketVillage.StewardshipDisplayName, village)
-stewardshipDisplay:SetAttribute("Purpose", "Positive service consequence readback")
-local board = makePart("Board", Vector3.new(9, 4.8, 0.35), Vector3.new(-9, 2.7, 7.2), Palette.WoodDark, Enum.Material.WoodPlanks, stewardshipDisplay)
-local boardSurface = Instance.new("SurfaceGui")
-boardSurface.Name = "BoardSurface"
-boardSurface.Face = Enum.NormalId.Front
-boardSurface.AlwaysOnTop = false
-boardSurface.CanvasSize = Vector2.new(900, 480)
-boardSurface.Parent = board
-
-local boardMessage = Instance.new("TextLabel")
-boardMessage.Name = "Message"
-boardMessage.BackgroundTransparency = 1
-boardMessage.Position = UDim2.fromScale(0.06, 0.06)
-boardMessage.Size = UDim2.fromScale(0.88, 0.25)
-boardMessage.Font = Enum.Font.GothamBold
-boardMessage.Text = Copy.Village.OpenHands
-boardMessage.TextColor3 = Palette.CareSoft
-boardMessage.TextScaled = true
-boardMessage.Parent = boardSurface
-
-local boardCount = Instance.new("TextLabel")
-boardCount.Name = "Count"
-boardCount.BackgroundTransparency = 1
-boardCount.Position = UDim2.fromScale(0.68, 0.72)
-boardCount.Size = UDim2.fromScale(0.25, 0.18)
-boardCount.Font = Enum.Font.GothamBlack
-boardCount.Text = "0 / 3"
-boardCount.TextColor3 = Palette.Paper
-boardCount.TextScaled = true
-boardCount.Parent = boardSurface
-
-local careMarkers = makeFolder(MarketVillage.CareMarkersName, stewardshipDisplay)
-for index, threshold in ipairs({ 3, 6, 10 }) do
-	local marker = makePart(
-		string.format("%s%02d", MarketVillage.CareMarkerPrefix, index),
-		Vector3.new(1.1, 1.1, 0.24),
-		Vector3.new(-11.1 + (index - 1) * 2.1, 2.35, 6.98),
-		Palette.Paper,
-		Enum.Material.SmoothPlastic,
-		careMarkers,
-		0.48
-	)
-	marker:SetAttribute("CareThreshold", threshold)
-	marker:SetAttribute("RewardsPlayer", false)
-	local glow = Instance.new("PointLight")
-	glow.Name = "CareGlow"
-	glow.Color = Palette.CareGreen
-	glow.Range = 6
-	glow.Brightness = 0.8
-	glow.Enabled = false
-	glow.Parent = marker
-end
+stewardshipDisplay:SetAttribute("Purpose", "Reserved; visible care board removed for gameplay clarity")
 
 local anchor = Instance.new("Model")
 anchor.Name = MarketVillage.PeepilabuAnchorName
@@ -319,18 +279,53 @@ anchor:SetAttribute("BlocksGameplay", false)
 anchor:SetAttribute("QuestSystem", "Reserved; no active quest logic")
 anchor.Parent = village
 
-local anchorRoot = makePart("Root", Vector3.new(2, 4, 2), Vector3.new(12, 2.1, 13), Palette.DogeCoat, Enum.Material.SmoothPlastic, anchor, 1)
-anchor.PrimaryPart = anchorRoot
-makePart("Body", Vector3.new(2.6, 2.8, 2.1), Vector3.new(12, 1.45, 13), Palette.DogeCoat, Enum.Material.SmoothPlastic, anchor)
-local anchorHead = makePart("Head", Vector3.new(2.55, 2.35, 2.4), Vector3.new(12, 3.8, 12.9), Palette.DogeCoat, Enum.Material.SmoothPlastic, anchor)
-anchorHead.Shape = Enum.PartType.Ball
-makePart("Muzzle", Vector3.new(1.35, 0.75, 1.05), Vector3.new(12, 3.45, 11.75), Palette.Muzzle, Enum.Material.SmoothPlastic, anchor)
-makePart("LeftEar", Vector3.new(0.7, 1.15, 0.55), Vector3.new(11.25, 5.15, 12.85), Palette.WoodDark, Enum.Material.SmoothPlastic, anchor)
-makePart("RightEar", Vector3.new(0.7, 1.15, 0.55), Vector3.new(12.75, 5.15, 12.85), Palette.WoodDark, Enum.Material.SmoothPlastic, anchor)
-makePart("LeftEye", Vector3.new(0.22, 0.32, 0.18), Vector3.new(11.55, 4, 11.75), Palette.Ink, Enum.Material.SmoothPlastic, anchor)
-makePart("RightEye", Vector3.new(0.22, 0.32, 0.18), Vector3.new(12.45, 4, 11.75), Palette.Ink, Enum.Material.SmoothPlastic, anchor)
-makePart("Clipboard", Vector3.new(0.85, 1.2, 0.12), Vector3.new(11.1, 1.6, 11.85), Palette.Wood, Enum.Material.WoodPlanks, anchor)
-makeBillboard(anchorHead, "AnchorLabel", Copy.Village.PeepilabuAnchor, Palette.Ink, UDim2.fromOffset(210, 62), Vector3.new(0, 1.9, 0))
+local importedAssets = ServerStorage:FindFirstChild("PipilabuImportedAssets")
+local importedOwner = importedAssets and importedAssets:FindFirstChild("OwnerShibaV1")
+if importedOwner
+	and importedOwner:IsA("Model")
+	and importedOwner:GetAttribute("ApprovedForPresentation") == true
+then
+	local ownerVisual = importedOwner:Clone()
+	ownerVisual.Name = "OwnerShibaVisual"
+	ownerVisual:SetAttribute("PresentationRole", "Peepilabu owner prototype")
+	ownerVisual:SetAttribute("InteractionEnabled", false)
+	ownerVisual.Parent = anchor
+	for _, descendant in ownerVisual:GetDescendants() do
+		if descendant:IsA("BasePart") then
+			descendant.Anchored = true
+			descendant.CanCollide = false
+			descendant.CanTouch = false
+			descendant.CanQuery = false
+			descendant.Material = Enum.Material.SmoothPlastic
+			if descendant.Name == "RootPart" then
+				descendant.Transparency = 1
+			elseif string.find(descendant.Name, "EyeGlint", 1, true) then
+				descendant.Color = Palette.Paper
+			elseif string.find(descendant.Name, "Eye", 1, true)
+				or descendant.Name == "Nose"
+				or descendant.Name == "Mouth"
+			then
+				descendant.Color = Palette.Ink
+			elseif string.find(descendant.Name, "Cheek", 1, true)
+				or string.find(descendant.Name, "Muzzle", 1, true)
+				or string.find(descendant.Name, "ChestPatch", 1, true)
+				or string.find(descendant.Name, "Hand", 1, true)
+				or string.find(descendant.Name, "Foot", 1, true)
+				or descendant.Name == "Tail_Tip"
+			then
+				descendant.Color = Palette.Muzzle
+			else
+				descendant.Color = Palette.DogeCoat
+			end
+		end
+	end
+	ownerVisual:PivotTo(CFrame.new(-3.5, 0.5, -6) * CFrame.Angles(0, math.rad(180), 0))
+	anchor.PrimaryPart = ownerVisual.PrimaryPart
+else
+	local anchorRoot = makePart("Root", Vector3.new(1, 1, 1), Vector3.new(-3.5, 0.5, -6), Palette.DogeCoat, Enum.Material.SmoothPlastic, anchor, 1)
+	anchor.PrimaryPart = anchorRoot
+	anchor:SetAttribute("VisualStatus", "Awaiting approved character model")
+end
 
 local seams = makeFolder(MarketVillage.ExtensionSeamsName, village)
 seams:SetAttribute("RuntimeBehavior", "None")

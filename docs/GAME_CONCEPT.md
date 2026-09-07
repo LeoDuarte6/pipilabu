@@ -1,4 +1,4 @@
-# Doge Apple Shop
+# Pipi Labu
 
 Working title only. This document captures the concept Leo and Jon developed by voice on 2026-08-07.
 
